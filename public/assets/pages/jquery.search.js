@@ -6,7 +6,7 @@ $(function() {
               type: "POST",
               url: "/echo/json/",
               dataType:'json',
-              data: { JSON.stringify(date)},
+              data: {JSON.stringify(date)},
               success: function(data){
                   console.log(data);
                   }

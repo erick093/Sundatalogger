@@ -29,31 +29,80 @@ app.post('/echo/json/', function(req, res) {
 io.on('connection', (socket) => {
   console.log('New user connected,sending lastest data');
   var d = new Date().getTime();
-  Data.V_data.findOne({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(1).exec((err, docs) => {
-    //console.log(docs);
-    console.log("Lastest V: " + docs.sensorVAL );
-    io.emit('panels_V',{
-      'topic':String(docs.sensorID),
-      'message':String(docs.sensorVAL),
-      'time' : docs.timestamp
+  // Data.V_data.findOne({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(1).exec((err, docs) => {
+  //   if (err){
+  //     console.log("Error getting Data from DB");
+  //     return
+  //   }
+  //   console.log("Lastest V: " + docs.sensorVAL );
+  //   io.emit('last_V',{
+  //     'topic':String(docs.sensorID),
+  //     'message':String(docs.sensorVAL),
+  //     'time' : docs.timestamp
+  //   });
+  // });
+  Data.V_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+    if (err){
+      console.log("Error getting Data from DB");
+      return
+    }
+    console.log("Lastest V: " + docs[0].sensorVAL );
+
+    io.emit('last_V',{
+      'topic':String(docs[0].sensorID),
+      'message':String(docs[0].sensorVAL),
+      'time' : docs[0].timestamp
     });
+      for (i = 0; i < docs.length; i++) {
+        io.emit('panels_V',{
+          'topic':String(docs[i].sensorID),
+          'message':String(docs[i].sensorVAL),
+          'time' : docs[i].timestamp
+        });
+      }
+
   });
-  Data.A_data.findOne({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(1).exec((err, docs) => {
-    console.log("Lastest A: "  + docs.sensorVAL);
-    io.emit('panels_A',{
-      'topic':String(docs.sensorID),
-      'message':String(docs.sensorVAL),
-      'time' : docs.timestamp
+
+  Data.A_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+    if (err){
+      console.log("Error getting Data from DB");
+      return
+    }
+    console.log("Lastest A: "  + docs[0].sensorVAL);
+    io.emit('last_A',{
+      'topic':String(docs[0].sensorID),
+      'message':String(docs[0].sensorVAL),
+      'time' : docs[0].timestamp
     });
+    for (i = 0; i < docs.length; i++) {
+      io.emit('panels_A',{
+        'topic':String(docs[i].sensorID),
+        'message':String(docs[i].sensorVAL),
+        'time' : docs[i].timestamp
+      });
+    }
   });
-  Data.P_data.findOne({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(1).exec((err, docs) => {
-    console.log("Lastest P: " +  docs.sensorVAL );
-    io.emit('panels_P',{
-      'topic':String(docs.sensorID),
-      'message':String(docs.sensorVAL),
-      'time' : docs.timestamp
+
+  Data.P_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+    if (err){
+      console.log("Error getting Data from DB");
+      return
+    }
+    console.log("Lastest P: " +  docs[0].sensorVAL );
+    io.emit('last_P',{
+      'topic':String(docs[0].sensorID),
+      'message':String(docs[0].sensorVAL),
+      'time' : docs[0].timestamp
     });
+    for (i = 0; i < docs.length; i++) {
+      io.emit('panels_P',{
+        'topic':String(docs[i].sensorID),
+        'message':String(docs[i].sensorVAL),
+        'time' : docs[i].timestamp
+      });
+    }
   });
+
 });
 
 server.listen(3500, function(err){
@@ -77,7 +126,6 @@ Data.P_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((e
     //text += cars[i] + "<br>";
     console.log(docs[i].sensorVAL);
 }
-
 });
 
 client.on('message', function (topic, message) {
@@ -93,6 +141,11 @@ client.on('message', function (topic, message) {
     });
     //console.log("TESTEOO: "+ newData.timestamp);
     io.emit('panels_A',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+    io.emit('last_A',{
       'topic':String(topic),
       'message':String(message),
       'time': newData.timestamp
@@ -115,7 +168,11 @@ client.on('message', function (topic, message) {
       'message':String(message),
       'time': newData.timestamp
     });
-
+    io.emit('last_V',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
     newData.save().then((doc) => {
       //console.log(JSON.stringify(doc,undefined,2));
     }, (e) => {
@@ -130,6 +187,11 @@ client.on('message', function (topic, message) {
       sensorVAL: message
     });
     io.emit('panels_P',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+    io.emit('last_P',{
       'topic':String(topic),
       'message':String(message),
       'time': newData.timestamp

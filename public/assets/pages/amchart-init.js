@@ -44,7 +44,8 @@ var chartConfig = {
   "type": "serial",
   "theme": "light",
   "fontFamily": "sans-serif",
-  "fontSize" : "12",
+  "fontSize" : "8",
+  "dataDateFormat": "YYYY-MM-DD HH:NN",
   "valueAxes": [{
     "id": "v1",
     "position": "left"
@@ -104,19 +105,33 @@ var chart3 = AmCharts.makeChart("P_chart", chartConfig3);
 // chart.numberFormatter = {
 //   precision:3,decimalSeparator:",",thousandsSeparator:""
 // };
-// chart.addListener("rendered", zoomChart);
-// zoomChart();
+chart1.addListener("rendered", zoomChart1);
+zoomChart1();
+chart2.addListener("rendered", zoomChart2);
+zoomChart2();
+chart3.addListener("rendered", zoomChart3);
+zoomChart3();
 
-// this method is called when chart is first inited as we listen for "rendered" event
-// function zoomChart() {
-//     // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
-//     chart.zoomToIndexes(chartData.length - 40, chartData.length - 1);
-// }
+
+
+function zoomChart1() {
+    // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
+    chart1.zoomToIndexes(chartData1.length - 40, chartData1.length - 1);
+}
+function zoomChart2() {
+    // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
+    chart2.zoomToIndexes(chartData2.length - 40, chartData2.length - 1);
+}
+function zoomChart3() {
+    // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
+    chart3.zoomToIndexes(chartData3.length - 40, chartData3.length - 1);
+}
 
 socket.on('panels_V', function (data) {
-  //var newDate = new Date();
+
+  console.log("V time: "+new Date(parseInt(data.time)));
   chartData1.push({
-    date: new Date(data.time),
+    date: new Date(parseInt(data.time)),
     value: data.message
   });
   chart1.dataProvider = chartData1;
@@ -129,9 +144,10 @@ socket.on('panels_V', function (data) {
 
 socket.on('panels_A', function (data) {
   //var newDate = new Date();
+  console.log("A time: "+new Date(parseInt(data.time)));
   chartData2.push({
     //date: newDate,
-    date: new Date(data.time),
+    date: new Date(parseInt(data.time)),
     value: data.message
   });
   chart2.dataProvider = chartData2;
@@ -143,9 +159,10 @@ socket.on('panels_A', function (data) {
 
 socket.on('panels_P', function (data) {
   //var newDate = new Date();
+  console.log("P time: "+new Date(parseInt(data.time)));
   chartData3.push({
     //date: newDate,
-    date: new Date(data.time),
+    date: new Date(parseInt(data.time)),
     value: data.message
   });
   chart3.dataProvider = chartData3;
