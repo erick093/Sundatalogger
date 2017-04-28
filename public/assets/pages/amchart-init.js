@@ -3,8 +3,44 @@ var socket = io();
 var chartData1 = [];
 var chartData2 = [];
 var chartData3 = [];
-var chartData4 = [];
-chart_config = {
+
+//Cloning Function
+function clone(obj) {
+  var copy;
+
+  // Handle the 3 simple types, and null or undefined
+  if (null == obj || "object" != typeof obj) return obj;
+
+  // Handle Date
+  if (obj instanceof Date) {
+    copy = new Date();
+    copy.setTime(obj.getTime());
+    return copy;
+  }
+
+  // Handle Array
+  if (obj instanceof Array) {
+    copy = [];
+    for (var i = 0, len = obj.length; i < len; i++) {
+      copy[i] = clone(obj[i]);
+    }
+    return copy;
+  }
+
+  // Handle Object
+  if (obj instanceof Object) {
+    copy = {};
+    for (var attr in obj) {
+      if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
+    }
+    return copy;
+  }
+
+  throw new Error("Unable to copy obj! Its type isn't supported.");
+}
+
+
+var chartConfig = {
   "type": "serial",
   "theme": "light",
   "fontFamily": "sans-serif",
@@ -17,18 +53,27 @@ chart_config = {
   "graphs": [{
     "id": "g1",
     "bullet": "round",
+    "bulletSize": 5,
     "bulletBorderAlpha": 1,
     "bulletColor": "#FFFFFF",
     "useLineColorForBulletBorder": true,
     "hideBulletsCount": 50,
     "valueField": "value",
-    "balloonText": "[[value]]",
+    "balloonText": "<span style='font-size:18px;'>[[value]]</span>",
     "balloon":{
       "drop":true
     }
   }],
   "chartCursor": {
-   "limitToGraph":"g1"
+   //"limitToGraph":"g1"
+    "pan": true,
+    "valueLineEnabled": true,
+    "valueLineBalloonEnabled": true,
+    "cursorAlpha":1,
+    "cursorColor":"#258cbb",
+    "limitToGraph":"g1",
+    "valueLineAlpha":0.2,
+    "valueZoomable":true
   },
   "categoryField": "date",
   "categoryAxis": {
@@ -44,49 +89,14 @@ chart_config = {
   }
 };
 
-chart2_config = {
-  "type": "serial",
-  "theme": "light",
-  "fontFamily": "sans-serif",
-  "fontSize" : "12",
-  "valueAxes": [{
-    "id": "v1",
-    "position": "left"
-  }],
-  "mouseWheelZoomEnabled": true,
-  "graphs": [{
-    "id": "g1",
-    "bullet": "round",
-    "bulletBorderAlpha": 1,
-    "bulletColor": "#FFFFFF",
-    "useLineColorForBulletBorder": true,
-    "hideBulletsCount": 50,
-    "valueField": "value",
-    "balloonText": "[[value]]",
-    "balloon":{
-      "drop":true
-    }
-  }],
-  "chartCursor": {
-   "limitToGraph":"g1"
-  },
-  "categoryField": "date",
-  "categoryAxis": {
-    "parseDates": true,
-    "minPeriod": "HH",
-    "equalSpacing": true,
-    "dashLength": 1,
-    "minorGridEnabled": true
-  },
-  //"dataProvider": chartData1,
-  "export": {
-          "enabled": true
-  }
-};
 
 
-var chart1 = AmCharts.makeChart("V1_chart", chart_config);
-var chart2 = AmCharts.makeChart("A1_chart", chart2_config);
+var chartConfig1 = clone(chartConfig);
+var chartConfig2 = clone(chartConfig);
+var chartConfig3 = clone(chartConfig);
+var chart1 = AmCharts.makeChart("V_chart", chartConfig1);
+var chart2 = AmCharts.makeChart("A_chart", chartConfig2);
+var chart3 = AmCharts.makeChart("P_chart", chartConfig3);
 // var categoryAxis = chart.categoryAxis;
 // categoryAxis.parseDates = true;
 // categoryAxis.minPeriod = "DD";
@@ -103,10 +113,10 @@ var chart2 = AmCharts.makeChart("A1_chart", chart2_config);
 //     chart.zoomToIndexes(chartData.length - 40, chartData.length - 1);
 // }
 
-socket.on('panel1_V', function (data) {
-  var newDate = new Date();
+socket.on('panels_V', function (data) {
+  //var newDate = new Date();
   chartData1.push({
-    date: newDate,
+    date: new Date(data.time),
     value: data.message
   });
   chart1.dataProvider = chartData1;
@@ -117,10 +127,11 @@ socket.on('panel1_V', function (data) {
 });
 
 
-socket.on('panel1_A', function (data) {
-  var newDate = new Date();
+socket.on('panels_A', function (data) {
+  //var newDate = new Date();
   chartData2.push({
-    date: newDate,
+    //date: newDate,
+    date: new Date(data.time),
     value: data.message
   });
   chart2.dataProvider = chartData2;
@@ -128,4 +139,18 @@ socket.on('panel1_A', function (data) {
     chartData2.splice(0, chartData2.length - 20);
   }
   chart2.validateData();
+});
+
+socket.on('panels_P', function (data) {
+  //var newDate = new Date();
+  chartData3.push({
+    //date: newDate,
+    date: new Date(data.time),
+    value: data.message
+  });
+  chart3.dataProvider = chartData3;
+  if (chartData3.length > 20) {
+    chartData3.splice(0, chartData3.length - 20);
+  }
+  chart3.validateData();
 });

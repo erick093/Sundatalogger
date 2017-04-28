@@ -154,21 +154,42 @@
 									<div class="row">
 										<div class="col-lg-3 col-sm-6">
 											<div class="widget-inline-box text-center">
-												<h3 class="m-t-10"><i class="text-primary mdi mdi-access-point-network"></i> <b data-plugin="counterup">8954</b></h3>
-												<p class="text-muted">Total de conexiones</p>
+
+												<h3 class="m-t-10"><i class="mdi mdi-white-balance-sunny"></i> <b data-plugin="counterup"><div id="Power"></div></b></h3>
+                        <p class="text-muted">Real Time Power Output</p>
+
+
 											</div>
 										</div>
 
 										<div class="col-lg-3 col-sm-6">
 											<div class="widget-inline-box text-center">
-												<h3 class="m-t-10"><i class="text-custom mdi mdi-airplay"></i> <b data-plugin="counterup">7841</b></h3>
-												<p class="text-muted">Datos recibidos</p>
+												<h3 class="m-t-10"><i class="mdi mdi-battery-charging-30"></i> <b data-plugin="counterup"><div id="Current"></div></b></h3>
+												<p class="text-muted">Real Time Current Output</p>
 											</div>
 										</div>
 
-										<div class="col-lg-3 col-sm-6"> </div>
+                    <div class="col-lg-3 col-sm-6">
+                      <div class="widget-inline-box text-center">
+                        <h3 class="m-t-10"><i class="mdi mdi-battery-charging-30"></i> <b data-plugin="counterup"><div id="Voltage"></div></b></h3>
+                        <p class="text-muted">Real Time Voltage Output</p>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6">
+                      <div class="widget-inline-box text-center">
+                        <h3 class="m-t-10"><i class="mdi mdi-beach "></i> <b data-plugin="counterup"><div id="Null"></div></b></h3>
+                        <p class="text-muted">Solar Radiation</p>
+                      </div>
+                    </div>
+
+
+
+<!--
 
 										<div class="col-lg-3 col-sm-6"> </div>
+
+										<div class="col-lg-3 col-sm-6"> </div> -->
 
 									</div>
 								</div>
@@ -177,47 +198,13 @@
                         <!--end row -->
 
 
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="card-box">
-                                    <h4 class="m-t-0">Total Revenue</h4>
-                                    <div class="text-center">
-                                        <ul class="list-inline chart-detail-list">
-                                            <li>
-                                                <h5 class="font-normal"><i class="fa fa-circle m-r-10 text-primary"></i>Series A</h5>
-                                            </li>
-                                            <li>
-                                                <h5 class="font-normal"><i class="fa fa-circle m-r-10 text-muted"></i>Series B</h5>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div id="dashboard-bar-stacked" style="height: 300px;"></div>
-                                </div>
-                            </div> <!-- end col -->
 
-                            <div class="col-lg-6">
-                                <div class="card-box">
-                                    <h4 class="m-t-0">Sales Analytics</h4>
-                                    <div class="text-center">
-                                        <ul class="list-inline chart-detail-list">
-                                            <li>
-                                                <h5 class="font-normal"><i class="fa fa-circle m-r-10 text-primary"></i>Mobiles</h5>
-                                            </li>
-                                            <li>
-                                                <h5 class="font-normal"><i class="fa fa-circle m-r-10 text-info"></i>Tablets</h5>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div id="noid" style="height: 300px;"></div>
-                                </div>
-                            </div> <!-- end col -->
-                        </div> <!-- end row -->
 
                     </div>
                     <!-- end container -->
 
                     <div class="footer">
-						<div>
+						                <div>
             				<strong>Erick Escobar</strong> - Copyright &copy; 2017
                         </div>
                   </div> <!-- end footer -->
@@ -233,6 +220,7 @@
 
         <!--Amcharts Chart-->
         <script src="/socket.io/socket.io.js"></script>
+        <!-- <script src="/soc/socket.io.js"></script> -->
         <script src="assets/plugins/amcharts3/amcharts/amcharts.js"></script>
         <script src="assets/plugins/amcharts3/amcharts/serial.js"></script>
         <script src="assets/plugins/amcharts3/amcharts/plugins/export/export.min.js"></script>
@@ -246,8 +234,8 @@
         <script src="assets/js/jquery.slimscroll.min.js"></script>
 
         <!--Morris Chart-->
-		<script src="assets/plugins/morris/morris.min.js"></script>
-		<script src="assets/plugins/raphael/raphael-min.js"></script>
+		<!-- <script src="assets/plugins/morris/morris.min.js"></script>
+		<script src="assets/plugins/raphael/raphael-min.js"></script> -->
 
         <!-- Dashboard init -->
 		<script src="assets/pages/jquery.dashboard.js"></script>

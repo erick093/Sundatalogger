@@ -4,7 +4,25 @@
 * Author: Coderthemes
 * Morris Chart
 */
+  socket.on('panels_P', function (data) {
+    var div = document.getElementById("Power");
+    div.textContent = data.message + " Watts";
+    var text = div.textContent;
 
+  });
+
+  socket.on('panels_A', function (data) {
+    var div = document.getElementById("Current");
+    div.textContent = data.message + " Amps";
+    var text = div.textContent;
+
+  });
+  socket.on('panels_V', function (data) {
+    var div = document.getElementById("Voltage");
+    div.textContent = data.message + " Volts";
+    var text = div.textContent;
+
+  });
 !function($) {
     "use strict";
 

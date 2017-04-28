@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var V1_data = mongoose.model('V1_data', {
+var V_data = mongoose.model('V_data', {
   sensorID: {
     type: String
   },
@@ -13,7 +13,7 @@ var V1_data = mongoose.model('V1_data', {
   }
 });
 
-var A1_data = mongoose.model('A1_data', {
+var A_data = mongoose.model('A_data', {
   sensorID: {
     type: String
   },
@@ -26,5 +26,19 @@ var A1_data = mongoose.model('A1_data', {
   }
 });
 
-module.exports.V1_data = V1_data;
-module.exports.A1_data = A1_data;
+var P_data = mongoose.model('P_data', {
+  sensorID: {
+    type: String
+  },
+  sensorVAL: {
+    type: String
+  },
+  timestamp: {
+    type: String,
+    default: Date.now
+  }
+});
+
+module.exports.V_data = V_data;
+module.exports.A_data = A_data;
+module.exports.P_data = P_data;
