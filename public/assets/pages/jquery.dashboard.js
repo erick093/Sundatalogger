@@ -1,4 +1,4 @@
-
+var socket = io();
   socket.on('last_P', function (data) {
     var div = document.getElementById("Power");
     div.textContent = data.message + " Watts";

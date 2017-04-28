@@ -9,10 +9,13 @@ var server = http.createServer(app);
 var io = socketIO(server);
 var client = mqtt.connect('mqtt://10.0.0.30:8883');
 var bodyParser = require("body-parser");
+// app.use(bodyParser.json());
+// //app.use(app.router);
+//     //app.use(express.logger());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-//app.use(app.router);
-    //app.use(express.logger());
-
+var routes = require('./routes/croutes');
+routes(app);
 
 app.use(express.static(__dirname + '/public'));
 
@@ -20,10 +23,10 @@ app.use(express.static(__dirname + '/public'));
 app.get('/',(req,res) => {
   res.sendFile('index.html');
 });
-app.post('/echo/json/', function(req, res) {
-  console.log(req.body);
-  res.json(req.body);
-});
+// app.post('/echo/json/', function(req, res) {
+//   console.log(req.body);
+//   res.json(req.body);
+// });
 
 //Query lastest Data on Connection
 io.on('connection', (socket) => {

@@ -9,9 +9,9 @@ $(function() {
               data: {JSON.stringify(date)},
               success: function(data){
                   console.log(data);
-                  }
+              }
           });
-      }
+        }
     });
 
 });
