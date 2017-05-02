@@ -1,6 +1,7 @@
 const http = require('http');
 const express = require('express');
 const socketIO = require('socket.io');
+const port = process.env.PORT || 3500;
 var {mongoose} = require('./db/mongoose');
 var Data = require('./models/data');
 var mqtt =require('mqtt');
@@ -108,7 +109,7 @@ io.on('connection', (socket) => {
 
 });
 
-server.listen(3500, function(err){
+server.listen(port, function(err){
   if(err) throw err;
   console.log("Server is Runnnig on port 3500" );
 });
