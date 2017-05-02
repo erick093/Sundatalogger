@@ -7,7 +7,7 @@ var mqtt =require('mqtt');
 var app = express();
 var server = http.createServer(app);
 var io = socketIO(server);
-var client = mqtt.connect('mqtt://10.0.0.30:8883');
+var client = mqtt.connect('mqtt://10.0.0.50:1883');
 var bodyParser = require("body-parser");
 // app.use(bodyParser.json());
 // //app.use(app.router);

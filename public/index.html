@@ -1,258 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>Smart Sun Data Logger</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+<head>
+  <meta charset="utf-8" />
+  <title>Smart Sun Data Logger</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-        <!--Morris Chart CSS -->
-		<link rel="stylesheet" href="assets/plugins/morris/morris.css">
+  <link rel="shortcut icon" href="assets/images/favicon.ico">
 
-        <!-- Bootstrap core CSS -->
-        <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-        <!-- MetisMenu CSS -->
-        <link href="assets/css/metisMenu.min.css" rel="stylesheet">
-        <!-- Icons CSS -->
-        <link href="assets/css/icons.css" rel="stylesheet">
-        <!-- Custom styles for this template -->
-        <link href="assets/css/style.css" rel="stylesheet">
+  <!--Morris Chart CSS -->
+  <link rel="stylesheet" href="assets/plugins/morris/morris.css">
 
-    </head>
+  <!-- Bootstrap core CSS -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+  <!-- MetisMenu CSS -->
+  <link href="assets/css/metisMenu.min.css" rel="stylesheet">
+  <!-- Icons CSS -->
+  <link href="assets/css/icons.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
+  <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+
+</head>
 
 
-    <body>
+<body>
 
-        <div id="page-wrapper">
+  <div id="page-wrapper">
 
-            <!-- Top Bar Start -->
-            <div class="topbar">
+    <!-- Top Bar Start -->
+    <div class="topbar">
 
-                <!-- LOGO -->
-                <div class="topbar-left">
-                    <div class="">
-                        <a href="index.html" class="logo">
-                            <img src="assets/images/logo.png" alt="logo" class="logo-lg" />
-                            <img src="assets/images/logo_sm.png" alt="logo" class="logo-sm hidden" />
-                        </a>
-                    </div>
-                </div>
+      <!-- LOGO -->
+      <div class="topbar-left">
+        <div class="">
+          <a href="index.html" class="logo">
+            <img src="assets/images/logo.png" alt="logo" class="logo-lg" />
+            <img src="assets/images/logo_sm.png" alt="logo" class="logo-sm hidden" />
+          </a>
+        </div>
+      </div>
 
-                <!-- Top navbar -->
-                <div class="navbar navbar-default" role="navigation">
-                    <div class="container">
-                        <div class="">
+      <!-- Top navbar -->
+      <div class="navbar navbar-default" role="navigation">
+        <div class="container">
+          <div class="">
 
-                            <!-- Mobile menu button -->
-                            <div class="pull-left">
-                                <button type="button" class="button-menu-mobile visible-xs visible-sm">
+            <!-- Mobile menu button -->
+            <div class="pull-left">
+              <button type="button" class="button-menu-mobile visible-xs visible-sm">
                                     <i class="fa fa-bars"></i>
                                 </button>
-                                <span class="clearfix"></span>
-                            </div>
-                        </div>
-                    </div> <!-- end container -->
-                </div> <!-- end navbar -->
+              <span class="clearfix"></span>
             </div>
-            <!-- Top Bar End -->
+          </div>
+        </div>
+        <!-- end container -->
+      </div>
+      <!-- end navbar -->
+    </div>
+    <!-- Top Bar End -->
 
 
-            <!-- Page content start -->
-            <div class="page-contentbar">
+    <!-- Page content start -->
+    <div class="page-contentbar">
 
-                <!--left navigation start-->
-                <aside class="sidebar-navigation">
-                    <div class="scrollbar-wrapper">
-                        <div>
-                            <button type="button" class="button-menu-mobile btn-mobile-view visible-xs visible-sm">
+      <!--left navigation start-->
+      <aside class="sidebar-navigation">
+        <div class="scrollbar-wrapper">
+          <div>
+            <button type="button" class="button-menu-mobile btn-mobile-view visible-xs visible-sm">
                                 <i class="mdi mdi-close"></i>
                             </button>
-                            <!-- User Detail box -->
+            <!-- User Detail box -->
 
-                            <!--- End User Detail box -->
+            <!--- End User Detail box -->
 
-                            <!-- Left Menu Start -->
-                            <ul class="metisMenu nav" id="side-menu">
-                                <li><a href="index.html"><i class="ti-home"></i> Dashboard </a></li>
+            <!-- Left Menu Start -->
+            <ul class="metisMenu nav" id="side-menu">
+              <li><a href="index.html"><i class="ti-home"></i> Dashboard </a></li>
+              <li>
+                <a href="charts.html"> <em class="ti-pie-chart"></em> Charts </a>
+              </li>
 
+              <li>
+                <a href="javascript: void(0);" aria-expanded="true"><i class="ti-files"></i> Search <span class="fa arrow"></span></a>
+                <ul class="nav-second-level nav" aria-expanded="true">
+                  <li><a href="search-V.html">Voltage Data</a></li>
+                  <li><a href="search-A.html">Amperage Data</a></li>
+                  <li><a href="search-P.html">Electric Power Data</a></li>
+                </ul>
+              </li>
 
-
-
-
-                                <li>
-                                    <a href="javascript: void(0);" aria-expanded="true"><i class="ti-pencil-alt"></i> Forms <span class="fa arrow"></span></a>
-                                    <ul class="nav-second-level nav" aria-expanded="true">
-                                        <li><a href="forms-general.html">General Elements</a></li>
-                                        <li><a href="forms-advanced.html">Advanced Form</a></li>
-                                    </ul>
-                                </li>
-
-                                <li>
-                                    <a href="javascript: void(0);" aria-expanded="true"><i class="ti-menu-alt"></i> Tables <span class="fa arrow"></span></a>
-                                    <ul class="nav-second-level nav" aria-expanded="true">
-                                        <li><a href="tables-basic.html">Basic tables</a></li>
-                                        <li><a href="tables-advanced.html">Advanced tables</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="charts.html"> <em class="ti-pie-chart"></em> Charts </a></li>
-                                <li><a href="maps.html"><i class="ti-location-pin"></i> Maps </a></li>
-
-                                <li>
-                                    <a href="javascript: void(0);" aria-expanded="true"><i class="ti-files"></i> Pages <span class="fa arrow"></span></a>
-                                    <ul class="nav-second-level nav" aria-expanded="true">
-                                        <li><a href="pages-login.html">Login</a></li>
-                                        <li><a href="pages-register.html">Register</a></li>
-                                        <li><a href="pages-forget-password.html">Forget Password</a></li>
-                                        <li><a href="pages-lock-screen.html">Lock-screen</a></li>
-                                        <li><a href="pages-blank.html">Blank page</a></li>
-                                        <li><a href="pages-404.html">Error 404</a></li>
-                                        <li><a href="pages-confirm-mail.html">Confirm Mail</a></li>
-                                        <li><a href="pages-session-expired.html">Session Expired</a></li>
-                                    </ul>
-                                </li>
-
-                                <li>
-                                    <a href="javascript: void(0);" aria-expanded="true"><i class="ti-widget"></i> Extra Pages <span class="fa arrow"></span></a>
-                                    <ul class="nav-second-level nav" aria-expanded="true">
-                                        <li><a href="extras-timeline.html">Timeline</a></li>
-                                        <li><a href="extras-invoice.html">Invoice</a></li>
-                                        <li><a href="extras-profile.html">Profile</a></li>
-                                        <li><a href="extras-calendar.html">Calendar</a></li>
-                                        <li><a href="extras-faqs.html">FAQs</a></li>
-                                        <li><a href="extras-pricing.html">Pricing</a></li>
-                                        <li><a href="extras-contacts.html">Contacts</a></li>
-                                    </ul>
-                                </li>
-
-                                <li>
-                                    <a href="javascript: void(0);" aria-expanded="true"><i class="ti-share"></i> Multi Level <span class="fa arrow"></span></a>
-                                    <ul class="nav-second-level nav" aria-expanded="true">
-                                        <li><a href="javascript: void(0);">Level 1.1</a></li>
-                                        <li><a href="javascript: void(0);" aria-expanded="true">Level 1.2 <span class="fa arrow"></span></a>
-                                            <ul class="nav-third-level nav" aria-expanded="true">
-                                                <li><a href="javascript: void(0);">Level 2.1</a></li>
-                                                <li><a href="javascript: void(0);">Level 2.2</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div><!--Scrollbar wrapper-->
-                </aside>
-                <!--left navigation end-->
-
-                <!-- START PAGE CONTENT -->
-                <div id="page-right-content">
-
-                    <div class="container">
-                        <div class="row">
-							<div class="col-sm-12">
-								<div class="card-box widget-inline">
-									<div class="row">
-										<div class="col-lg-3 col-sm-6">
-											<div class="widget-inline-box text-center">
-
-												<h3 class="m-t-10"><i class="mdi mdi-white-balance-sunny"></i> <b data-plugin="counterup"><div id="Power"></div></b></h3>
-                        <p class="text-muted">Real Time Power Output</p>
+              <li><a href="maps.html"><i class="ti-location-pin"></i> Maps </a></li>
 
 
-											</div>
-										</div>
 
-										<div class="col-lg-3 col-sm-6">
-											<div class="widget-inline-box text-center">
-												<h3 class="m-t-10"><i class="mdi mdi-battery-charging-30"></i> <b data-plugin="counterup"><div id="Current"></div></b></h3>
-												<p class="text-muted">Real Time Current Output</p>
-											</div>
-										</div>
+              <li>
+                <a href="javascript: void(0);" aria-expanded="true"><i class="ti-widget"></i> Extra Pages <span class="fa arrow"></span></a>
+                <ul class="nav-second-level nav" aria-expanded="true">
+                  <li><a href="extras-timeline.html">Timeline</a></li>
+                  <li><a href="extras-invoice.html">Invoice</a></li>
+                  <li><a href="extras-profile.html">Profile</a></li>
+                  <li><a href="extras-calendar.html">Calendar</a></li>
+                  <li><a href="extras-faqs.html">FAQs</a></li>
+                  <li><a href="extras-pricing.html">Pricing</a></li>
+                  <li><a href="extras-contacts.html">Contacts</a></li>
+                </ul>
+              </li>
 
-                    <div class="col-lg-3 col-sm-6">
-                      <div class="widget-inline-box text-center">
-                        <h3 class="m-t-10"><i class="mdi mdi-battery-charging-30"></i> <b data-plugin="counterup"><div id="Voltage"></div></b></h3>
-                        <p class="text-muted">Real Time Voltage Output</p>
-                      </div>
+              <li>
+                <a href="javascript: void(0);" aria-expanded="true"><i class="ti-share"></i> Multi Level <span class="fa arrow"></span></a>
+                <ul class="nav-second-level nav" aria-expanded="true">
+                  <li><a href="javascript: void(0);">Level 1.1</a></li>
+                  <li><a href="javascript: void(0);" aria-expanded="true">Level 1.2 <span class="fa arrow"></span></a>
+                    <ul class="nav-third-level nav" aria-expanded="true">
+                      <li><a href="javascript: void(0);">Level 2.1</a></li>
+                      <li><a href="javascript: void(0);">Level 2.2</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!--Scrollbar wrapper-->
+      </aside>
+      <!--left navigation end-->
+
+      <!-- START PAGE CONTENT -->
+      <div id="page-right-content">
+
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card-box widget-inline">
+                <div class="row">
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="widget-inline-box text-center">
+
+                      <h3 class="m-t-10"><i class="mdi mdi-white-balance-sunny"></i> <b data-plugin="counterup"><div id="Power"></div></b></h3>
+                      <p class="text-muted">Real Time Power Output</p>
                     </div>
-
-                    <div class="col-lg-3 col-sm-6">
-                      <div class="widget-inline-box text-center">
-                        <h3 class="m-t-10"><i class="mdi mdi-beach "></i> <b data-plugin="counterup"><div id="Null"></div></b></h3>
-                        <p class="text-muted">Solar Radiation</p>
-                      </div>
-                    </div>
-
-                    <div class="row p-t-50">
-                        <div class="col-sm-12">
-                            <h4 class="header-title">      Solar Panels Configuration</h4>
-                        </div> <!-- end col -->
                   </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="m-b-20">
-                                <img src="assets/images/Configpanel.png"  />
-                                <!-- <h5>World Map</h5>
 
-                                <div id="world-map-markers" style="height: 500px"></div> -->
-                            </div>
-                        </div>
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="widget-inline-box text-center">
+                      <h3 class="m-t-10"><i class="mdi mdi-battery-charging-30"></i> <b data-plugin="counterup"><div id="Current"></div></b></h3>
+                      <p class="text-muted">Real Time Current Output</p>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="widget-inline-box text-center">
+                      <h3 class="m-t-10"><i class="mdi mdi-battery-charging-30"></i> <b data-plugin="counterup"><div id="Voltage"></div></b></h3>
+                      <p class="text-muted">Real Time Voltage Output</p>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="widget-inline-box text-center">
+                      <h3 class="m-t-10"><i class="mdi mdi-beach "></i> <b data-plugin="counterup"><div id="Null"></div></b></h3>
+                      <p class="text-muted">Solar Radiation</p>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-sm-6"> </div>
+
+                  <div class="col-lg-3 col-sm-6"> </div>
+
+                  <!-- <div class="row p-t-50">
+                    <div class="col-sm-12">
+                      <h4 class="header-title">      Solar Panels Configuration</h4>
                     </div>
 
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="m-b-20">
+                        <img src="assets/images/Configpanel.png" />
 
-<!--
-
-										<div class="col-lg-3 col-sm-6"> </div>
-
-										<div class="col-lg-3 col-sm-6"> </div> -->
-
-									</div>
-								</div>
-							</div>
-						</div>
-                        <!--end row -->
-
-
-
-
+                      </div>
                     </div>
-                    <!-- end container -->
-
-                    <div class="footer">
-						                <div>
-            				<strong>Erick Escobar</strong> - Copyright &copy; 2017
-                        </div>
-                  </div> <!-- end footer -->
+                  </div> -->
 
                 </div>
-                <!-- End #page-right-content -->
-
+              </div>
             </div>
-            <!-- end .page-contentbar -->
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="card-box">
+                <h4 class="m-t-0">Energy</h4>
+                <div class="text-center">
+                  <ul class="list-inline chart-detail-list">
+                    <li>
+                      <h5 class="font-normal"><i class="fa fa-circle m-r-10 text-primary"></i>Series A</h5>
+                    </li>
+                    <li>
+                      <h5 class="font-normal"><i class="fa fa-circle m-r-10 text-muted"></i>Series B</h5>
+                    </li>
+                  </ul>
+                </div>
+                <div id="dashboard-bar-stacked" style="height: 300px;"></div>
+              </div>
+            </div>
+            <!-- end col -->
+
+            <div class="col-lg-6">
+              <div class="card-box">
+                <h4 class="m-t-0">Solar Radiation</h4>
+                <div class="text-center">
+                  <ul class="list-inline chart-detail-list">
+                    <li>
+                      <h5 class="font-normal"><i class="fa fa-circle m-r-10 text-primary"></i>Mobiles</h5>
+                    </li>
+                    <li>
+                      <h5 class="font-normal"><i class="fa fa-circle m-r-10 text-info"></i>Tablets</h5>
+                    </li>
+                  </ul>
+                </div>
+                <div id="dashboard-line-chart" style="height: 300px;"></div>
+              </div>
+            </div>
+          </div>
+          <!-- end row -->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card-box">
+                <h4 class="m-t-0">Power Output</h4>
+                    <div id="s_pot"  style="height:400px;"></div>
+                    <div class="container">
+                      <div>
+                        <p>Day:
+                          <input type="text" id="from">
+                        </p>
+                        <button type="button" id="bt">Search</button>
+                      </div>
+                    </div>
+              </div>
+            </div>
+          </div>
+          <!-- end container -->
+
+          <div class="footer">
+            <div>
+              <strong>Erick Escobar</strong> - Copyright &copy; 2017
+            </div>
+          </div>
+          <!-- end footer -->
+
         </div>
-        <!-- End #page-wrapper -->
+        <!-- End #page-right-content -->
+
+      </div>
+      <!-- end .page-contentbar -->
+    </div>
+    <!-- End #page-wrapper -->
 
 
-        <!--Amcharts Chart-->
-        <script src="/socket.io/socket.io.js"></script>
-        <!-- <script src="/soc/socket.io.js"></script> -->
-        <!-- js placed at the end of the document so the pages load faster -->
+    <!--Socket io-->
+    <script src="/socket.io/socket.io.js"></script>
+    <!--Amcharts Chart-->
+    <script src="assets/plugins/amcharts3/amcharts/amcharts.js"></script>
+    <script src="assets/plugins/amcharts3/amcharts/serial.js"></script>
+    <script src="assets/plugins/amcharts3/amcharts/plugins/export/export.min.js"></script>
+    <script src="assets/plugins/amcharts3/amcharts/themes/light.js"></script>
+    <!-- <script src="/soc/socket.io.js"></script> -->
+    <!-- js placed at the end of the document so the pages load faster -->
 
-        <script src="assets/js/jquery-2.1.4.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
-        <script src="assets/js/metisMenu.min.js"></script>
-        <script src="assets/js/jquery.slimscroll.min.js"></script>
+    <script src="assets/js/jquery-2.1.4.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/metisMenu.min.js"></script>
+    <script src="assets/js/jquery.slimscroll.min.js"></script>
 
-        <!--Morris Chart-->
-		<!-- <script src="assets/plugins/morris/morris.min.js"></script>
+    <!--Morris Chart-->
+    <!-- <script src="assets/plugins/morris/morris.min.js"></script>
 		<script src="assets/plugins/raphael/raphael-min.js"></script> -->
 
-        <!-- Dashboard init -->
-		<script src="assets/pages/jquery.dashboard.js"></script>
+    <!-- Dashboard init -->
+    <script src="assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+    <script src="assets/pages/jquery.dashboard.js"></script>
 
 
-        <!-- App Js -->
-        <script src="assets/js/jquery.app.js"></script>
+    <!-- App Js -->
+    <script src="assets/js/jquery.app.js"></script>
 
-    </body>
+</body>
+
 </html>

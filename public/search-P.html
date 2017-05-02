@@ -9,9 +9,6 @@
 
         <link rel="shortcut icon" href="assets/images/favicon.ico">
 
-        <!-- jvectormap -->
-        <link href="assets/plugins/jvectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
-
         <!-- Bootstrap core CSS -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet">
         <!-- MetisMenu CSS -->
@@ -20,7 +17,8 @@
         <link href="assets/css/icons.css" rel="stylesheet">
         <!-- Custom styles for this template -->
         <link href="assets/css/style.css" rel="stylesheet">
-
+        <link rel="stylesheet" href="assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
+        <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
     </head>
 
 
@@ -55,7 +53,6 @@
                             </div>
 
                             <!-- Top nav left menu -->
-
 
                             <!-- Top nav Right menu -->
 
@@ -135,69 +132,38 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-12">
-                                <h4 class="header-title">Google Maps</h4>
-                            </div> <!-- end col -->
+                                <h4 class="header-title m-t-0 m-b-20">Search</h4>
+                            </div>
                         </div> <!-- end row -->
+                    </div>
+                    <!-- end container -->
+                    <div class="container">
+                      <div>
+                        <p>From:
+                          <input type="text" id="from">
+                        </p>
+                        <p>To:
+                          <input type="text" id="to">
+                        </p>
+                        <button type="button" id="bt">Search</button>
+                      </div>
+                    </div>
 
-            <div class="row">
-							<!-- <div class="col-lg-6">
-								<div class="m-b-20"> -->
-                <div class="col-md-12">
-                    <div class="m-b-20">
-									<h5>Universidad Privada Boliviana</h5>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="p-20 m-b-20">
+                                <h5 class="m-t-0">Electric Power Output</h5>
+                                <p class="text-muted font-13 m-b-30">
+                                  Power output of solar panels
+                                </p>
 
-									<div id="gmaps-markers" class="gmaps"></div>
-								</div>
-							</div>
-
-
-						</div>
-
-
-                        <!-- end row -->
-
-
-                        <div class="row p-t-50">
-                            <div class="col-sm-12">
-                                <h4 class="header-title">Solar Energy Monitoring Centers</h4>
-                            </div> <!-- end col -->
-                        </div> <!-- end row -->
-
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="m-b-20">
-                                    <h5>World Map</h5>
-
-                                    <div id="world-map-markers" style="height: 500px"></div>
+                                <div id="s_volt"  style="height:320px;">
                                 </div>
                             </div>
                         </div>
-                        <!-- end row -->
-
-
-
-                        <!-- end row -->
-
-
-
-                        <!-- end row -->
-
-
-
-                        <!-- end row -->
-
-
-
-                        <!-- end row -->
-
-
-
-
-                    <!-- end container -->
+                    </div>
 
                     <div class="footer">
-
                         <div>
                             <strong>Erick Escobar</strong> - Copyright &copy; 2017
                         </div>
@@ -206,40 +172,27 @@
                 </div>
                 <!-- End #page-right-content -->
 
+                <div class="clearfix"></div>
+
             </div>
             <!-- end .page-contentbar -->
         </div>
         <!-- End #page-wrapper -->
 
-
+        <!--Amcharts Chart-->
+        <script src="assets/plugins/amcharts3/amcharts/amcharts.js"></script>
+        <script src="assets/plugins/amcharts3/amcharts/serial.js"></script>
+        <script src="assets/plugins/amcharts3/amcharts/plugins/export/export.min.js"></script>
+        <script src="assets/plugins/amcharts3/amcharts/themes/light.js"></script>
+        <!-- <script src="assets/pages/amchart-init.js"></script> -->
 
         <!-- js placed at the end of the document so the pages load faster -->
         <script src="assets/js/jquery-2.1.4.min.js"></script>
+         <script src="assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+        <script src="assets/pages/jquery.search-P.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/metisMenu.min.js"></script>
         <script src="assets/js/jquery.slimscroll.min.js"></script>
-
-        <!-- google maps api -->
-        <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
-        <!-- Gmaps file -->
-        <script src="assets/plugins/gmaps/gmaps.min.js"></script>
-
-        <!-- Google map Init -->
-        <script src="assets/pages/jquery.gmaps.js"></script>
-
-        <script src="assets/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
-        <script src="assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-        <script src="assets/plugins/jvectormap/gdp-data.js"></script>
-        <script src="assets/plugins/jvectormap/jquery-jvectormap-us-aea-en.js"></script>
-        <script src="assets/plugins/jvectormap/jquery-jvectormap-uk-mill-en.js"></script>
-        <script src="assets/plugins/jvectormap/jquery-jvectormap-au-mill.js"></script>
-        <script src="assets/plugins/jvectormap/jquery-jvectormap-us-il-chicago-mill-en.js"></script>
-        <script src="assets/plugins/jvectormap/jquery-jvectormap-ca-lcc.js"></script>
-        <script src="assets/plugins/jvectormap/jquery-jvectormap-de-mill.js"></script>
-        <script src="assets/plugins/jvectormap/jquery-jvectormap-in-mill.js"></script>
-        <script src="assets/plugins/jvectormap/jquery-jvectormap-asia-mill.js"></script>
-        <script src="assets/pages/jquery.jvectormap.init.js"></script>
-
 
         <!-- App Js -->
         <script src="assets/js/jquery.app.js"></script>
