@@ -19,8 +19,9 @@
   <!-- Icons CSS -->
   <link href="assets/css/icons.css" rel="stylesheet">
   <!-- Custom styles for this template -->
-  <link href="assets/css/style.css" rel="stylesheet">
   <link rel="stylesheet" href="assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
+  <link href="assets/css/style.css" rel="stylesheet">
+
   <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
 
 </head>
@@ -82,7 +83,7 @@
             <ul class="metisMenu nav" id="side-menu">
               <li><a href="index.html"><i class="ti-home"></i> Dashboard </a></li>
               <li>
-                <a href="charts.html"> <em class="ti-pie-chart"></em> Charts </a>
+                <a href="charts.html"> <em class="ti-pie-chart"></em> Live Charts </a>
               </li>
 
               <li>
@@ -96,7 +97,7 @@
 
               <li><a href="maps.html"><i class="ti-location-pin"></i> Maps </a></li>
 
-
+              <li><a href="live.html"><i class="ti-widget"></i> Live View </a></li>
 
               <li>
                 <a href="javascript: void(0);" aria-expanded="true"><i class="ti-widget"></i> Extra Pages <span class="fa arrow"></span></a>
@@ -195,14 +196,16 @@
               <div class="card-box">
                 <h4 class="m-t-0">Energy</h4>
                 <div class="text-center">
-                  <ul class="list-inline chart-detail-list">
-                    <li>
+
+                    <!-- <li>
                       <h5 class="font-normal"><i class="fa fa-circle m-r-10 text-primary"></i>Series A</h5>
                     </li>
                     <li>
                       <h5 class="font-normal"><i class="fa fa-circle m-r-10 text-muted"></i>Series B</h5>
-                    </li>
-                  </ul>
+                    </li> -->
+                    <label for="month">Month: </label>
+                    <input type="text" id="month" name="month" class="monthPicker" />
+
                 </div>
                 <div id="dashboard-bar-stacked" style="height: 300px;"></div>
               </div>
@@ -233,6 +236,7 @@
                 <h4 class="m-t-0">Power Output</h4>
                     <div id="s_pot"  style="height:400px;"></div>
                     <div class="container">
+                      <p>Fecha: </p> <p id="dates"></p>
                       <div>
                         <p>Day:
                           <input type="text" id="from">
@@ -283,6 +287,7 @@
     <!-- Dashboard init -->
     <script src="assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
     <script src="assets/pages/jquery.dashboard.js"></script>
+    <script src="assets/pages/jquery.dashboard1.js"></script>
 
 
     <!-- App Js -->

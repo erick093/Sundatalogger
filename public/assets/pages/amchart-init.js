@@ -46,11 +46,13 @@ var chartConfig = {
   "fontFamily": "sans-serif",
   "fontSize" : "8",
   "dataDateFormat": "YYYY-MM-DD HH:NN",
-  "valueAxes": [{
-    "id": "v1",
-    "position": "left"
-  }],
-  "mouseWheelZoomEnabled": true,
+  // "valueAxes": [{
+  //   "axisAlpha": 0,
+  //   "position": "left",
+  //   "titleFontSize" : "14",
+  //    "titleBold" : false
+  // }],
+  "mouseWheelZoomEnabled": false,
   "graphs": [{
     "id": "g1",
     "bullet": "round",
@@ -98,6 +100,29 @@ var chartConfig3 = clone(chartConfig);
 var chart1 = AmCharts.makeChart("V_chart", chartConfig1);
 var chart2 = AmCharts.makeChart("A_chart", chartConfig2);
 var chart3 = AmCharts.makeChart("P_chart", chartConfig3);
+var valueAxis1 = new AmCharts.ValueAxis();
+valueAxis1.position = "left";
+valueAxis1.title = "Volts";
+valueAxis1.titleFontSize = "14";
+valueAxis1.axisAlpha = 0 ;
+valueAxis1.titleBold = false;
+chart1.addValueAxis(valueAxis1);
+var valueAxis2 = new AmCharts.ValueAxis();
+valueAxis2.position = "left";
+valueAxis2.title = "Amps";
+valueAxis2.titleFontSize = "14";
+valueAxis2.axisAlpha = 0 ;
+valueAxis2.titleBold = false;
+chart2.addValueAxis(valueAxis2);
+var valueAxis3 = new AmCharts.ValueAxis();
+valueAxis3.position = "left";
+valueAxis3.title = "Watts";
+valueAxis3.titleFontSize = "14";
+valueAxis3.axisAlpha = 0 ;
+valueAxis3.titleBold = false;
+chart3.addValueAxis(valueAxis3);
+
+
 // var categoryAxis = chart.categoryAxis;
 // categoryAxis.parseDates = true;
 // categoryAxis.minPeriod = "DD";
@@ -128,8 +153,8 @@ function zoomChart3() {
 }
 
 socket.on('panels_V', function (data) {
-
-  console.log("V time: "+new Date(parseInt(data.time)));
+  // console.log("V value: "+ data.message );
+  // console.log("V time: "+new Date(parseInt(data.time)));
   chartData1.push({
     date: new Date(parseInt(data.time)),
     value: data.message
@@ -144,7 +169,7 @@ socket.on('panels_V', function (data) {
 
 socket.on('panels_A', function (data) {
   //var newDate = new Date();
-  console.log("A time: "+new Date(parseInt(data.time)));
+  // console.log("A time: "+new Date(parseInt(data.time)));
   chartData2.push({
     //date: newDate,
     date: new Date(parseInt(data.time)),
@@ -159,7 +184,7 @@ socket.on('panels_A', function (data) {
 
 socket.on('panels_P', function (data) {
   //var newDate = new Date();
-  console.log("P time: "+new Date(parseInt(data.time)));
+  // console.log("P time: "+new Date(parseInt(data.time)));
   chartData3.push({
     //date: newDate,
     date: new Date(parseInt(data.time)),

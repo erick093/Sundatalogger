@@ -1,5 +1,4 @@
 var socket = io();
-var chartData = [];
   socket.on('last_P', function (data) {
     var div = document.getElementById("Power");
     div.textContent = data.message + " Watts";
@@ -18,9 +17,36 @@ var chartData = [];
     var text = div.textContent;
   });
 
+
+
+//alert(url);
+
   $(function() {
-      $("#from").datepicker();
-      $("#to").datepicker();
+    var start = new Date();
+    var now= start.setHours(0,0,0,0);
+    var end = new Date();
+    var nowto= end.setHours(23,59,59,999);
+    var url = "/find/P/from/" + now + "/to/" + nowto ;
+    document.getElementById("dates").innerHTML = start;
+    $.ajax({
+      type: "GET",
+      url:url,
+      dataType: 'json',
+      success: function(data) {
+
+        DrawGraph(data);
+
+      }
+    });
+
+
+      $("#from").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        defaultDate: new Date(),
+         maxDate: new Date()
+      });
+
 
       $("#bt").click(function(){
         var from = $("#from").val();
@@ -34,13 +60,8 @@ var chartData = [];
           success: function(data) {
             c_data = data ;
             alert('Searching '+ data.length +' points...');
-            //delete data.sensorID;
-            //console.log(data);
-            // console.log(data.length);
-            // console.log('valor en 0: '+data[0].sensorVAL);
-            // console.log('tiempo en 0: '+data[0].timestamp);
             DrawGraph(data);
-
+            document.getElementById("dates").innerHTML = new Date(from);
           }
         });
         //alert(urlAjax);
@@ -52,6 +73,7 @@ var chartData = [];
   });
 
   function DrawGraph(data) {
+    var chartData = [];
     //console.log("Recibo: "+ data.length);
     var chart =AmCharts.makeChart("s_pot", {
       "type": "serial",
@@ -60,10 +82,13 @@ var chartData = [];
       "fontSize" : "8",
       "dataDateFormat": "YYYY-MM-DD HH:NN",
       "valueAxes": [{
-        "id": "v1",
-        "position": "left"
+        "axisAlpha": 0,
+        "position": "left",
+        "titleFontSize" : "14",
+         "titleBold" : false,
+        "title": "Watts"
       }],
-      "mouseWheelZoomEnabled": true,
+      "mouseWheelZoomEnabled": false,
       "graphs": [{
         "id": "g1",
         "bullet": "round",
@@ -112,9 +137,6 @@ var chartData = [];
         "dashLength": 1,
         "minorGridEnabled": true
       },
-      "legend": {
-        "useGraphSettings": true
-      },
       //"dataProvider": chartData1,
       "export": {
               "enabled": true
@@ -123,6 +145,8 @@ var chartData = [];
 
   //console.log("este es el valor en 0: "+ data[0].sensorVAL);
 
+  chart.validateData();
+  //chart.animateAgain();
   for (var i = 0; i < data.length; i++) {
     //chartData[i]=data[i];
     chartData.push({
@@ -141,4 +165,6 @@ var chartData = [];
   function zoomChart() {
       chart.zoomToIndexes(chart.dataProvider.length - 40, chart.dataProvider.length - 1);
   }
+
+
   }

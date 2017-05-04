@@ -31,40 +31,33 @@ app.get('/',(req,res) => {
 
 //Query lastest Data on Connection
 io.on('connection', (socket) => {
+  socket.on('publish', function (data) {
+      console.log('Publishing to '+data.topic + ': ' +data.payload);
+      client.publish(data.topic,data.payload);
+  });
   console.log('New user connected,sending lastest data');
   var d = new Date().getTime();
-  // Data.V_data.findOne({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(1).exec((err, docs) => {
-  //   if (err){
-  //     console.log("Error getting Data from DB");
-  //     return
-  //   }
-  //   console.log("Lastest V: " + docs.sensorVAL );
-  //   io.emit('last_V',{
-  //     'topic':String(docs.sensorID),
-  //     'message':String(docs.sensorVAL),
-  //     'time' : docs.timestamp
-  //   });
-  // });
   Data.V_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
     if (err){
       console.log("Error getting Data from DB");
       return
     }
     console.log("Lastest V: " + docs[0].sensorVAL );
+    //console.log(docs.length);
 
     io.emit('last_V',{
       'topic':String(docs[0].sensorID),
       'message':String(docs[0].sensorVAL),
       'time' : docs[0].timestamp
     });
-      for (i = 0; i < docs.length; i++) {
+      for (var i = docs.length-1; i>0; i--) {
+        //console.log('volts:'+docs[i].sensorVAL);
         io.emit('panels_V',{
           'topic':String(docs[i].sensorID),
           'message':String(docs[i].sensorVAL),
           'time' : docs[i].timestamp
         });
       }
-
   });
 
   Data.A_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
@@ -78,7 +71,7 @@ io.on('connection', (socket) => {
       'message':String(docs[0].sensorVAL),
       'time' : docs[0].timestamp
     });
-    for (i = 0; i < docs.length; i++) {
+      for (var i = docs.length-1; i>0; i--) {
       io.emit('panels_A',{
         'topic':String(docs[i].sensorID),
         'message':String(docs[i].sensorVAL),
@@ -98,7 +91,7 @@ io.on('connection', (socket) => {
       'message':String(docs[0].sensorVAL),
       'time' : docs[0].timestamp
     });
-    for (i = 0; i < docs.length; i++) {
+    for (var i = docs.length-1; i>0; i--){
       io.emit('panels_P',{
         'topic':String(docs[i].sensorID),
         'message':String(docs[i].sensorVAL),
@@ -108,6 +101,7 @@ io.on('connection', (socket) => {
   });
 
 });
+
 
 server.listen(port, function(err){
   if(err) throw err;
@@ -124,13 +118,13 @@ client.on('connect', function () {
 });
 
 //Testing stuff
-var d = new Date().getTime();
-Data.P_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
-  for (i = 0; i < docs.length; i++) {
-    //text += cars[i] + "<br>";
-    console.log(docs[i].sensorVAL);
-}
-});
+// var d = new Date().getTime();
+// Data.P_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+//   for (i = 0; i < docs.length; i++) {
+//     //text += cars[i] + "<br>";
+//     console.log(docs[i].sensorVAL);
+// }
+// });
 
 client.on('message', function (topic, message) {
   var topic1_re = /^panels\/amp.*/;
@@ -207,7 +201,5 @@ client.on('message', function (topic, message) {
       console.log('Unable to save Data',e);
     });
   }
-
-
 
 });

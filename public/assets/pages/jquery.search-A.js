@@ -1,8 +1,17 @@
 var c_data =[];
-var chartData = [];
 $(function() {
-    $("#from").datepicker();
-    $("#to").datepicker();
+    $("#from").datepicker({
+      changeMonth: true,
+      changeYear: true,
+      defaultDate: new Date(),
+       maxDate: new Date()
+    });
+    $("#to").datepicker({
+      changeMonth: true,
+      changeYear: true,
+      defaultDate: new Date()
+       //maxDate: new Date()
+    });
 
     $("#bt").click(function(){
       var from = $("#from").val();
@@ -34,6 +43,7 @@ $(function() {
 });
 
 function DrawGraph(data) {
+  var chartData = [];
   console.log("Recibo: "+ data.length);
   var chart =AmCharts.makeChart("s_volt", {
     "type": "serial",
