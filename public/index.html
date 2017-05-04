@@ -163,8 +163,8 @@
 
                   <div class="col-lg-3 col-sm-6">
                     <div class="widget-inline-box text-center">
-                      <h3 class="m-t-10"><i class="mdi mdi-beach "></i> <b data-plugin="counterup"><div id="Null"></div></b></h3>
-                      <p class="text-muted">Solar Radiation</p>
+                      <h3 class="m-t-10"><i class="mdi mdi-flash"></i> <b data-plugin="counterup"><div id="Energy"></div></b></h3>
+                      <p class="text-muted">Lastest Energy</p>
                     </div>
                   </div>
                   <div class="col-lg-3 col-sm-6"> </div>
@@ -203,11 +203,13 @@
                     <li>
                       <h5 class="font-normal"><i class="fa fa-circle m-r-10 text-muted"></i>Series B</h5>
                     </li> -->
-                    <label for="month">Month: </label>
-                    <input type="text" id="month" name="month" class="monthPicker" />
+                    <label for="Day">Day: </label>
+                    <!-- <input type="text" id="month" name="month" class="monthPicker" /> -->
+                    <button type="button" id="bte">Search</button>
+                    <input type="text" id="frome">
 
                 </div>
-                <div id="dashboard-bar-stacked" style="height: 300px;"></div>
+                <div id="s_energy"  style="height:300px; width:100%;"></div>
               </div>
             </div>
             <!-- end col -->
@@ -216,14 +218,6 @@
               <div class="card-box">
                 <h4 class="m-t-0">Solar Radiation</h4>
                 <div class="text-center">
-                  <ul class="list-inline chart-detail-list">
-                    <li>
-                      <h5 class="font-normal"><i class="fa fa-circle m-r-10 text-primary"></i>Mobiles</h5>
-                    </li>
-                    <li>
-                      <h5 class="font-normal"><i class="fa fa-circle m-r-10 text-info"></i>Tablets</h5>
-                    </li>
-                  </ul>
                 </div>
                 <div id="dashboard-line-chart" style="height: 300px;"></div>
               </div>
@@ -287,7 +281,7 @@
     <!-- Dashboard init -->
     <script src="assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
     <script src="assets/pages/jquery.dashboard.js"></script>
-    <script src="assets/pages/jquery.dashboard1.js"></script>
+    <script src="assets/pages/jquery.dashboard_energy.js"></script>
 
 
     <!-- App Js -->

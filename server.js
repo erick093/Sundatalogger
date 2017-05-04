@@ -99,6 +99,26 @@ io.on('connection', (socket) => {
       });
     }
   });
+  Data.E_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+    if (err){
+      console.log("Error getting Data from DB");
+      return
+    }
+    console.log("Lastest E: " + docs[0].sensorVAL );
+    io.emit('last_E',{
+      'topic':String(docs[0].sensorID),
+      'message':String(docs[0].sensorVAL),
+      'time' : docs[0].timestamp
+    });
+      for (var i = docs.length-1; i>0; i--) {
+        //console.log('volts:'+docs[i].sensorVAL);
+        io.emit('panels_E',{
+          'topic':String(docs[i].sensorID),
+          'message':String(docs[i].sensorVAL),
+          'time' : docs[i].timestamp
+        });
+      }
+  });
 
 });
 
@@ -115,6 +135,7 @@ client.on('connect', function () {
   client.subscribe('panels/voltage');
   client.subscribe('panels/amp');
   client.subscribe('panels/power');
+  client.subscribe('panels/energy');
 });
 
 //Testing stuff
@@ -130,6 +151,10 @@ client.on('message', function (topic, message) {
   var topic1_re = /^panels\/amp.*/;
   var topic2_re = /^panels\/voltage.*/;
   var topic3_re = /^panels\/power.*/;
+  var topic4_re = /^panels\/energy.*/;
+  var topic5_re = /^panels\/radiation.*/;
+  // console.log("topic voltage: "+  topic2_re);
+  // console.log("topic energy: "+  topic4_re);
   //Panels Amp
   if (topic.match(topic1_re)){
     console.log('topic: '+ topic);
@@ -190,6 +215,53 @@ client.on('message', function (topic, message) {
       'time': newData.timestamp
     });
     io.emit('last_P',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+
+    newData.save().then((doc) => {
+      //console.log(JSON.stringify(doc,undefined,2));
+    }, (e) => {
+      console.log('Unable to save Data',e);
+    });
+  }
+//Panels Energy
+  else if(topic.match(topic4_re)){
+    console.log('topic: '+topic);
+    var newData = new Data.E_data({
+      sensorID: topic,
+      sensorVAL: message
+    });
+    io.emit('panels_E',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+    io.emit('last_E',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+
+    newData.save().then((doc) => {
+      //console.log(JSON.stringify(doc,undefined,2));
+    }, (e) => {
+      console.log('Unable to save Data',e);
+    });
+  }
+  else if(topic.match(topic5_re)){
+    console.log('topic: '+topic);
+    var newData = new Data.R_data({
+      sensorID: topic,
+      sensorVAL: message
+    });
+    io.emit('panels_R',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+    io.emit('last_R',{
       'topic':String(topic),
       'message':String(message),
       'time': newData.timestamp

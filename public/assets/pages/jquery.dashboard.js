@@ -16,7 +16,11 @@ var socket = io();
     div.textContent = data.message + " Volts";
     var text = div.textContent;
   });
-
+  socket.on('last_E', function (data) {
+    var div = document.getElementById("Energy");
+    div.textContent = data.message + " Wh";
+    var text = div.textContent;
+  });
 
 
 //alert(url);
@@ -79,14 +83,14 @@ var socket = io();
       "type": "serial",
       "theme": "light",
       "fontFamily": "sans-serif",
-      "fontSize" : "8",
       "dataDateFormat": "YYYY-MM-DD HH:NN",
       "valueAxes": [{
         "axisAlpha": 0,
+        "unit": "Watts",
         "position": "left",
         "titleFontSize" : "14",
-         "titleBold" : false,
-        "title": "Watts"
+         "titleBold" : true,
+        "title": "Power Output"
       }],
       "mouseWheelZoomEnabled": false,
       "graphs": [{
@@ -165,6 +169,5 @@ var socket = io();
   function zoomChart() {
       chart.zoomToIndexes(chart.dataProvider.length - 40, chart.dataProvider.length - 1);
   }
-
 
   }
