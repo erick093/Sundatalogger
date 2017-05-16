@@ -2,12 +2,12 @@
 {
     background-image: url("/assets/images/esquema_asilada_sf_r.png");
     background-repeat: no-repeat;
-    height: 800px;
-    width: 916px;
+    height: 900px;
+    width: 1000px;
     margin-left: 20px;
     margin-top: 13px;
     position: relative;
-    z-index: 80;
+    z-index: 50;
     /*+placement: 9px 177px;*/
     position: relative;
     left: 9px;
@@ -15,28 +15,25 @@
 }
 #shop .texte
 {
-  color: white;
-  font: bold 18px / 40px Helvetica, Sans-Serif;
-  letter-spacing: -1px;
-  background: rgb(0, 0, 0);
-  /* fallback color */
-  background: rgba(0, 0, 0, 0.7);
-  padding: 0px 10px 55px 28px;
-  height: 6px;
-  width: 216px;
-  /*+placement: 9px 285px;*/
-  position: relative;
-  left: 9px;
-  top: 285px;
-  text-align: center;
-  margin-bottom: 14px;
-  margin-left: 12px;
-  /*+border-radius: 0px;*/
-  -moz-border-radius: 0px;
-  -webkit-border-radius: 0px;
-  -khtml-border-radius: 0px;
-  border-radius: 0px;
-  margin-top: -4px;
+    color: white;
+    font: bold 18px / 40px Helvetica, Sans-Serif;
+    letter-spacing: -1px;
+    background: rgb(0, 0, 0);
+    /* fallback color */
+    background: rgba(0, 0, 0, 0.7);
+    padding: 0px 10px 55px 28px;
+    /*+placement: -1162px -820px;*/
+    position: relative;
+    left: -1162px;
+    top: -820px;
+    text-align: center;
+    /*+border-radius: 0px;*/
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -khtml-border-radius: 0px;
+    border-radius: 0px;
+    height: 28px;
+    width: 172px;
 }
 #shop .content
 {
@@ -61,10 +58,10 @@
     display: inline-block;
     position: relative;
     z-index: 50;
-    /*+placement: 507px -144px;*/
+    /*+placement: 317px -137px;*/
     position: relative;
-    left: 507px;
-    top: -144px;
+    left: 317px;
+    top: -137px;
     height: 239px;
     width: 12px;
 }

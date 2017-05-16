@@ -3,27 +3,27 @@ $(function() {
   var now= start.setHours(0,0,0,0);
   var end = new Date();
   var nowto= end.setHours(23,59,59,999);
-  var url = "/find/E/from/" + now + "/to/" + nowto ;
+  var url = "/find/R/from/" + now + "/to/" + nowto ;
   //document.getElementById("dates").innerHTML = start;
   $.ajax({
     type: "GET",
     url:url,
     dataType: 'json',
     success: function(data) {
-      DrawGraph_E(data);
+      DrawGraph_R(data);
     }
   });
-    $("#frome").datepicker({
+    $("#fromr").datepicker({
       changeMonth: true,
       changeYear: true,
       defaultDate: new Date(),
        maxDate: new Date()
     });
-    $("#bte").click(function(){
+    $("#btr").click(function(){
       var from = $("#frome").val();
       var fromv = new Date(from).getTime();
       var to = fromv + 86400000;
-      var urlAjax = "/find/E/from/" + new Date(from).getTime() + "/to/" + to ;
+      var urlAjax = "/find/R/from/" + new Date(from).getTime() + "/to/" + to ;
       $.ajax({
         type: "GET",
         url:urlAjax,
@@ -31,23 +31,23 @@ $(function() {
         success: function(data) {
           c_data = data ;
           alert('Searching '+ data.length +' points...');
-          DrawGraph_E(data);
+          DrawGraph_R(data);
           //document.getElementById("dates").innerHTML = new Date(from);
         }
       });
     });
 });
 
-function DrawGraph_E(data) {
+function DrawGraph_R(data) {
   var chartData = [];
   //console.log("Recibo: "+ data.length);
-  var chart = AmCharts.makeChart("s_energy", {
+  var chart = AmCharts.makeChart("s_pyra", {
     "theme": "light",
     "type": "serial",
     "dataDateFormat": "YYYY-MM-DD HH:NN",
     "valueAxes": [{
         "stackType": "3d",
-        "unit": "Wh",
+        "unit": "Wm2",
         "position": "left",
         "title": "Energy",
     }],

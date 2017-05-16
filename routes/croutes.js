@@ -18,6 +18,12 @@ module.exports = function(app) {
   app.route('/find/R')
     .get(chartdata.list_all_R_data);
   //.post(chartdata.create_a_data);
+  app.route('/find/Text')
+    .get(chartdata.list_all_Text_data);
+  //.post(chartdata.create_a_data);
+  app.route('/find/Tint')
+    .get(chartdata.list_all_Tint_data);
+  //.post(chartdata.create_a_data);
 
   app.route('/find/V/from/:from/to/:to')
     .get(chartdata.find_V_by_date);
@@ -29,4 +35,8 @@ module.exports = function(app) {
     .get(chartdata.find_E_by_date);
   app.route('/find/R/from/:from/to/:to')
     .get(chartdata.find_R_by_date);
+  app.route('/find/Text/from/:from/to/:to')
+    .get(chartdata.find_Text_by_date);
+  app.route('/find/Tint/from/:from/to/:to')
+    .get(chartdata.find_Tint_by_date);
 };

@@ -4,6 +4,8 @@ var mongoose = require('mongoose'),
   P_task = mongoose.model('P_data');
   E_task = mongoose.model('E_data');
   R_task = mongoose.model('R_data');
+  T_ext_task = mongoose.model('T_ext_data');
+  T_int_task = mongoose.model('T_int_data');
 
 // V - API
 exports.list_all_V_data = function(req, res) {
@@ -85,6 +87,36 @@ exports.find_R_by_date = function(req, res) {
   });
 };
 
+// T_ext - API
+exports.list_all_Text_data = function(req, res) {
+  T_ext_task.find({}, function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+exports.find_Text_by_date = function(req, res) {
+  T_ext_task.find({timestamp: {"$gte": req.params.from, "$lt": req.params.to}}, function(err, task){
+    if(err)
+      res.send(err);
+    res.json(task);
+  });
+};
+// T_int - API
+exports.list_all_Tint_data = function(req, res) {
+  T_int_task.find({}, function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+exports.find_Tint_by_date = function(req, res) {
+  T_int_task.find({timestamp: {"$gte": req.params.from, "$lt": req.params.to}}, function(err, task){
+    if(err)
+      res.send(err);
+    res.json(task);
+  });
+};
 
 
 

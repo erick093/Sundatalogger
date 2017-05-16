@@ -171,25 +171,53 @@
 
                   <div class="col-lg-3 col-sm-6"> </div>
 
-                  <!-- <div class="row p-t-50">
-                    <div class="col-sm-12">
-                      <h4 class="header-title">      Solar Panels Configuration</h4>
-                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card-box widget-inline">
+                <div class="row">
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="widget-inline-box text-center">
+
+                      <h3 class="m-t-10"><i class="mdi mdi-white-balance-sunny"></i> <b data-plugin="counterup"><div id="Radiation"></div></b></h3>
+                      <p class="text-muted">Solar Radiation (Pyranometer)</p>
+                    </div>
                   </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="m-b-20">
-                        <img src="assets/images/Configpanel.png" />
 
-                      </div>
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="widget-inline-box text-center">
+                      <h3 class="m-t-10"><i class="mdi mdi-oil-temperature"></i> <b data-plugin="counterup"><div id="O_temp"></div></b></h3>
+                      <p class="text-muted">Outside Temperature</p>
                     </div>
-                  </div> -->
+                  </div>
+
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="widget-inline-box text-center">
+                      <h3 class="m-t-10"><i class="mdi mdi-oil-temperature"></i> <b data-plugin="counterup"><div id="I_temp"></div></b></h3>
+                      <p class="text-muted">Inside Temperature</p>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="widget-inline-box text-center">
+                      <h3 class="m-t-10"><i class="mdi mdi-flash"></i> <b data-plugin="counterup"><div id="AC_power"></div></b></h3>
+                      <p class="text-muted">AC Power Line Consumption</p>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-sm-6"> </div>
+
+                  <div class="col-lg-3 col-sm-6"> </div>
 
                 </div>
               </div>
             </div>
           </div>
+
+
 
           <div class="row">
             <div class="col-lg-6">
@@ -197,29 +225,33 @@
                 <h4 class="m-t-0">Energy</h4>
                 <div class="text-center">
 
-                    <!-- <li>
+                  <!-- <li>
                       <h5 class="font-normal"><i class="fa fa-circle m-r-10 text-primary"></i>Series A</h5>
                     </li>
                     <li>
                       <h5 class="font-normal"><i class="fa fa-circle m-r-10 text-muted"></i>Series B</h5>
                     </li> -->
-                    <label for="Day">Day: </label>
-                    <!-- <input type="text" id="month" name="month" class="monthPicker" /> -->
-                    <button type="button" id="bte">Search</button>
-                    <input type="text" id="frome">
+                  <label for="Day">Day: </label>
+                  <!-- <input type="text" id="month" name="month" class="monthPicker" /> -->
+                  <button type="button" id="bte">Search</button>
+                  <input type="text" id="frome">
 
                 </div>
-                <div id="s_energy"  style="height:300px; width:100%;"></div>
+                <div id="s_energy" style="height:300px; width:100%;"></div>
               </div>
             </div>
             <!-- end col -->
 
             <div class="col-lg-6">
               <div class="card-box">
-                <h4 class="m-t-0">Solar Radiation</h4>
+                <h4 class="m-t-0">Solar Radiation: Pyranometer Values</h4>
                 <div class="text-center">
+                  <label for="Day">Day: </label>
+                  <!-- <input type="text" id="month" name="month" class="monthPicker" /> -->
+                  <button type="button" id="btr">Search</button>
+                  <input type="text" id="fromr">
                 </div>
-                <div id="dashboard-line-chart" style="height: 300px;"></div>
+                <div id="s_pyra" style="height: 300px;"></div>
               </div>
             </div>
           </div>
@@ -228,16 +260,17 @@
             <div class="col-sm-12">
               <div class="card-box">
                 <h4 class="m-t-0">Power Output</h4>
-                    <div id="s_pot"  style="height:400px;"></div>
-                    <div class="container">
-                      <p>Fecha: </p> <p id="dates"></p>
-                      <div>
-                        <p>Day:
-                          <input type="text" id="from">
-                        </p>
-                        <button type="button" id="bt">Search</button>
-                      </div>
-                    </div>
+                <div id="s_pot" style="height:400px;"></div>
+                <div class="container">
+                  <p>Fecha: </p>
+                  <p id="dates"></p>
+                  <div>
+                    <p>Day:
+                      <input type="text" id="from">
+                    </p>
+                    <button type="button" id="bt">Search</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -282,7 +315,7 @@
     <script src="assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
     <script src="assets/pages/jquery.dashboard.js"></script>
     <script src="assets/pages/jquery.dashboard_energy.js"></script>
-
+    <script src="assets/pages/jquery.dashboard_pyranometer.js"></script>
 
     <!-- App Js -->
     <script src="assets/js/jquery.app.js"></script>

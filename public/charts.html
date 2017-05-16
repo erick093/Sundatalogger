@@ -4,8 +4,6 @@
         <meta charset="utf-8" />
         <title>Smart Sun Data Logger</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
-        <meta content="Coderthemes" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <link rel="shortcut icon" href="assets/images/favicon.ico">
@@ -196,42 +194,37 @@
 
                         <div class="row m-t-30">
                             <div class="col-sm-12 m-t-30">
-                                <h4 class="header-title m-t-0">Knob Charts</h4>
+                                <h4 class="header-title m-t-0">Temperature Charts</h4>
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-3 col-sm-6 text-center">
-                                <div class="p-20 m-b-20">
-                                    <input data-plugin="knob" data-width="150" data-height="150" data-bgColor="#ebeff2"
-                                           data-fgColor="#188ae2" data-displayInput=false value="35"/>
-                                    <h6 class="text-muted m-t-10">Disable display input</h6>
-                                </div>
-                            </div><!-- end col-->
-                            <div class="col-md-3 col-sm-6 text-center">
-                                <div class="p-20 m-b-20">
-                                    <input data-plugin="knob" data-width="150" data-height="150" data-cursor=true
-                                           data-fgColor="#4bd396" value="29"/>
-                                    <h6 class="text-muted m-t-10">Cursor mode</h6>
-                                </div>
-                            </div><!-- end col-->
-                            <div class="col-md-3 col-sm-6 text-center">
-                                <div class="p-20 m-b-20">
-                                    <input data-plugin="knob" data-width="150" data-height="150" data-min="-100"
-                                           data-fgColor="#3ac9d6" data-displayPrevious=true value="44"/>
-                                    <h6 class="text-muted m-t-10">Display previous value</h6>
-                                </div>
-                            </div><!-- end col-->
-                            <div class="col-md-3 col-sm-6 text-center">
-                                <div class="p-20 m-b-20">
-                                    <input data-plugin="knob" data-width="150" data-height="150" data-min="-100"
-                                           data-fgColor="#f9c851" data-displayPrevious=true data-angleOffset=-125
-                                           data-angleArc=250 value="44"/>
-                                    <h6 class="text-muted m-t-10">Angle offset and arc</h6>
-                                </div>
-                            </div><!-- end col-->
+                          <div class="col-xs-12">
+                              <div class="p-20 m-b-20">
+                                  <h5 class="m-t-0">Outside Temperature</h5>
+                                  <p class="text-muted font-13 m-b-30">
+                                    Outside Temperature in °C
+                                  </p>
+
+                                  <div id="T_ext_chart"  style="height:320px;">
+                                  </div>
+                              </div>
+                          </div>
                         </div><!-- end row -->
 
+                        <div class="row">
+                          <div class="col-xs-12">
+                              <div class="p-20 m-b-20">
+                                  <h5 class="m-t-0">Inside Temperature</h5>
+                                  <p class="text-muted font-13 m-b-30">
+                                    Inside Temperature in °C
+                                  </p>
+
+                                  <div id="T_int_chart"  style="height:320px;">
+                                  </div>
+                              </div>
+                          </div>
+                        </div><!-- end row -->
 
 
                     </div>

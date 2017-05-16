@@ -3,6 +3,8 @@ var socket = io();
 var chartData1 = [];
 var chartData2 = [];
 var chartData3 = [];
+var chartData4 = [];
+var chartData5 = [];
 
 //Cloning Function
 function clone(obj) {
@@ -44,7 +46,7 @@ var chartConfig = {
   "type": "serial",
   "theme": "light",
   "fontFamily": "sans-serif",
-  "fontSize" : "8",
+  "fontSize" : "10",
   "dataDateFormat": "YYYY-MM-DD HH:NN",
   // "valueAxes": [{
   //   "axisAlpha": 0,
@@ -97,31 +99,53 @@ var chartConfig = {
 var chartConfig1 = clone(chartConfig);
 var chartConfig2 = clone(chartConfig);
 var chartConfig3 = clone(chartConfig);
+var chartConfig4 = clone(chartConfig);
+var chartConfig5 = clone(chartConfig);
 var chart1 = AmCharts.makeChart("V_chart", chartConfig1);
 var chart2 = AmCharts.makeChart("A_chart", chartConfig2);
 var chart3 = AmCharts.makeChart("P_chart", chartConfig3);
+var chart4 = AmCharts.makeChart("T_ext_chart", chartConfig4);
+var chart5 = AmCharts.makeChart("T_int_chart", chartConfig5);
 var valueAxis1 = new AmCharts.ValueAxis();
 valueAxis1.position = "left";
-valueAxis1.title = "Volts";
+valueAxis1.title = "Voltage";
 valueAxis1.titleFontSize = "14";
 valueAxis1.axisAlpha = 0 ;
 valueAxis1.titleBold = false;
+valueAxis1.unit = "V";
 chart1.addValueAxis(valueAxis1);
 var valueAxis2 = new AmCharts.ValueAxis();
 valueAxis2.position = "left";
-valueAxis2.title = "Amps";
+valueAxis2.title = "Amperage";
 valueAxis2.titleFontSize = "14";
 valueAxis2.axisAlpha = 0 ;
 valueAxis2.titleBold = false;
+valueAxis2.unit = "A";
 chart2.addValueAxis(valueAxis2);
 var valueAxis3 = new AmCharts.ValueAxis();
 valueAxis3.position = "left";
-valueAxis3.title = "Watts";
+valueAxis3.title = "Power Output";
 valueAxis3.titleFontSize = "14";
 valueAxis3.axisAlpha = 0 ;
 valueAxis3.titleBold = false;
+valueAxis3.unit = "Watts";
 chart3.addValueAxis(valueAxis3);
-
+var valueAxis4 = new AmCharts.ValueAxis();
+valueAxis4.position = "left";
+valueAxis4.title = "Outside Temperature";
+valueAxis4.titleFontSize = "14";
+valueAxis4.axisAlpha = 0 ;
+valueAxis4.titleBold = false;
+valueAxis4.unit = "°C";
+chart4.addValueAxis(valueAxis4);
+var valueAxis5 = new AmCharts.ValueAxis();
+valueAxis5.position = "left";
+valueAxis5.title = "Inside Temperature";
+valueAxis5.titleFontSize = "14";
+valueAxis5.axisAlpha = 0 ;
+valueAxis5.titleBold = false;
+valueAxis5.unit = "°C";
+chart5.addValueAxis(valueAxis5);
 
 // var categoryAxis = chart.categoryAxis;
 // categoryAxis.parseDates = true;
@@ -136,6 +160,10 @@ chart2.addListener("rendered", zoomChart2);
 zoomChart2();
 chart3.addListener("rendered", zoomChart3);
 zoomChart3();
+chart4.addListener("rendered", zoomChart4);
+zoomChart4();
+chart5.addListener("rendered", zoomChart5);
+zoomChart5();
 
 
 
@@ -150,6 +178,14 @@ function zoomChart2() {
 function zoomChart3() {
     // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
     chart3.zoomToIndexes(chartData3.length - 40, chartData3.length - 1);
+}
+function zoomChart4() {
+    // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
+    chart4.zoomToIndexes(chartData4.length - 40, chartData4.length - 1);
+}
+function zoomChart5() {
+    // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
+    chart5.zoomToIndexes(chartData5.length - 40, chartData5.length - 1);
 }
 
 socket.on('panels_V', function (data) {
@@ -195,4 +231,34 @@ socket.on('panels_P', function (data) {
     chartData3.splice(0, chartData3.length - 20);
   }
   chart3.validateData();
+});
+
+socket.on('temp_ext', function (data) {
+  //var newDate = new Date();
+  // console.log("P time: "+new Date(parseInt(data.time)));
+  chartData4.push({
+    //date: newDate,
+    date: new Date(parseInt(data.time)),
+    value: data.message
+  });
+  chart4.dataProvider = chartData4;
+  if (chartData4.length > 20) {
+    chartData4.splice(0, chartData4.length - 20);
+  }
+  chart4.validateData();
+});
+
+socket.on('temp_int', function (data) {
+  //var newDate = new Date();
+  // console.log("P time: "+new Date(parseInt(data.time)));
+  chartData5.push({
+    //date: newDate,
+    date: new Date(parseInt(data.time)),
+    value: data.message
+  });
+  chart5.dataProvider = chartData5;
+  if (chartData5.length > 20) {
+    chartData5.splice(0, chartData5.length - 20);
+  }
+  chart5.validateData();
 });

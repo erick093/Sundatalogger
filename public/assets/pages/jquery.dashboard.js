@@ -21,6 +21,21 @@ var socket = io();
     div.textContent = data.message + " Wh";
     var text = div.textContent;
   });
+  socket.on('last_R', function (data) {
+    var div = document.getElementById("Radiation");
+    div.textContent = data.message + " Wm2";
+    var text = div.textContent;
+  });
+  socket.on('last_temp_ext', function (data) {
+    var div = document.getElementById("O_temp");
+    div.textContent = data.message + " °C";
+    var text = div.textContent;
+  });
+  socket.on('last_temp_int', function (data) {
+    var div = document.getElementById("I_temp");
+    div.textContent = data.message + " °C";
+    var text = div.textContent;
+  });
 
 
 //alert(url);

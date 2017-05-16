@@ -120,6 +120,69 @@ io.on('connection', (socket) => {
       }
   });
 
+  Data.R_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+    if (err){
+      console.log("Error getting Data from DB");
+      return
+    }
+    console.log("Lastest R: " + docs[0].sensorVAL );
+    io.emit('last_R',{
+      'topic':String(docs[0].sensorID),
+      'message':String(docs[0].sensorVAL),
+      'time' : docs[0].timestamp
+    });
+      for (var i = docs.length-1; i>0; i--) {
+        //console.log('volts:'+docs[i].sensorVAL);
+        io.emit('panels_R',{
+          'topic':String(docs[i].sensorID),
+          'message':String(docs[i].sensorVAL),
+          'time' : docs[i].timestamp
+        });
+      }
+  });
+
+  Data.T_ext_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+    if (err){
+      console.log("Error getting Data from DB");
+      return
+    }
+    console.log("Lastest T_ext: " + docs[0].sensorVAL );
+    io.emit('last_temp_ext',{
+      'topic':String(docs[0].sensorID),
+      'message':String(docs[0].sensorVAL),
+      'time' : docs[0].timestamp
+    });
+      for (var i = docs.length-1; i>0; i--) {
+        //console.log('volts:'+docs[i].sensorVAL);
+        io.emit('temp_ext',{
+          'topic':String(docs[i].sensorID),
+          'message':String(docs[i].sensorVAL),
+          'time' : docs[i].timestamp
+        });
+      }
+  });
+
+  Data.T_int_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+    if (err){
+      console.log("Error getting Data from DB");
+      return
+    }
+    console.log("Lastest T_int: " + docs[0].sensorVAL );
+    io.emit('last_temp_int',{
+      'topic':String(docs[0].sensorID),
+      'message':String(docs[0].sensorVAL),
+      'time' : docs[0].timestamp
+    });
+      for (var i = docs.length-1; i>0; i--) {
+        //console.log('volts:'+docs[i].sensorVAL);
+        io.emit('temp_int',{
+          'topic':String(docs[i].sensorID),
+          'message':String(docs[i].sensorVAL),
+          'time' : docs[i].timestamp
+        });
+      }
+  });
+
 });
 
 
@@ -136,6 +199,9 @@ client.on('connect', function () {
   client.subscribe('panels/amp');
   client.subscribe('panels/power');
   client.subscribe('panels/energy');
+  client.subscribe('panels/radiation');
+  client.subscribe('temp/exterior');
+  client.subscribe('temp/interior');
 });
 
 //Testing stuff
@@ -153,6 +219,8 @@ client.on('message', function (topic, message) {
   var topic3_re = /^panels\/power.*/;
   var topic4_re = /^panels\/energy.*/;
   var topic5_re = /^panels\/radiation.*/;
+  var topic6_re = /^temp\/exterior.*/;
+  var topic7_re = /^temp\/interior.*/;
   // console.log("topic voltage: "+  topic2_re);
   // console.log("topic energy: "+  topic4_re);
   //Panels Amp
@@ -250,6 +318,7 @@ client.on('message', function (topic, message) {
       console.log('Unable to save Data',e);
     });
   }
+  //Panels Radiation
   else if(topic.match(topic5_re)){
     console.log('topic: '+topic);
     var newData = new Data.R_data({
@@ -273,5 +342,55 @@ client.on('message', function (topic, message) {
       console.log('Unable to save Data',e);
     });
   }
+  //Outside Temp
+  else if(topic.match(topic6_re)){
+    console.log('topic: '+topic);
+    var newData = new Data.T_ext_data({
+      sensorID: topic,
+      sensorVAL: message
+    });
+    io.emit('temp_ext',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+    io.emit('last_temp_ext',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+
+    newData.save().then((doc) => {
+      //console.log(JSON.stringify(doc,undefined,2));
+    }, (e) => {
+      console.log('Unable to save Data',e);
+    });
+  }
+
+  //Inside Temp
+  else if(topic.match(topic7_re)){
+    console.log('topic: '+topic);
+    var newData = new Data.T_int_data({
+      sensorID: topic,
+      sensorVAL: message
+    });
+    io.emit('temp_int',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+    io.emit('last_temp_int',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+
+    newData.save().then((doc) => {
+      //console.log(JSON.stringify(doc,undefined,2));
+    }, (e) => {
+      console.log('Unable to save Data',e);
+    });
+  }
+
 
 });

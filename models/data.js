@@ -65,8 +65,36 @@ var R_data = mongoose.model('R_data', {
     default: Date.now
   }
 });
+
+var T_ext_data = mongoose.model('T_ext_data', {
+  sensorID: {
+    type: String
+  },
+  sensorVAL: {
+    type: String
+  },
+  timestamp: {
+    type: String,
+    default: Date.now
+  }
+});
+
+var T_int_data = mongoose.model('T_int_data', {
+  sensorID: {
+    type: String
+  },
+  sensorVAL: {
+    type: String
+  },
+  timestamp: {
+    type: String,
+    default: Date.now
+  }
+});
 module.exports.V_data = V_data; //Voltages Data
 module.exports.A_data = A_data; //Amperage Data
 module.exports.P_data = P_data; //Power Data
 module.exports.E_data = E_data; //Energy Data
 module.exports.R_data = R_data; //Solar Radiation Data
+module.exports.T_ext_data = T_ext_data; //Solar Radiation Data
+module.exports.T_int_data = T_int_data; //Solar Radiation Data
