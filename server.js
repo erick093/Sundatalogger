@@ -183,6 +183,68 @@ io.on('connection', (socket) => {
       }
   });
 
+  Data.Fan_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+    if (err){
+      console.log("Error getting Data from DB");
+      return
+    }
+    console.log("Lastest Fan status: " + docs[0].sensorVAL );
+    io.emit('last_fan_status',{
+      'topic':String(docs[0].sensorID),
+      'message':String(docs[0].sensorVAL),
+      'time' : docs[0].timestamp
+    });
+      for (var i = docs.length-1; i>0; i--) {
+        //console.log('volts:'+docs[i].sensorVAL);
+        io.emit('fan_status',{
+          'topic':String(docs[i].sensorID),
+          'message':String(docs[i].sensorVAL),
+          'time' : docs[i].timestamp
+        });
+      }
+  });
+
+  Data.Lights_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+    if (err){
+      console.log("Error getting Data from DB");
+      return
+    }
+    console.log("Lastest Lights status: " + docs[0].sensorVAL );
+    io.emit('last_lights_status',{
+      'topic':String(docs[0].sensorID),
+      'message':String(docs[0].sensorVAL),
+      'time' : docs[0].timestamp
+    });
+      for (var i = docs.length-1; i>0; i--) {
+        //console.log('volts:'+docs[i].sensorVAL);
+        io.emit('lights_status',{
+          'topic':String(docs[i].sensorID),
+          'message':String(docs[i].sensorVAL),
+          'time' : docs[i].timestamp
+        });
+      }
+  });
+
+  Data.AC_P_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+    if (err){
+      console.log("Error getting Data from DB");
+      return
+    }
+    console.log("Lastest AC Power: " + docs[0].sensorVAL );
+    io.emit('last_acp',{
+      'topic':String(docs[0].sensorID),
+      'message':String(docs[0].sensorVAL),
+      'time' : docs[0].timestamp
+    });
+      for (var i = docs.length-1; i>0; i--) {
+        //console.log('volts:'+docs[i].sensorVAL);
+        io.emit('acp',{
+          'topic':String(docs[i].sensorID),
+          'message':String(docs[i].sensorVAL),
+          'time' : docs[i].timestamp
+        });
+      }
+  });
 });
 
 
@@ -200,8 +262,11 @@ client.on('connect', function () {
   client.subscribe('panels/power');
   client.subscribe('panels/energy');
   client.subscribe('panels/radiation');
+  client.subscribe('ac/power');
   client.subscribe('temp/exterior');
   client.subscribe('temp/interior');
+  client.subscribe('control/fan');
+  client.subscribe('control/lights');
 });
 
 //Testing stuff
@@ -221,6 +286,9 @@ client.on('message', function (topic, message) {
   var topic5_re = /^panels\/radiation.*/;
   var topic6_re = /^temp\/exterior.*/;
   var topic7_re = /^temp\/interior.*/;
+  var topic8_re = /^control\/fan.*/;
+  var topic9_re = /^control\/lights.*/;
+  var topic10_re = /^ac\/power.*/;
   // console.log("topic voltage: "+  topic2_re);
   // console.log("topic energy: "+  topic4_re);
   //Panels Amp
@@ -392,5 +460,79 @@ client.on('message', function (topic, message) {
     });
   }
 
+  //Fan Status
+  else if(topic.match(topic8_re)){
+    console.log('topic: '+topic);
+    var newData = new Data.Fan_data({
+      sensorID: topic,
+      sensorVAL: message
+    });
+    io.emit('fan_status',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+    io.emit('last_fan_status',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+
+    newData.save().then((doc) => {
+      //console.log(JSON.stringify(doc,undefined,2));
+    }, (e) => {
+      console.log('Unable to save Data',e);
+    });
+  }
+
+  //Lights Status
+  else if(topic.match(topic9_re)){
+    console.log('topic: '+topic);
+    var newData = new Data.Lights_data({
+      sensorID: topic,
+      sensorVAL: message
+    });
+    io.emit('lights_status',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+    io.emit('last_lights_status',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+
+    newData.save().then((doc) => {
+      //console.log(JSON.stringify(doc,undefined,2));
+    }, (e) => {
+      console.log('Unable to save Data',e);
+    });
+  }
+
+  //AC Power
+  else if(topic.match(topic10_re)){
+    console.log('topic: '+topic);
+    var newData = new Data.AC_P_data({
+      sensorID: topic,
+      sensorVAL: message
+    });
+    io.emit('acp',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+    io.emit('last_acp',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+
+    newData.save().then((doc) => {
+      //console.log(JSON.stringify(doc,undefined,2));
+    }, (e) => {
+      console.log('Unable to save Data',e);
+    });
+  }
 
 });

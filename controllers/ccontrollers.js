@@ -6,6 +6,9 @@ var mongoose = require('mongoose'),
   R_task = mongoose.model('R_data');
   T_ext_task = mongoose.model('T_ext_data');
   T_int_task = mongoose.model('T_int_data');
+  Fan_task = mongoose.model('Fan_data');
+  Lights_task = mongoose.model('Lights_data');
+  AC_P_task = mongoose.model('AC_P_data');
 
 // V - API
 exports.list_all_V_data = function(req, res) {
@@ -118,6 +121,53 @@ exports.find_Tint_by_date = function(req, res) {
   });
 };
 
+// Fan - API
+exports.list_all_Fan_data = function(req, res) {
+  Fan_task.find({}, function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+exports.find_Fan_by_date = function(req, res) {
+  Fan_task.find({timestamp: {"$gte": req.params.from, "$lt": req.params.to}}, function(err, task){
+    if(err)
+      res.send(err);
+    res.json(task);
+  });
+};
+
+// Lights - API
+exports.list_all_Lights_data = function(req, res) {
+  Lights_task.find({}, function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+exports.find_Lights_by_date = function(req, res) {
+  Lights_task.find({timestamp: {"$gte": req.params.from, "$lt": req.params.to}}, function(err, task){
+    if(err)
+      res.send(err);
+    res.json(task);
+  });
+};
+
+// AC Power - API
+exports.list_all_AC_P_data = function(req, res) {
+  AC_P_task.find({}, function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+exports.find_AC_P_by_date = function(req, res) {
+  AC_P_task.find({timestamp: {"$gte": req.params.from, "$lt": req.params.to}}, function(err, task){
+    if(err)
+      res.send(err);
+    res.json(task);
+  });
+};
 
 
 

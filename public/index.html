@@ -218,11 +218,53 @@
           </div>
 
 
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card-box widget-inline">
+                <div class="row">
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="widget-inline-box text-center">
+
+                      <h3 class="m-t-10"><i class="mdi mdi-lightbulb"></i> <b data-plugin="counterup"><div id="L_status"></div></b></h3>
+                      <p class="text-muted">Lights Status</p>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="widget-inline-box text-center">
+                      <h3 class="m-t-10"><i class="mdi mdi-fan"></i> <b data-plugin="counterup"><div id="F_status"></div></b></h3>
+                      <p class="text-muted">Fan Status</p>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="widget-inline-box text-center">
+                      <h3 class="m-t-10"><i class="mdi mdi-oil-temperature"></i> <b data-plugin="counterup"><div id="null"></div></b></h3>
+                      <p class="text-muted">Reserved</p>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="widget-inline-box text-center">
+                      <h3 class="m-t-10"><i class="mdi mdi-flash"></i> <b data-plugin="counterup"><div id="null"></div></b></h3>
+                      <p class="text-muted">Reserved</p>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-sm-6"> </div>
+
+                  <div class="col-lg-3 col-sm-6"> </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+
 
           <div class="row">
             <div class="col-lg-6">
               <div class="card-box">
-                <h4 class="m-t-0">Energy</h4>
+                <h4 class="m-t-0">Solar Panels Energy</h4>
                 <div class="text-center">
 
                   <!-- <li>
@@ -259,23 +301,88 @@
           <div class="row">
             <div class="col-sm-12">
               <div class="card-box">
-                <h4 class="m-t-0">Power Output</h4>
+                <h4 class="m-t-0">Solar Panels Power Output</h4>
                 <div id="s_pot" style="height:400px;"></div>
-                <div class="container">
-                  <p>Fecha: </p>
-                  <p id="dates"></p>
-                  <div>
-                    <p>Day:
-                      <input type="text" id="from">
-                    </p>
-                    <button type="button" id="bt">Search</button>
+                <div class="text-center">
+                  <div class="container">
+                    <p>Date: </p>
+                    <p id="dates"></p>
+                    <div>
+                      <p>Day:
+                        <input type="text" id="from">
+                      </p>
+                      <button type="button" id="bt">Search</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card-box">
+                <h4 class="m-t-0">AC Line Power Output</h4>
+                <div id="s_acp" style="height:400px;"></div>
+                <div class="text-center">
+                  <div class="container">
+                    <p>Date: </p>
+                    <p id="dates_acp"></p>
+                    <div>
+                      <p>Day:
+                        <input type="text" id="from_acp">
+                      </p>
+                      <button type="button" id="bt_acp">Search</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- end container -->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card-box">
+                <h4 class="m-t-0">Outside Temperature</h4>
+                <div id="s_text" style="height:400px;"></div>
+                <div class="text-center">
+                  <div class="container">
+                    <p>Date: </p>
+                    <p id="dates_text"></p>
+                    <div>
+                      <p>Day:
+                        <input type="text" id="from_text">
+                      </p>
+                      <button type="button" id="bt_text">Search</button>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           <!-- end container -->
-
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card-box">
+                <h4 class="m-t-0">Inside Temperature</h4>
+                <div id="s_tint" style="height:400px;"></div>
+                <div class="text-center">
+                  <div class="container">
+                    <p>Date: </p>
+                    <p id="dates_tint"></p>
+                    <div>
+                      <p>Day:
+                        <input type="text" id="from_tint">
+                      </p>
+                      <button type="button" id="bt_tint">Search</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end container -->
           <div class="footer">
             <div>
               <strong>Erick Escobar</strong> - Copyright &copy; 2017
@@ -316,6 +423,9 @@
     <script src="assets/pages/jquery.dashboard.js"></script>
     <script src="assets/pages/jquery.dashboard_energy.js"></script>
     <script src="assets/pages/jquery.dashboard_pyranometer.js"></script>
+    <script src="assets/pages/jquery.dashboard_tempext.js"></script>
+    <script src="assets/pages/jquery.dashboard_tempint.js"></script>
+    <script src="assets/pages/jquery.dashboard_acpower.js"></script>
 
     <!-- App Js -->
     <script src="assets/js/jquery.app.js"></script>

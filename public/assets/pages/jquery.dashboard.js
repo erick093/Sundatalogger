@@ -23,7 +23,7 @@ var socket = io();
   });
   socket.on('last_R', function (data) {
     var div = document.getElementById("Radiation");
-    div.textContent = data.message + " Wm2";
+    div.textContent = data.message + " W/m2";
     var text = div.textContent;
   });
   socket.on('last_temp_ext', function (data) {
@@ -34,6 +34,31 @@ var socket = io();
   socket.on('last_temp_int', function (data) {
     var div = document.getElementById("I_temp");
     div.textContent = data.message + " °C";
+    var text = div.textContent;
+  });
+  socket.on('last_lights_status', function (data) {
+    var div = document.getElementById("L_status");
+    if (data.message == "1") {
+      div.textContent = "Lights: ON";
+      var text = div.textContent;
+    } else {
+      div.textContent = "Lights: OFF";
+      var text = div.textContent;
+    }
+  });
+  socket.on('last_fan_status', function (data) {
+    var div = document.getElementById("F_status");
+    if (data.message == "1") {
+      div.textContent = "FAN: ON";
+      var text = div.textContent;
+    } else {
+      div.textContent = "FAN: OFF";
+      var text = div.textContent;
+    }
+  });
+  socket.on('last_acp', function (data) {
+    var div = document.getElementById("AC_power");
+    div.textContent = data.message + " Watts";
     var text = div.textContent;
   });
 

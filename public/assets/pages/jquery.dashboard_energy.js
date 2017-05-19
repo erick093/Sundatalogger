@@ -51,7 +51,7 @@ function DrawGraph_E(data) {
         "position": "left",
         "title": "Energy",
     }],
-    "startDuration": 1,
+    "startDuration": 0,
     "graphs": [{
         "balloonText": " Energy <b>[[value]]</b>",
         "fillAlphas": 0.9,

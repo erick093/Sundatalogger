@@ -23,7 +23,13 @@ module.exports = function(app) {
   //.post(chartdata.create_a_data);
   app.route('/find/Tint')
     .get(chartdata.list_all_Tint_data);
-  //.post(chartdata.create_a_data);
+  app.route('/find/Fan')
+    .get(chartdata.list_all_Fan_data);
+  app.route('/find/Lights')
+    .get(chartdata.list_all_Lights_data);
+  app.route('/find/ACP')
+    .get(chartdata.list_all_AC_P_data);
+
 
   app.route('/find/V/from/:from/to/:to')
     .get(chartdata.find_V_by_date);
@@ -39,4 +45,10 @@ module.exports = function(app) {
     .get(chartdata.find_Text_by_date);
   app.route('/find/Tint/from/:from/to/:to')
     .get(chartdata.find_Tint_by_date);
+  app.route('/find/Fan/from/:from/to/:to')
+    .get(chartdata.find_Fan_by_date);
+  app.route('/find/Lights/from/:from/to/:to')
+    .get(chartdata.find_Lights_by_date);
+  app.route('/find/ACP/from/:from/to/:to')
+    .get(chartdata.find_AC_P_by_date);
 };

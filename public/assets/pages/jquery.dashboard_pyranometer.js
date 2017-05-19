@@ -20,7 +20,7 @@ $(function() {
        maxDate: new Date()
     });
     $("#btr").click(function(){
-      var from = $("#frome").val();
+      var from = $("#fromr").val();
       var fromv = new Date(from).getTime();
       var to = fromv + 86400000;
       var urlAjax = "/find/R/from/" + new Date(from).getTime() + "/to/" + to ;
@@ -47,11 +47,11 @@ function DrawGraph_R(data) {
     "dataDateFormat": "YYYY-MM-DD HH:NN",
     "valueAxes": [{
         "stackType": "3d",
-        "unit": "Wm2",
+        "unit": "W/m2",
         "position": "left",
         "title": "Energy",
     }],
-    "startDuration": 1,
+    "startDuration": 0,
     "graphs": [{
         "balloonText": " Energy <b>[[value]]</b>",
         "fillAlphas": 0.9,
