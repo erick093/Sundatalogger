@@ -51,4 +51,10 @@ module.exports = function(app) {
     .get(chartdata.find_Lights_by_date);
   app.route('/find/ACP/from/:from/to/:to')
     .get(chartdata.find_AC_P_by_date);
+
+
+  app.route('/find/last/Lights')
+    .get(chartdata.find_last_Lights);
+  app.route('/find/last/SP')
+    .get(chartdata.find_last_Set_Point);
 };

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Smart Sun Data Logger</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+  <!--Morris Chart CSS -->
+  <link rel="stylesheet" href="assets/plugins/morris/morris.css">
+
+  <!-- Bootstrap core CSS -->
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+  <!-- MetisMenu CSS -->
+  <link href="assets/css/metisMenu.min.css" rel="stylesheet">
+  <!-- Icons CSS -->
+  <link href="assets/css/icons.css" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link rel="stylesheet" href="assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+
+</head>
+
+
+<body>
+
+  <div id="page-wrapper">
+
+    <!-- Top Bar Start -->
+    <div class="topbar">
+
+      <!-- LOGO -->
+      <div class="topbar-left">
+        <div class="">
+          <a href="index.html" class="logo">
+            <img src="assets/images/logo.png" alt="logo" class="logo-lg" />
+            <img src="assets/images/logo_sm.png" alt="logo" class="logo-sm hidden" />
+          </a>
+        </div>
+      </div>
+
+      <!-- Top navbar -->
+      <div class="navbar navbar-default" role="navigation">
+        <div class="container">
+          <div class="">
+
+            <!-- Mobile menu button -->
+            <div class="pull-left">
+              <button type="button" class="button-menu-mobile visible-xs visible-sm">
+                                    <i class="fa fa-bars"></i>
+                                </button>
+              <span class="clearfix"></span>
+            </div>
+          </div>
+        </div>
+        <!-- end container -->
+      </div>
+      <!-- end navbar -->
+    </div>
+    <!-- Top Bar End -->
+
+
+    <!-- Page content start -->
+    <div class="page-contentbar">
+
+      <!--left navigation start-->
+      <aside class="sidebar-navigation">
+        <div class="scrollbar-wrapper">
+          <div>
+            <button type="button" class="button-menu-mobile btn-mobile-view visible-xs visible-sm">
+                                <i class="mdi mdi-close"></i>
+                            </button>
+            <!-- User Detail box -->
+
+            <!--- End User Detail box -->
+
+            <!-- Left Menu Start -->
+            <ul class="metisMenu nav" id="side-menu">
+              <li><a href="index.html"><i class="ti-home"></i> Dashboard </a></li>
+              <li>
+                <a href="charts.html"> <em class="ti-pie-chart"></em> Live Charts </a>
+              </li>
+
+              <li><a href="control.html"><i class="mdi mdi-led-on"></i> Control </a></li>
+
+              <li>
+                <a href="javascript: void(0);" aria-expanded="true"><i class="ti-files"></i> Search <span class="fa arrow"></span></a>
+                <ul class="nav-second-level nav" aria-expanded="true">
+                  <li><a href="search-V.html">Voltage Data</a></li>
+                  <li><a href="search-A.html">Amperage Data</a></li>
+                  <li><a href="search-P.html">Electric Power Data</a></li>
+                </ul>
+              </li>
+
+              <li><a href="maps.html"><i class="ti-location-pin"></i> Maps </a></li>
+
+              <li><a href="live.html"><i class="ti-widget"></i> Live View </a></li>
+
+
+              <li>
+                <a href="javascript: void(0);" aria-expanded="true"><i class="ti-share"></i> Multi Level <span class="fa arrow"></span></a>
+                <ul class="nav-second-level nav" aria-expanded="true">
+                  <li><a href="javascript: void(0);">Level 1.1</a></li>
+                  <li><a href="javascript: void(0);" aria-expanded="true">Level 1.2 <span class="fa arrow"></span></a>
+                    <ul class="nav-third-level nav" aria-expanded="true">
+                      <li><a href="javascript: void(0);">Level 2.1</a></li>
+                      <li><a href="javascript: void(0);">Level 2.2</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!--Scrollbar wrapper-->
+      </aside>
+      <!--left navigation end-->
+
+      <!-- START PAGE CONTENT -->
+      <div id="page-right-content">
+
+        <div class="container">
+
+
+
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card-box widget-inline">
+                <div class="row">
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="widget-inline-box text-center">
+
+                      <h3 class="m-t-10"><i class="mdi mdi-lightbulb"></i> <b data-plugin="counterup"><div id="Lights_status"></div></b></h3>
+                      <p class="text-muted">Lights Status</p>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="widget-inline-box text-center">
+                      <h3 class="m-t-10"><i class="mdi mdi-fan"></i> <b data-plugin="counterup"><div id="Fan_status"></div></b></h3>
+                      <p class="text-muted">Fan Status</p>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="widget-inline-box text-center">
+                      <h3 class="m-t-10"><i class="mdi mdi-oil-temperature"></i> <b data-plugin="counterup"><div id="null"></div></b></h3>
+                      <p class="text-muted">Reserved</p>
+                    </div>
+                  </div>
+
+                  <div class="col-lg-3 col-sm-6">
+                    <div class="widget-inline-box text-center">
+                      <h3 class="m-t-10"><i class="mdi mdi-flash"></i> <b data-plugin="counterup"><div id="null"></div></b></h3>
+                      <p class="text-muted">Reserved</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="card-box">
+                <h4 class="m-t-0">Lights Control</h4>
+                <div class="text-center">
+                  <img id="bulb" onclick="changeImage()" src="assets/images/pic_bulboff.gif" width="100" height="180">
+                  <p class="text-muted">Click me! </p>
+                </div>
+              </div>
+            </div>
+            <!-- end col -->
+
+            <div class="col-lg-6">
+              <div class="card-box">
+                <h4 class="m-t-0">Fan Control</h4>
+                <h5 class="m-t-0">Inside Temperature Set Point: </h4>
+                <div class="text-center">
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end row -->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card-box">
+                <h4 class="m-t-0">Reserved</h4>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- end container -->
+          <div class="footer">
+            <div>
+              <strong>Erick Escobar</strong> - Copyright &copy; 2017
+            </div>
+          </div>
+          <!-- end footer -->
+
+        </div>
+        <!-- End #page-right-content -->
+
+      </div>
+      <!-- end .page-contentbar -->
+    </div>
+    <!-- End #page-wrapper -->
+
+
+    <!--Socket io-->
+    <script src="/socket.io/socket.io.js"></script>
+    <!--Amcharts Chart-->
+    <script src="assets/plugins/amcharts3/amcharts/amcharts.js"></script>
+    <script src="assets/plugins/amcharts3/amcharts/serial.js"></script>
+    <script src="assets/plugins/amcharts3/amcharts/plugins/export/export.min.js"></script>
+    <script src="assets/plugins/amcharts3/amcharts/themes/light.js"></script>
+    <!-- <script src="/soc/socket.io.js"></script> -->
+    <!-- js placed at the end of the document so the pages load faster -->
+
+    <script src="assets/js/jquery-2.1.4.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/metisMenu.min.js"></script>
+    <script src="assets/js/jquery.slimscroll.min.js"></script>
+
+    <!--Morris Chart-->
+    <!-- <script src="assets/plugins/morris/morris.min.js"></script>
+		<script src="assets/plugins/raphael/raphael-min.js"></script> -->
+
+    <!-- Dashboard init -->
+    <script src="assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+    <script src="assets/pages/control.js"></script>
+
+
+    <!-- App Js -->
+    <script src="assets/js/jquery.app.js"></script>
+
+</body>
+
+</html>

@@ -9,6 +9,7 @@ var mongoose = require('mongoose'),
   Fan_task = mongoose.model('Fan_data');
   Lights_task = mongoose.model('Lights_data');
   AC_P_task = mongoose.model('AC_P_data');
+  Set_Point_task = mongoose.model('Set_Point_data');
 
 // V - API
 exports.list_all_V_data = function(req, res) {
@@ -136,6 +137,14 @@ exports.find_Fan_by_date = function(req, res) {
     res.json(task);
   });
 };
+// Set Point - API
+exports.find_last_Set_Point = function(req, res) {
+  Set_Point_task.findOne().sort({timestamp:-1}).exec(function(err, task){
+    if(err)
+      res.send(err);
+    res.json(task);
+  });
+};
 
 // Lights - API
 exports.list_all_Lights_data = function(req, res) {
@@ -147,6 +156,13 @@ exports.list_all_Lights_data = function(req, res) {
 };
 exports.find_Lights_by_date = function(req, res) {
   Lights_task.find({timestamp: {"$gte": req.params.from, "$lt": req.params.to}}, function(err, task){
+    if(err)
+      res.send(err);
+    res.json(task);
+  });
+};
+exports.find_last_Lights = function(req, res) {
+  Lights_task.findOne().sort({timestamp:-1}).exec(function(err, task){
     if(err)
       res.send(err);
     res.json(task);
@@ -172,14 +188,16 @@ exports.find_AC_P_by_date = function(req, res) {
 
 
 //
-// exports.create_a_data = function(req, res) {
-//   var new_task = new Task(req.body);
-//   new_task.save(function(err, task) {
-//     if (err)
-//       res.send(err);
-//     res.json(task);
-//   });
-// };
+exports.save_Set_Point_data = function(req, res) {
+  var new_data = new Set_Point_data({
+    sensorVAL: req.body.sensorVAL
+  });
+  new_data.save(function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
 
 //
 // exports.read_a_data = function(req, res) {
