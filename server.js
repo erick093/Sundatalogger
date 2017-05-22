@@ -245,6 +245,18 @@ io.on('connection', (socket) => {
         });
       }
   });
+
+  Data.Set_Point_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+    if (err){
+      console.log("Error getting Data from DB");
+      return
+    }
+    console.log("Lastest Set Point: " + docs[0].sensorVAL );
+    io.emit('last_SP',{
+      'message':String(docs[0].sensorVAL)
+    });
+  });
+
 });
 
 

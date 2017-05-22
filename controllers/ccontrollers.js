@@ -189,8 +189,8 @@ exports.find_AC_P_by_date = function(req, res) {
 
 //
 exports.save_Set_Point_data = function(req, res) {
-  var new_data = new Set_Point_data({
-    sensorVAL: req.body.sensorVAL
+  var new_data = new Set_Point_task({
+    sensorVAL: req.params.val
   });
   new_data.save(function(err, task) {
     if (err)

@@ -21,6 +21,11 @@ socket.on('last_fan_status', function (data) {
   }
 });
 
+socket.on('last_SP', function (data) {
+  var div = document.getElementById("SP");
+  div.textContent = data.message + " °C";
+  var text = div.textContent;
+});
 
 function changeImage() {
   var image = document.getElementById('bulb');
@@ -33,3 +38,13 @@ function changeImage() {
       socket.emit('publish', {topic:"control/lights",payload:"1"});
   }
 }
+
+$(function() {
+
+    $("#btsp").click(function(){
+      var value = $("#spval").val();
+      var urlAjax = "/insert/setpoint/" + value ;
+      $.post(urlAjax);
+
+    });
+});

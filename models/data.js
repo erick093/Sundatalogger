@@ -132,9 +132,6 @@ var AC_P_data = mongoose.model('AC_P_data', {
 });
 
 var Set_Point_data = mongoose.model('Set_Point_data', {
-  sensorID: {
-    type: String
-  },
   sensorVAL: {
     type: String
   },

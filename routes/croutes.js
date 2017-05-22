@@ -57,4 +57,8 @@ module.exports = function(app) {
     .get(chartdata.find_last_Lights);
   app.route('/find/last/SP')
     .get(chartdata.find_last_Set_Point);
+
+
+  app.route('/insert/setpoint/:val')
+    .post(chartdata.save_Set_Point_data);
 };
