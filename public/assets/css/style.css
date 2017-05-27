@@ -13,6 +13,11 @@ File: Main file css
   position: relative;
   width: 190px;
   z-index: 999; }
+  .topbar-right {
+  float: right;
+  position: relative;
+  width: 190px;
+  z-index: 999; }
 
 .logo {
   color: #626773 !important;
@@ -29,6 +34,21 @@ File: Main file css
     text-align: center; }
   .logo span {
     color: #23b195; }
+.logo1 {
+    color: #626773 !important;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: .05em;
+    line-height: 70px;
+    text-transform: uppercase; }
+    .logo1 img {
+      height: 60px; }
+    .logo1 h1 {
+      height: 50px;
+      margin: 0 auto;
+      text-align: center; }
+    .logo1 span {
+      color: #23b195; }
 
 .navbar-default {
   background-color: #f5f5f5;
