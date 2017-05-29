@@ -92,7 +92,72 @@ var T_int_data = mongoose.model('T_int_data', {
   }
 });
 
+var T_W_ext_data = mongoose.model('T_W_ext_data', {
+  sensorID: {
+    type: String
+  },
+  sensorVAL: {
+    type: String
+  },
+  timestamp: {
+    type: String,
+    default: Date.now
+  }
+});
+
+var T_W_int_data = mongoose.model('T_W_int_data', {
+  sensorID: {
+    type: String
+  },
+  sensorVAL: {
+    type: String
+  },
+  timestamp: {
+    type: String,
+    default: Date.now
+  }
+});
+
+var T_F_ext_data = mongoose.model('T_F_ext_data', {
+  sensorID: {
+    type: String
+  },
+  sensorVAL: {
+    type: String
+  },
+  timestamp: {
+    type: String,
+    default: Date.now
+  }
+});
+
+var T_F_int_data = mongoose.model('T_F_int_data', {
+  sensorID: {
+    type: String
+  },
+  sensorVAL: {
+    type: String
+  },
+  timestamp: {
+    type: String,
+    default: Date.now
+  }
+});
+
 var Fan_data = mongoose.model('Fan_data', {
+  sensorID: {
+    type: String
+  },
+  sensorVAL: {
+    type: String
+  },
+  timestamp: {
+    type: String,
+    default: Date.now
+  }
+});
+
+var Solar_H_data = mongoose.model('Solar_H_data', {
   sensorID: {
     type: String
   },
@@ -147,7 +212,12 @@ module.exports.E_data = E_data; //Energy Data
 module.exports.R_data = R_data; //Solar Radiation Data
 module.exports.T_ext_data = T_ext_data; //Exterior Temperature Data
 module.exports.T_int_data = T_int_data; //Interior Temperature Data
+module.exports.T_W_ext_data = T_W_ext_data; //Exterior Water Temperature Data
+module.exports.T_W_int_data = T_W_int_data; //Interior Water Temperature Data
+module.exports.T_F_ext_data = T_F_ext_data; //Exterior Fan #2 Temperature Data
+module.exports.T_F_int_data = T_F_int_data; //Interior Fan #2 Temperature Data
 module.exports.Fan_data = Fan_data; //Fan control Data
+module.exports.Solar_H_data = Solar_H_data; //Solar Heater(Fan # 2) control Data
 module.exports.Lights_data = Lights_data; //Lights control Data
 module.exports.AC_P_data = AC_P_data; //Lights control Data
 module.exports.Set_Point_data = Set_Point_data; //Temp set point Data

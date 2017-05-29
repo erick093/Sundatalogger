@@ -6,8 +6,13 @@ var mongoose = require('mongoose'),
   R_task = mongoose.model('R_data');
   T_ext_task = mongoose.model('T_ext_data');
   T_int_task = mongoose.model('T_int_data');
+  T_W_ext_task = mongoose.model('T_W_ext_data');
+  T_W_int_task = mongoose.model('T_W_int_data');
+  T_F_ext_task = mongoose.model('T_F_ext_data');
+  T_F_int_task = mongoose.model('T_F_int_data');
   Fan_task = mongoose.model('Fan_data');
   Lights_task = mongoose.model('Lights_data');
+  Solar_H_task = mongoose.model('Solar_H_data');
   AC_P_task = mongoose.model('AC_P_data');
   Set_Point_task = mongoose.model('Set_Point_data');
 
@@ -122,6 +127,70 @@ exports.find_Tint_by_date = function(req, res) {
   });
 };
 
+// T_W_int - API
+exports.list_all_TWint_data = function(req, res) {
+  T_W_int_task.find({}, function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+exports.find_TWint_by_date = function(req, res) {
+  T_W_int_task.find({timestamp: {"$gte": req.params.from, "$lt": req.params.to}}, function(err, task){
+    if(err)
+      res.send(err);
+    res.json(task);
+  });
+};
+
+// T_W_ext - API
+exports.list_all_TWext_data = function(req, res) {
+  T_W_ext_task.find({}, function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+exports.find_TWext_by_date = function(req, res) {
+  T_W_ext_task.find({timestamp: {"$gte": req.params.from, "$lt": req.params.to}}, function(err, task){
+    if(err)
+      res.send(err);
+    res.json(task);
+  });
+};
+
+// T_F_int - API
+exports.list_all_TFint_data = function(req, res) {
+  T_F_int_task.find({}, function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+exports.find_TFint_by_date = function(req, res) {
+  T_F_int_task.find({timestamp: {"$gte": req.params.from, "$lt": req.params.to}}, function(err, task){
+    if(err)
+      res.send(err);
+    res.json(task);
+  });
+};
+
+// T_F_ext - API
+exports.list_all_TFext_data = function(req, res) {
+  T_F_ext_task.find({}, function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+exports.find_TFext_by_date = function(req, res) {
+  T_F_ext_task.find({timestamp: {"$gte": req.params.from, "$lt": req.params.to}}, function(err, task){
+    if(err)
+      res.send(err);
+    res.json(task);
+  });
+};
+
 // Fan - API
 exports.list_all_Fan_data = function(req, res) {
   Fan_task.find({}, function(err, task) {
@@ -140,6 +209,29 @@ exports.find_Fan_by_date = function(req, res) {
 // Set Point - API
 exports.find_last_Set_Point = function(req, res) {
   Set_Point_task.findOne().sort({timestamp:-1}).exec(function(err, task){
+    if(err)
+      res.send(err);
+    res.json(task);
+  });
+};
+
+// Solar Heater - API
+exports.list_all_Solarh_data = function(req, res) {
+  Solar_H_task.find({}, function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+exports.find_Solarh_by_date = function(req, res) {
+  Solar_H_task.find({timestamp: {"$gte": req.params.from, "$lt": req.params.to}}, function(err, task){
+    if(err)
+      res.send(err);
+    res.json(task);
+  });
+};
+exports.find_last_Solarh = function(req, res) {
+  Solar_H_task.findOne().sort({timestamp:-1}).exec(function(err, task){
     if(err)
       res.send(err);
     res.json(task);
@@ -168,6 +260,7 @@ exports.find_last_Lights = function(req, res) {
     res.json(task);
   });
 };
+
 
 // AC Power - API
 exports.list_all_AC_P_data = function(req, res) {

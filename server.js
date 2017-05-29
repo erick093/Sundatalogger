@@ -50,7 +50,7 @@ io.on('connection', (socket) => {
       'message':String(docs[0].sensorVAL),
       'time' : docs[0].timestamp
     });
-      for (var i = docs.length-1; i>0; i--) {
+      for (var i = docs.length-1; i>-1; i--) {
         //console.log('volts:'+docs[i].sensorVAL);
         io.emit('panels_V',{
           'topic':String(docs[i].sensorID),
@@ -71,7 +71,7 @@ io.on('connection', (socket) => {
       'message':String(docs[0].sensorVAL),
       'time' : docs[0].timestamp
     });
-      for (var i = docs.length-1; i>0; i--) {
+      for (var i = docs.length-1; i>-1; i--) {
       io.emit('panels_A',{
         'topic':String(docs[i].sensorID),
         'message':String(docs[i].sensorVAL),
@@ -91,7 +91,7 @@ io.on('connection', (socket) => {
       'message':String(docs[0].sensorVAL),
       'time' : docs[0].timestamp
     });
-    for (var i = docs.length-1; i>0; i--){
+    for (var i = docs.length-1; i>-1; i--){
       io.emit('panels_P',{
         'topic':String(docs[i].sensorID),
         'message':String(docs[i].sensorVAL),
@@ -110,7 +110,7 @@ io.on('connection', (socket) => {
       'message':String(docs[0].sensorVAL),
       'time' : docs[0].timestamp
     });
-      for (var i = docs.length-1; i>0; i--) {
+      for (var i = docs.length-1; i>-1; i--) {
         //console.log('volts:'+docs[i].sensorVAL);
         io.emit('panels_E',{
           'topic':String(docs[i].sensorID),
@@ -131,7 +131,7 @@ io.on('connection', (socket) => {
       'message':String(docs[0].sensorVAL),
       'time' : docs[0].timestamp
     });
-      for (var i = docs.length-1; i>0; i--) {
+      for (var i = docs.length-1; i>-1; i--) {
         //console.log('volts:'+docs[i].sensorVAL);
         io.emit('panels_R',{
           'topic':String(docs[i].sensorID),
@@ -152,7 +152,7 @@ io.on('connection', (socket) => {
       'message':String(docs[0].sensorVAL),
       'time' : docs[0].timestamp
     });
-      for (var i = docs.length-1; i>0; i--) {
+      for (var i = docs.length-1; i>-1; i--) {
         //console.log('volts:'+docs[i].sensorVAL);
         io.emit('temp_ext',{
           'topic':String(docs[i].sensorID),
@@ -173,9 +173,93 @@ io.on('connection', (socket) => {
       'message':String(docs[0].sensorVAL),
       'time' : docs[0].timestamp
     });
-      for (var i = docs.length-1; i>0; i--) {
+      for (var i = docs.length-1; i>-1; i--) {
         //console.log('volts:'+docs[i].sensorVAL);
         io.emit('temp_int',{
+          'topic':String(docs[i].sensorID),
+          'message':String(docs[i].sensorVAL),
+          'time' : docs[i].timestamp
+        });
+      }
+  });
+
+  Data.T_F_ext_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+    if (err){
+      console.log("Error getting Data from DB");
+      return
+    }
+    console.log("Lastest TF_ext: " + docs[0].sensorVAL );
+    io.emit('last_tfext',{
+      'topic':String(docs[0].sensorID),
+      'message':String(docs[0].sensorVAL),
+      'time' : docs[0].timestamp
+    });
+      for (var i = docs.length-1; i>-1; i--) {
+        //console.log('volts:'+docs[i].sensorVAL);
+        io.emit('tfext',{
+          'topic':String(docs[i].sensorID),
+          'message':String(docs[i].sensorVAL),
+          'time' : docs[i].timestamp
+        });
+      }
+  });
+
+  Data.T_F_int_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+    if (err){
+      console.log("Error getting Data from DB");
+      return
+    }
+    console.log("Lastest TF_int: " + docs[0].sensorVAL );
+    io.emit('last_tfint',{
+      'topic':String(docs[0].sensorID),
+      'message':String(docs[0].sensorVAL),
+      'time' : docs[0].timestamp
+    });
+      for (var i = docs.length-1; i>-1; i--) {
+        //console.log('volts:'+docs[i].sensorVAL);
+        io.emit('tfint',{
+          'topic':String(docs[i].sensorID),
+          'message':String(docs[i].sensorVAL),
+          'time' : docs[i].timestamp
+        });
+      }
+  });
+
+  Data.T_W_ext_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+    if (err){
+      console.log("Error getting Data from DB");
+      return
+    }
+    console.log("Lastest TW_ext: " + docs[0].sensorVAL );
+    io.emit('last_twext',{
+      'topic':String(docs[0].sensorID),
+      'message':String(docs[0].sensorVAL),
+      'time' : docs[0].timestamp
+    });
+      for (var i = docs.length-1; i>-1; i--) {
+        //console.log('volts:'+docs[i].sensorVAL);
+        io.emit('twext',{
+          'topic':String(docs[i].sensorID),
+          'message':String(docs[i].sensorVAL),
+          'time' : docs[i].timestamp
+        });
+      }
+  });
+
+  Data.T_W_int_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+    if (err){
+      console.log("Error getting Data from DB");
+      return
+    }
+    console.log("Lastest TW_int: " + docs[0].sensorVAL );
+    io.emit('last_twint',{
+      'topic':String(docs[0].sensorID),
+      'message':String(docs[0].sensorVAL),
+      'time' : docs[0].timestamp
+    });
+      for (var i = docs.length-1; i>-1; i--) {
+        //console.log('volts:'+docs[i].sensorVAL);
+        io.emit('twint',{
           'topic':String(docs[i].sensorID),
           'message':String(docs[i].sensorVAL),
           'time' : docs[i].timestamp
@@ -194,9 +278,30 @@ io.on('connection', (socket) => {
       'message':String(docs[0].sensorVAL),
       'time' : docs[0].timestamp
     });
-      for (var i = docs.length-1; i>0; i--) {
+      for (var i = docs.length-1; i>-1; i--) {
         //console.log('volts:'+docs[i].sensorVAL);
         io.emit('fan_status',{
+          'topic':String(docs[i].sensorID),
+          'message':String(docs[i].sensorVAL),
+          'time' : docs[i].timestamp
+        });
+      }
+  });
+
+  Data.Solar_H_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+    if (err){
+      console.log("Error getting Data from DB");
+      return
+    }
+    console.log("Lastest Solar Heater status: " + docs[0].sensorVAL );
+    io.emit('last_solarh_status',{
+      'topic':String(docs[0].sensorID),
+      'message':String(docs[0].sensorVAL),
+      'time' : docs[0].timestamp
+    });
+      for (var i = docs.length-1; i>-1; i--) {
+        //console.log('volts:'+docs[i].sensorVAL);
+        io.emit('solarh_status',{
           'topic':String(docs[i].sensorID),
           'message':String(docs[i].sensorVAL),
           'time' : docs[i].timestamp
@@ -215,7 +320,7 @@ io.on('connection', (socket) => {
       'message':String(docs[0].sensorVAL),
       'time' : docs[0].timestamp
     });
-      for (var i = docs.length-1; i>0; i--) {
+      for (var i = docs.length-1; i>-1; i--) {
         //console.log('volts:'+docs[i].sensorVAL);
         io.emit('lights_status',{
           'topic':String(docs[i].sensorID),
@@ -277,8 +382,13 @@ client.on('connect', function () {
   client.subscribe('ac/power');
   client.subscribe('temp/exterior');
   client.subscribe('temp/interior');
+  client.subscribe('temp/vinside');
+  client.subscribe('temp/voutside');
+  client.subscribe('temp/inwater');
+  client.subscribe('temp/outwater');
   client.subscribe('control/fan');
   client.subscribe('control/lights');
+  client.subscribe('control/solarheater');
 });
 
 //Testing stuff
@@ -301,6 +411,11 @@ client.on('message', function (topic, message) {
   var topic8_re = /^control\/fan.*/;
   var topic9_re = /^control\/lights.*/;
   var topic10_re = /^ac\/power.*/;
+  var topic11_re = /^temp\/vinside.*/;
+  var topic12_re = /^temp\/voutside.*/;
+  var topic13_re = /^temp\/inwater.*/;
+  var topic14_re = /^temp\/outwater.*/;
+  var topic15_re = /^control\/solarheater.*/;
   // console.log("topic voltage: "+  topic2_re);
   // console.log("topic energy: "+  topic4_re);
   //Panels Amp
@@ -535,6 +650,131 @@ client.on('message', function (topic, message) {
       'time': newData.timestamp
     });
     io.emit('last_acp',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+
+    newData.save().then((doc) => {
+      //console.log(JSON.stringify(doc,undefined,2));
+    }, (e) => {
+      console.log('Unable to save Data',e);
+    });
+  }
+
+  //T Fan #2 inside
+  else if(topic.match(topic11_re)){
+    console.log('topic: '+topic);
+    var newData = new Data.T_F_int_data({
+      sensorID: topic,
+      sensorVAL: message
+    });
+    io.emit('tfint',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+    io.emit('last_tfint',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+
+    newData.save().then((doc) => {
+      //console.log(JSON.stringify(doc,undefined,2));
+    }, (e) => {
+      console.log('Unable to save Data',e);
+    });
+  }
+
+  //T Fan #2 outside
+  else if(topic.match(topic12_re)){
+    console.log('topic: '+topic);
+    var newData = new Data.T_F_ext_data({
+      sensorID: topic,
+      sensorVAL: message
+    });
+    io.emit('tfext',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+    io.emit('last_tfext',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+
+    newData.save().then((doc) => {
+      //console.log(JSON.stringify(doc,undefined,2));
+    }, (e) => {
+      console.log('Unable to save Data',e);
+    });
+  }
+
+  //T Water inside
+  else if(topic.match(topic13_re)){
+    console.log('topic: '+topic);
+    var newData = new Data.T_W_int_data({
+      sensorID: topic,
+      sensorVAL: message
+    });
+    io.emit('twint',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+    io.emit('last_twint',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+
+    newData.save().then((doc) => {
+      //console.log(JSON.stringify(doc,undefined,2));
+    }, (e) => {
+      console.log('Unable to save Data',e);
+    });
+  }
+
+  //T Water inside
+  else if(topic.match(topic14_re)){
+    console.log('topic: '+topic);
+    var newData = new Data.T_W_ext_data({
+      sensorID: topic,
+      sensorVAL: message
+    });
+    io.emit('twext',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+    io.emit('last_twext',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+
+    newData.save().then((doc) => {
+      //console.log(JSON.stringify(doc,undefined,2));
+    }, (e) => {
+      console.log('Unable to save Data',e);
+    });
+  }
+
+  //Solar Heater
+  else if(topic.match(topic15_re)){
+    console.log('topic: '+topic);
+    var newData = new Data.Solar_H_data({
+      sensorID: topic,
+      sensorVAL: message
+    });
+    io.emit('solarh_status',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+    io.emit('last_solarh_status',{
       'topic':String(topic),
       'message':String(message),
       'time': newData.timestamp

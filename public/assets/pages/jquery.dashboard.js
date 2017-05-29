@@ -36,6 +36,26 @@ var socket = io();
     div.textContent = data.message + " °C";
     var text = div.textContent;
   });
+  socket.on('last_twext', function (data) {
+    var div = document.getElementById("Wext_temp");
+    div.textContent = data.message + " °C";
+    var text = div.textContent;
+  });
+  socket.on('last_twint', function (data) {
+    var div = document.getElementById("Wint_temp");
+    div.textContent = data.message + " °C";
+    var text = div.textContent;
+  });
+  socket.on('last_tfext', function (data) {
+    var div = document.getElementById("Fext_temp");
+    div.textContent = data.message + " °C";
+    var text = div.textContent;
+  });
+  socket.on('last_tfint', function (data) {
+    var div = document.getElementById("Fint_temp");
+    div.textContent = data.message + " °C";
+    var text = div.textContent;
+  });
   socket.on('last_lights_status', function (data) {
     var div = document.getElementById("L_status");
     if (data.message == "1") {
@@ -53,6 +73,16 @@ var socket = io();
       var text = div.textContent;
     } else {
       div.textContent = "FAN: OFF";
+      var text = div.textContent;
+    }
+  });
+  socket.on('last_solarh_status', function (data) {
+    var div = document.getElementById("Sh_status");
+    if (data.message == "1") {
+      div.textContent = "Solar Heater: ON";
+      var text = div.textContent;
+    } else {
+      div.textContent = "Solar Heater: OFF";
       var text = div.textContent;
     }
   });

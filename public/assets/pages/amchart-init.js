@@ -5,7 +5,9 @@ var chartData2 = [];
 var chartData3 = [];
 var chartData4 = [];
 var chartData5 = [];
-
+var chartData6 = [];
+var chartData7 = [];
+var chartData8 = [];
 //Cloning Function
 function clone(obj) {
   var copy;
@@ -101,11 +103,17 @@ var chartConfig2 = clone(chartConfig);
 var chartConfig3 = clone(chartConfig);
 var chartConfig4 = clone(chartConfig);
 var chartConfig5 = clone(chartConfig);
+var chartConfig6 = clone(chartConfig);
+var chartConfig7 = clone(chartConfig);
+var chartConfig8 = clone(chartConfig);
 var chart1 = AmCharts.makeChart("V_chart", chartConfig1);
 var chart2 = AmCharts.makeChart("A_chart", chartConfig2);
 var chart3 = AmCharts.makeChart("P_chart", chartConfig3);
 var chart4 = AmCharts.makeChart("T_ext_chart", chartConfig4);
 var chart5 = AmCharts.makeChart("T_int_chart", chartConfig5);
+var chart6 = AmCharts.makeChart("L_chart", chartConfig6);
+var chart7 = AmCharts.makeChart("F_chart", chartConfig7);
+var chart8 = AmCharts.makeChart("R_chart", chartConfig8);
 var valueAxis1 = new AmCharts.ValueAxis();
 valueAxis1.position = "left";
 valueAxis1.title = "Voltage";
@@ -146,6 +154,28 @@ valueAxis5.axisAlpha = 0 ;
 valueAxis5.titleBold = false;
 valueAxis5.unit = "°C";
 chart5.addValueAxis(valueAxis5);
+var valueAxis6 = new AmCharts.ValueAxis();
+valueAxis6.position = "left";
+valueAxis6.title = "Lights Status";
+valueAxis6.titleFontSize = "14";
+valueAxis6.axisAlpha = 0 ;
+valueAxis6.titleBold = false;
+chart6.addValueAxis(valueAxis6);
+var valueAxis7 = new AmCharts.ValueAxis();
+valueAxis7.position = "left";
+valueAxis7.title = "Fan Status";
+valueAxis7.titleFontSize = "14";
+valueAxis7.axisAlpha = 0 ;
+valueAxis7.titleBold = false;
+chart7.addValueAxis(valueAxis7);
+var valueAxis8 = new AmCharts.ValueAxis();
+valueAxis8.position = "left";
+valueAxis8.title = "Solar Radiation";
+valueAxis8.titleFontSize = "14";
+valueAxis8.axisAlpha = 0 ;
+valueAxis8.titleBold = false;
+valueAxis8.unit = "Watts/m2";
+chart8.addValueAxis(valueAxis8);
 
 // var categoryAxis = chart.categoryAxis;
 // categoryAxis.parseDates = true;
@@ -164,8 +194,12 @@ chart4.addListener("rendered", zoomChart4);
 zoomChart4();
 chart5.addListener("rendered", zoomChart5);
 zoomChart5();
-
-
+chart6.addListener("rendered", zoomChart6);
+zoomChart6();
+chart7.addListener("rendered", zoomChart7);
+zoomChart7();
+chart8.addListener("rendered", zoomChart8);
+zoomChart8();
 
 function zoomChart1() {
     // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
@@ -187,7 +221,18 @@ function zoomChart5() {
     // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
     chart5.zoomToIndexes(chartData5.length - 40, chartData5.length - 1);
 }
-
+function zoomChart6() {
+    // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
+    chart6.zoomToIndexes(chartData6.length - 40, chartData6.length - 1);
+}
+function zoomChart7() {
+    // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
+    chart7.zoomToIndexes(chartData7.length - 40, chartData7.length - 1);
+}
+function zoomChart8() {
+    // different zoom methods can be used - zoomToIndexes, zoomToDates, zoomToCategoryValues
+    chart8.zoomToIndexes(chartData8.length - 40, chartData8.length - 1);
+}
 socket.on('panels_V', function (data) {
   // console.log("V value: "+ data.message );
   // console.log("V time: "+new Date(parseInt(data.time)));
@@ -261,4 +306,49 @@ socket.on('temp_int', function (data) {
     chartData5.splice(0, chartData5.length - 20);
   }
   chart5.validateData();
+});
+
+socket.on('lights_status', function (data) {
+  //var newDate = new Date();
+  // console.log("P time: "+new Date(parseInt(data.time)));
+  chartData6.push({
+    //date: newDate,
+    date: new Date(parseInt(data.time)),
+    value: data.message
+  });
+  chart6.dataProvider = chartData6;
+  if (chartData6.length > 20) {
+    chartData6.splice(0, chartData6.length - 20);
+  }
+  chart6.validateData();
+});
+
+socket.on('fan_status', function (data) {
+  //var newDate = new Date();
+  // console.log("P time: "+new Date(parseInt(data.time)));
+  chartData7.push({
+    //date: newDate,
+    date: new Date(parseInt(data.time)),
+    value: data.message
+  });
+  chart7.dataProvider = chartData7;
+  if (chartData7.length > 20) {
+    chartData7.splice(0, chartData7.length - 20);
+  }
+  chart7.validateData();
+});
+
+socket.on('panels_R', function (data) {
+  //var newDate = new Date();
+  // console.log("P time: "+new Date(parseInt(data.time)));
+  chartData8.push({
+    //date: newDate,
+    date: new Date(parseInt(data.time)),
+    value: data.message
+  });
+  chart8.dataProvider = chartData8;
+  if (chartData8.length > 20) {
+    chartData8.splice(0, chartData8.length - 20);
+  }
+  chart8.validateData();
 });
