@@ -22,17 +22,17 @@ var socket = io();
     var text = div.textContent;
   });
 
-function changeImage() {
-      var image = document.getElementById('myImage');
-      if (image.src.match("bulbon")) {
-          image.src = "assets/images/pic_bulboff.gif";
-          socket.emit('publish', {topic:"led",payload:"off"});
-      }
-      else {
-          image.src = "assets/images/pic_bulbon.gif";
-          socket.emit('publish', {topic:"led",payload:"on"});
-      }
-}
+// function changeImage() {
+//       var image = document.getElementById('myImage');
+//       if (image.src.match("bulbon")) {
+//           image.src = "assets/images/pic_bulboff.gif";
+//           socket.emit('publish', {topic:"led",payload:"off"});
+//       }
+//       else {
+//           image.src = "assets/images/pic_bulbon.gif";
+//           socket.emit('publish', {topic:"led",payload:"on"});
+//       }
+// }
 // $(document).ready(function() {
 //   $( "#valvOn" ).submit(function( event ) {
 //    		$("#imgon").show();

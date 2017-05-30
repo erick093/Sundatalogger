@@ -17,6 +17,7 @@
         <link href="assets/css/icons.css" rel="stylesheet">
         <!-- Custom styles for this template -->
         <link href="assets/css/style.css" rel="stylesheet">
+        <link href="assets/css/image_ac.css" rel="stylesheet">
         <link rel="stylesheet" href="assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.css">
         <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
     </head>
@@ -38,7 +39,6 @@
                         </a>
                     </div>
                 </div>
-
                 <div class="topbar-right">
                      <div class="">
                          <a href="index.html" class="logo1">
@@ -107,6 +107,7 @@
                                     <li><a href="live_ac.html">AC line Configuration </a></li>
                                   </ul>
                                 </li>
+
                             </ul>
                         </div>
                     </div><!--Scrollbar wrapper-->
@@ -115,40 +116,33 @@
 
                 <!-- START PAGE CONTENT -->
                 <div id="page-right-content">
-
                     <div class="container">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h4 class="header-title m-t-0 m-b-20">Search</h4>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="card-box">
+
+                            <h4 class="m-t-0">Live View</h4>
+                            <div id="ac">
+                              <div class="content">
+                              <div class ="text" id="Ltext"></div>
+                              <div class ="text" id="Ftext"></div>
+                              <div class ="text" id="Shtext"></div>
+                              </div>
+                              <div class="content_temp_int">
+                                <div class ="text_temp_int" id="Ta_text"></div>
+                              </div>
+                              <div class="content_temp_ext">
+                                <div class ="text_temp_ext" id="Te_text"></div>
+                              </div>
                             </div>
-                        </div> <!-- end row -->
+                          </div>
+                        </div>
+                      </div>
+
                     </div>
                     <!-- end container -->
-                    <div class="container">
-                      <div>
-                        <p>From:
-                          <input type="text" id="from">
-                        </p>
-                        <p>To:
-                          <input type="text" id="to">
-                        </p>
-                        <button type="button" id="bt">Search</button>
-                      </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <div class="p-20 m-b-20">
-                                <h5 class="m-t-0">Voltage Output</h5>
-                                <p class="text-muted font-13 m-b-30">
-                                  Voltage output of solar panels
-                                </p>
 
-                                <div id="s_volt"  style="height:420px;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <div class="footer">
                         <div>
@@ -166,17 +160,14 @@
         </div>
         <!-- End #page-wrapper -->
 
-        <!--Amcharts Chart-->
-        <script src="assets/plugins/amcharts3/amcharts/amcharts.js"></script>
-        <script src="assets/plugins/amcharts3/amcharts/serial.js"></script>
-        <script src="assets/plugins/amcharts3/amcharts/plugins/export/export.min.js"></script>
-        <script src="assets/plugins/amcharts3/amcharts/themes/light.js"></script>
-        <!-- <script src="assets/pages/amchart-init.js"></script> -->
+
+        <!--Socket io-->
+        <script src="/socket.io/socket.io.js"></script>
 
         <!-- js placed at the end of the document so the pages load faster -->
         <script src="assets/js/jquery-2.1.4.min.js"></script>
-         <script src="assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
-        <script src="assets/pages/jquery.search-V.js"></script>
+        <script src="assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
+        <script src="assets/pages/live_ac.js"></script>
         <script src="assets/js/bootstrap.min.js"></script>
         <script src="assets/js/metisMenu.min.js"></script>
         <script src="assets/js/jquery.slimscroll.min.js"></script>
