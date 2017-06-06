@@ -1,0 +1,281 @@
+#sh
+{
+    background-image: url("/assets/images/scada_solarheater.jpg");
+    background-repeat: no-repeat;
+    height: 900px;
+    width: 1000px;
+    margin-left: 60px;
+    margin-top: 13px;
+    position: relative;
+    z-index: 50;
+    /*+placement: 9px 177px;*/
+    position: relative;
+    left: 9px;
+    top: 177px;
+}
+#sh .content
+{
+    width: 182px;
+    /*328 co je 1/3 - 20margin left*/
+    height: 121px;
+    line-height: 20px;
+    margin-top: 0px;
+    margin-left: 9px;
+    margin-right: 0px;
+    display: inline-block;
+    position: relative;
+    z-index: 50;
+}
+#sh .text
+{
+    color: white;
+    font: bold 18px / 40px Helvetica, Sans-Serif;
+    letter-spacing: -1px;
+    background: rgb(0, 0, 0);
+    /* fallback color */
+    background: rgba(0, 0, 0, 0.7);
+    padding: 0px 10px 55px 28px;
+    height: 6px;
+    width: 216px;
+    /*+placement: 524px 313px;*/
+    position: relative;
+    left: 524px;
+    top: 313px;
+    text-align: center;
+    margin-bottom: 14px;
+    margin-left: 12px;
+    /*+border-radius: 0px;*/
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -khtml-border-radius: 0px;
+    border-radius: 0px;
+    margin-top: -4px;
+    border-right: 1px solid black;
+}
+#sh .content_temp_int
+{
+    width: 182px;
+    /*328 co je 1/3 - 20margin left*/
+    height: 121px;
+    line-height: 20px;
+    margin-top: 0px;
+    margin-left: 9px;
+    margin-right: 0px;
+    display: inline-block;
+    position: relative;
+    z-index: 50;
+    /*+placement: 163px -27px;*/
+    position: relative;
+    left: 163px;
+    top: -27px;
+}
+#sh .content_temp_ext
+{
+    width: 182px;
+    /*328 co je 1/3 - 20margin left*/
+    height: 121px;
+    line-height: 20px;
+    margin-top: 0px;
+    margin-left: 9px;
+    margin-right: 0px;
+    display: inline-block;
+    position: relative;
+    z-index: 50;
+    /*+placement: 47px 141px;*/
+    position: relative;
+    left: 47px;
+    top: 141px;
+}
+#sh .content_temp_ext_w
+{
+    width: 182px;
+    /*328 co je 1/3 - 20margin left*/
+    height: 121px;
+    line-height: 20px;
+    margin-top: 0px;
+    margin-left: 9px;
+    margin-right: 0px;
+    display: inline-block;
+    position: relative;
+    z-index: 50;
+    /*+placement: 47px 153px;*/
+    position: relative;
+    left: 47px;
+    top: 153px;
+    border-bottom-left-radius: 0;
+}
+#sh .content_temp_int_w
+{
+    width: 182px;
+    /*328 co je 1/3 - 20margin left*/
+    height: 121px;
+    line-height: 20px;
+    margin-top: 0px;
+    margin-left: 9px;
+    margin-right: 0px;
+    display: inline-block;
+    position: relative;
+    z-index: 50;
+    /*+placement: -507px 141px;*/
+    position: relative;
+    left: -507px;
+    top: 141px;
+}
+#sh .content_temp_ext_f
+{
+    width: 182px;
+    /*328 co je 1/3 - 20margin left*/
+    height: 121px;
+    line-height: 20px;
+    margin-top: 0px;
+    margin-left: 9px;
+    margin-right: 0px;
+    display: inline-block;
+    position: relative;
+    z-index: 50;
+    /*+placement: -256px 233px;*/
+    position: relative;
+    left: -256px;
+    top: 233px;
+    border-bottom-left-radius: 0;
+}
+#sh .content_temp_int_f
+{
+    width: 181px;
+    /*328 co je 1/3 - 20margin left*/
+    height: 121px;
+    line-height: 20px;
+    margin-top: 0px;
+    margin-left: 9px;
+    margin-right: 0px;
+    display: inline-block;
+    position: relative;
+    z-index: 50;
+    /*+placement: -57px -52px;*/
+    position: relative;
+    left: -57px;
+    top: -52px;
+}
+#sh .text_temp_int
+{
+    color: #56F407;
+    font: bold 18px / 40px Helvetica, Sans-Serif;
+    letter-spacing: -1px;
+    position: relative;
+    left: 524px;
+    top: 313px;
+    text-align: center;
+    /*+border-radius: 0px;*/
+    border-radius: 0px;
+    height: 161px;
+    width: 297px;
+    /*+placement: 335px 50px;*/
+    position: relative;
+    left: 335px;
+    top: 50px;
+}
+#sh .text_temp_ext
+{
+    color: #56F407;
+    font: bold 18px / 40px Helvetica, Sans-Serif;
+    letter-spacing: -1px;
+    position: relative;
+    left: 524px;
+    top: 313px;
+    text-align: center;
+    /*+border-radius: 0px;*/
+    border-radius: 0px;
+    height: 161px;
+    width: 297px;
+    /*+placement: -110px -116px;*/
+    position: relative;
+    left: -110px;
+    top: -116px;
+}
+#sh .text_temp_int_w
+{
+    color: #1A2EF6;
+    font: bold 12px / 40px Helvetica, Sans-Serif;
+    letter-spacing: -1px;
+    position: relative;
+    left: 524px;
+    top: 313px;
+    text-align: center;
+    /*+border-radius: 0px;*/
+    border-radius: 0px;
+    height: 161px;
+    width: 297px;
+    /*+placement: 335px 50px;*/
+    position: relative;
+    left: 335px;
+    top: 50px;
+}
+#sh .text_temp_ext_w
+{
+    color: #1A2EF6;
+    font: bold 12px / 40px Helvetica, Sans-Serif;
+    letter-spacing: -1px;
+    position: relative;
+    left: 524px;
+    top: 313px;
+    text-align: center;
+    /*+border-radius: 0px;*/
+    border-radius: 0px;
+    height: 161px;
+    width: 297px;
+    /*+placement: -110px -116px;*/
+    position: relative;
+    left: -110px;
+    top: -116px;
+}
+#sh .text_temp_int_f
+{
+    color: #F75C0A;
+    font: bold 12px / 40px Helvetica, Sans-Serif;
+    letter-spacing: -1px;
+    position: relative;
+    left: 524px;
+    top: 313px;
+    text-align: center;
+    /*+border-radius: 0px;*/
+    border-radius: 0px;
+    height: 161px;
+    width: 297px;
+    /*+placement: 335px 50px;*/
+    position: relative;
+    left: 335px;
+    top: 50px;
+}
+#sh .text_temp_ext_f
+{
+    color: #F75C0A;
+    font: bold 12px / 40px Helvetica, Sans-Serif;
+    letter-spacing: -1px;
+    position: relative;
+    left: 524px;
+    top: 313px;
+    text-align: center;
+    /*+border-radius: 0px;*/
+    border-radius: 0px;
+    height: 161px;
+    width: 297px;
+    /*+placement: -110px -116px;*/
+    position: relative;
+    left: -110px;
+    top: -116px;
+}
+img
+{
+    position: relative;
+    z-index: 60;
+}
+.span
+{
+    width: 70px;
+    height: 40px;
+    border: 1px solid red;
+    position: absolute;
+    z-index: 95;
+    right: 60px;
+    bottom: -100px;
+}
