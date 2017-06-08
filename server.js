@@ -9,17 +9,19 @@ var mqtt =require('mqtt');
 var app = express();
 var server = http.createServer(app);
 var io = socketIO(server);
-var mqtt_url = url.parse(process.env.CLOUDMQTT_URL || 'mqtt://localhost:1883');
 //var client = mqtt.connect('mqtt://localhost:1883');
 var bodyParser = require("body-parser");
-var auth = (mqtt_url.auth || ':').split(':');
 // app.use(bodyParser.json());
 // //app.use(app.router);
 //     //app.use(express.logger());
-var client = mqtt.connect(mqtt_url.port, mqtt_url.hostname, {
-  username: auth[0],
-  password: auth[1]
-});
+var options = {
+    port: 15255,
+    host: 'mqtt://m12.cloudmqtt.com',
+    clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
+    username: 'mzygtpwd',
+    password: 'SamWHSMEl7J6',
+};
+var client = mqtt.connect('mqtt://m12.cloudmqtt.com',options);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
