@@ -4,15 +4,23 @@ const socketIO = require('socket.io');
 const port = process.env.PORT || 3500;
 var {mongoose} = require('./db/mongoose');
 var Data = require('./models/data');
+var url = require('url');
 var mqtt =require('mqtt');
 var app = express();
 var server = http.createServer(app);
 var io = socketIO(server);
-var client = mqtt.connect('mqtt://localhost:1883');
+var mqtt_url = url.parse(process.env.CLOUDMQTT_URL || 'mqtt://localhost:1883');
+//var client = mqtt.connect('mqtt://localhost:1883');
 var bodyParser = require("body-parser");
+var auth = (mqtt_url.auth || ':').split(':');
 // app.use(bodyParser.json());
 // //app.use(app.router);
 //     //app.use(express.logger());
+var client = mqtt.createClient(mqtt_url.port, mqtt_url.hostname, {
+  username: auth[0],
+  password: auth[1]
+});
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 var routes = require('./routes/croutes');
