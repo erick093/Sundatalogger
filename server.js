@@ -30,339 +30,339 @@ app.get('/',(req,res) => {
 // });
 
 //Query lastest Data on Connection
-io.on('connection', (socket) => {
-  socket.on('publish', function (data) {
-      console.log('Publishing to '+data.topic + ': ' +data.payload);
-      client.publish(data.topic,data.payload);
-  });
-  console.log('New user connected,sending lastest data');
-  var d = new Date().getTime();
-  Data.V_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
-    if (err){
-      console.log("Error getting Data from DB");
-      return
-    }
-    console.log("Lastest V: " + docs[0].sensorVAL );
-    //console.log(docs.length);
-
-    io.emit('last_V',{
-      'topic':String(docs[0].sensorID),
-      'message':String(docs[0].sensorVAL),
-      'time' : docs[0].timestamp
-    });
-      for (var i = docs.length-1; i>-1; i--) {
-        //console.log('volts:'+docs[i].sensorVAL);
-        io.emit('panels_V',{
-          'topic':String(docs[i].sensorID),
-          'message':String(docs[i].sensorVAL),
-          'time' : docs[i].timestamp
-        });
-      }
-  });
-
-  Data.A_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
-    if (err){
-      console.log("Error getting Data from DB");
-      return
-    }
-    console.log("Lastest A: "  + docs[0].sensorVAL);
-    io.emit('last_A',{
-      'topic':String(docs[0].sensorID),
-      'message':String(docs[0].sensorVAL),
-      'time' : docs[0].timestamp
-    });
-      for (var i = docs.length-1; i>-1; i--) {
-      io.emit('panels_A',{
-        'topic':String(docs[i].sensorID),
-        'message':String(docs[i].sensorVAL),
-        'time' : docs[i].timestamp
-      });
-    }
-  });
-
-  Data.P_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
-    if (err){
-      console.log("Error getting Data from DB");
-      return
-    }
-    console.log("Lastest P: " +  docs[0].sensorVAL );
-    io.emit('last_P',{
-      'topic':String(docs[0].sensorID),
-      'message':String(docs[0].sensorVAL),
-      'time' : docs[0].timestamp
-    });
-    for (var i = docs.length-1; i>-1; i--){
-      io.emit('panels_P',{
-        'topic':String(docs[i].sensorID),
-        'message':String(docs[i].sensorVAL),
-        'time' : docs[i].timestamp
-      });
-    }
-  });
-  Data.E_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
-    if (err){
-      console.log("Error getting Data from DB");
-      return
-    }
-    console.log("Lastest E: " + docs[0].sensorVAL );
-    io.emit('last_E',{
-      'topic':String(docs[0].sensorID),
-      'message':String(docs[0].sensorVAL),
-      'time' : docs[0].timestamp
-    });
-      for (var i = docs.length-1; i>-1; i--) {
-        //console.log('volts:'+docs[i].sensorVAL);
-        io.emit('panels_E',{
-          'topic':String(docs[i].sensorID),
-          'message':String(docs[i].sensorVAL),
-          'time' : docs[i].timestamp
-        });
-      }
-  });
-
-  Data.R_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
-    if (err){
-      console.log("Error getting Data from DB");
-      return
-    }
-    console.log("Lastest R: " + docs[0].sensorVAL );
-    io.emit('last_R',{
-      'topic':String(docs[0].sensorID),
-      'message':String(docs[0].sensorVAL),
-      'time' : docs[0].timestamp
-    });
-      for (var i = docs.length-1; i>-1; i--) {
-        //console.log('volts:'+docs[i].sensorVAL);
-        io.emit('panels_R',{
-          'topic':String(docs[i].sensorID),
-          'message':String(docs[i].sensorVAL),
-          'time' : docs[i].timestamp
-        });
-      }
-  });
-
-  Data.T_ext_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
-    if (err){
-      console.log("Error getting Data from DB");
-      return
-    }
-    console.log("Lastest T_ext: " + docs[0].sensorVAL );
-    io.emit('last_temp_ext',{
-      'topic':String(docs[0].sensorID),
-      'message':String(docs[0].sensorVAL),
-      'time' : docs[0].timestamp
-    });
-      for (var i = docs.length-1; i>-1; i--) {
-        //console.log('volts:'+docs[i].sensorVAL);
-        io.emit('temp_ext',{
-          'topic':String(docs[i].sensorID),
-          'message':String(docs[i].sensorVAL),
-          'time' : docs[i].timestamp
-        });
-      }
-  });
-
-  Data.T_int_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
-    if (err){
-      console.log("Error getting Data from DB");
-      return
-    }
-    console.log("Lastest T_int: " + docs[0].sensorVAL );
-    io.emit('last_temp_int',{
-      'topic':String(docs[0].sensorID),
-      'message':String(docs[0].sensorVAL),
-      'time' : docs[0].timestamp
-    });
-      for (var i = docs.length-1; i>-1; i--) {
-        //console.log('volts:'+docs[i].sensorVAL);
-        io.emit('temp_int',{
-          'topic':String(docs[i].sensorID),
-          'message':String(docs[i].sensorVAL),
-          'time' : docs[i].timestamp
-        });
-      }
-  });
-
-  Data.T_F_ext_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
-    if (err){
-      console.log("Error getting Data from DB");
-      return
-    }
-    console.log("Lastest TF_ext: " + docs[0].sensorVAL );
-    io.emit('last_tfext',{
-      'topic':String(docs[0].sensorID),
-      'message':String(docs[0].sensorVAL),
-      'time' : docs[0].timestamp
-    });
-      for (var i = docs.length-1; i>-1; i--) {
-        //console.log('volts:'+docs[i].sensorVAL);
-        io.emit('tfext',{
-          'topic':String(docs[i].sensorID),
-          'message':String(docs[i].sensorVAL),
-          'time' : docs[i].timestamp
-        });
-      }
-  });
-
-  Data.T_F_int_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
-    if (err){
-      console.log("Error getting Data from DB");
-      return
-    }
-    console.log("Lastest TF_int: " + docs[0].sensorVAL );
-    io.emit('last_tfint',{
-      'topic':String(docs[0].sensorID),
-      'message':String(docs[0].sensorVAL),
-      'time' : docs[0].timestamp
-    });
-      for (var i = docs.length-1; i>-1; i--) {
-        //console.log('volts:'+docs[i].sensorVAL);
-        io.emit('tfint',{
-          'topic':String(docs[i].sensorID),
-          'message':String(docs[i].sensorVAL),
-          'time' : docs[i].timestamp
-        });
-      }
-  });
-
-  Data.T_W_ext_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
-    if (err){
-      console.log("Error getting Data from DB");
-      return
-    }
-    console.log("Lastest TW_ext: " + docs[0].sensorVAL );
-    io.emit('last_twext',{
-      'topic':String(docs[0].sensorID),
-      'message':String(docs[0].sensorVAL),
-      'time' : docs[0].timestamp
-    });
-      for (var i = docs.length-1; i>-1; i--) {
-        //console.log('volts:'+docs[i].sensorVAL);
-        io.emit('twext',{
-          'topic':String(docs[i].sensorID),
-          'message':String(docs[i].sensorVAL),
-          'time' : docs[i].timestamp
-        });
-      }
-  });
-
-  Data.T_W_int_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
-    if (err){
-      console.log("Error getting Data from DB");
-      return
-    }
-    console.log("Lastest TW_int: " + docs[0].sensorVAL );
-    io.emit('last_twint',{
-      'topic':String(docs[0].sensorID),
-      'message':String(docs[0].sensorVAL),
-      'time' : docs[0].timestamp
-    });
-      for (var i = docs.length-1; i>-1; i--) {
-        //console.log('volts:'+docs[i].sensorVAL);
-        io.emit('twint',{
-          'topic':String(docs[i].sensorID),
-          'message':String(docs[i].sensorVAL),
-          'time' : docs[i].timestamp
-        });
-      }
-  });
-
-  Data.Fan_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
-    if (err){
-      console.log("Error getting Data from DB");
-      return
-    }
-    console.log("Lastest Fan status: " + docs[0].sensorVAL );
-    io.emit('last_fan_status',{
-      'topic':String(docs[0].sensorID),
-      'message':String(docs[0].sensorVAL),
-      'time' : docs[0].timestamp
-    });
-      for (var i = docs.length-1; i>-1; i--) {
-        //console.log('volts:'+docs[i].sensorVAL);
-        io.emit('fan_status',{
-          'topic':String(docs[i].sensorID),
-          'message':String(docs[i].sensorVAL),
-          'time' : docs[i].timestamp
-        });
-      }
-  });
-
-  Data.Solar_H_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
-    if (err){
-      console.log("Error getting Data from DB");
-      return
-    }
-    console.log("Lastest Solar Heater status: " + docs[0].sensorVAL );
-    io.emit('last_solarh_status',{
-      'topic':String(docs[0].sensorID),
-      'message':String(docs[0].sensorVAL),
-      'time' : docs[0].timestamp
-    });
-      for (var i = docs.length-1; i>-1; i--) {
-        //console.log('volts:'+docs[i].sensorVAL);
-        io.emit('solarh_status',{
-          'topic':String(docs[i].sensorID),
-          'message':String(docs[i].sensorVAL),
-          'time' : docs[i].timestamp
-        });
-      }
-  });
-
-  Data.Lights_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
-    if (err){
-      console.log("Error getting Data from DB");
-      return
-    }
-    console.log("Lastest Lights status: " + docs[0].sensorVAL );
-    io.emit('last_lights_status',{
-      'topic':String(docs[0].sensorID),
-      'message':String(docs[0].sensorVAL),
-      'time' : docs[0].timestamp
-    });
-      for (var i = docs.length-1; i>-1; i--) {
-        //console.log('volts:'+docs[i].sensorVAL);
-        io.emit('lights_status',{
-          'topic':String(docs[i].sensorID),
-          'message':String(docs[i].sensorVAL),
-          'time' : docs[i].timestamp
-        });
-      }
-  });
-
-  Data.AC_P_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
-    if (err){
-      console.log("Error getting Data from DB");
-      return
-    }
-    console.log("Lastest AC Power: " + docs[0].sensorVAL );
-    io.emit('last_acp',{
-      'topic':String(docs[0].sensorID),
-      'message':String(docs[0].sensorVAL),
-      'time' : docs[0].timestamp
-    });
-      for (var i = docs.length-1; i>0; i--) {
-        //console.log('volts:'+docs[i].sensorVAL);
-        io.emit('acp',{
-          'topic':String(docs[i].sensorID),
-          'message':String(docs[i].sensorVAL),
-          'time' : docs[i].timestamp
-        });
-      }
-  });
-
-  Data.Set_Point_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
-    if (err){
-      console.log("Error getting Data from DB");
-      return
-    }
-    console.log("Lastest Set Point: " + docs[0].sensorVAL );
-    io.emit('last_SP',{
-      'message':String(docs[0].sensorVAL)
-    });
-  });
-
-});
+// io.on('connection', (socket) => {
+//   socket.on('publish', function (data) {
+//       console.log('Publishing to '+data.topic + ': ' +data.payload);
+//       client.publish(data.topic,data.payload);
+//   });
+//   console.log('New user connected,sending lastest data');
+//   var d = new Date().getTime();
+//   Data.V_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+//     if (err){
+//       console.log("Error getting Data from DB");
+//       return
+//     }
+//     console.log("Lastest V: " + docs[0].sensorVAL );
+//     //console.log(docs.length);
+//
+//     io.emit('last_V',{
+//       'topic':String(docs[0].sensorID),
+//       'message':String(docs[0].sensorVAL),
+//       'time' : docs[0].timestamp
+//     });
+//       for (var i = docs.length-1; i>-1; i--) {
+//         //console.log('volts:'+docs[i].sensorVAL);
+//         io.emit('panels_V',{
+//           'topic':String(docs[i].sensorID),
+//           'message':String(docs[i].sensorVAL),
+//           'time' : docs[i].timestamp
+//         });
+//       }
+//   });
+//
+//   Data.A_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+//     if (err){
+//       console.log("Error getting Data from DB");
+//       return
+//     }
+//     console.log("Lastest A: "  + docs[0].sensorVAL);
+//     io.emit('last_A',{
+//       'topic':String(docs[0].sensorID),
+//       'message':String(docs[0].sensorVAL),
+//       'time' : docs[0].timestamp
+//     });
+//       for (var i = docs.length-1; i>-1; i--) {
+//       io.emit('panels_A',{
+//         'topic':String(docs[i].sensorID),
+//         'message':String(docs[i].sensorVAL),
+//         'time' : docs[i].timestamp
+//       });
+//     }
+//   });
+//
+//   Data.P_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+//     if (err){
+//       console.log("Error getting Data from DB");
+//       return
+//     }
+//     console.log("Lastest P: " +  docs[0].sensorVAL );
+//     io.emit('last_P',{
+//       'topic':String(docs[0].sensorID),
+//       'message':String(docs[0].sensorVAL),
+//       'time' : docs[0].timestamp
+//     });
+//     for (var i = docs.length-1; i>-1; i--){
+//       io.emit('panels_P',{
+//         'topic':String(docs[i].sensorID),
+//         'message':String(docs[i].sensorVAL),
+//         'time' : docs[i].timestamp
+//       });
+//     }
+//   });
+//   Data.E_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+//     if (err){
+//       console.log("Error getting Data from DB");
+//       return
+//     }
+//     console.log("Lastest E: " + docs[0].sensorVAL );
+//     io.emit('last_E',{
+//       'topic':String(docs[0].sensorID),
+//       'message':String(docs[0].sensorVAL),
+//       'time' : docs[0].timestamp
+//     });
+//       for (var i = docs.length-1; i>-1; i--) {
+//         //console.log('volts:'+docs[i].sensorVAL);
+//         io.emit('panels_E',{
+//           'topic':String(docs[i].sensorID),
+//           'message':String(docs[i].sensorVAL),
+//           'time' : docs[i].timestamp
+//         });
+//       }
+//   });
+//
+//   Data.R_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+//     if (err){
+//       console.log("Error getting Data from DB");
+//       return
+//     }
+//     console.log("Lastest R: " + docs[0].sensorVAL );
+//     io.emit('last_R',{
+//       'topic':String(docs[0].sensorID),
+//       'message':String(docs[0].sensorVAL),
+//       'time' : docs[0].timestamp
+//     });
+//       for (var i = docs.length-1; i>-1; i--) {
+//         //console.log('volts:'+docs[i].sensorVAL);
+//         io.emit('panels_R',{
+//           'topic':String(docs[i].sensorID),
+//           'message':String(docs[i].sensorVAL),
+//           'time' : docs[i].timestamp
+//         });
+//       }
+//   });
+//
+//   Data.T_ext_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+//     if (err){
+//       console.log("Error getting Data from DB");
+//       return
+//     }
+//     console.log("Lastest T_ext: " + docs[0].sensorVAL );
+//     io.emit('last_temp_ext',{
+//       'topic':String(docs[0].sensorID),
+//       'message':String(docs[0].sensorVAL),
+//       'time' : docs[0].timestamp
+//     });
+//       for (var i = docs.length-1; i>-1; i--) {
+//         //console.log('volts:'+docs[i].sensorVAL);
+//         io.emit('temp_ext',{
+//           'topic':String(docs[i].sensorID),
+//           'message':String(docs[i].sensorVAL),
+//           'time' : docs[i].timestamp
+//         });
+//       }
+//   });
+//
+//   Data.T_int_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+//     if (err){
+//       console.log("Error getting Data from DB");
+//       return
+//     }
+//     console.log("Lastest T_int: " + docs[0].sensorVAL );
+//     io.emit('last_temp_int',{
+//       'topic':String(docs[0].sensorID),
+//       'message':String(docs[0].sensorVAL),
+//       'time' : docs[0].timestamp
+//     });
+//       for (var i = docs.length-1; i>-1; i--) {
+//         //console.log('volts:'+docs[i].sensorVAL);
+//         io.emit('temp_int',{
+//           'topic':String(docs[i].sensorID),
+//           'message':String(docs[i].sensorVAL),
+//           'time' : docs[i].timestamp
+//         });
+//       }
+//   });
+//
+//   Data.T_F_ext_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+//     if (err){
+//       console.log("Error getting Data from DB");
+//       return
+//     }
+//     console.log("Lastest TF_ext: " + docs[0].sensorVAL );
+//     io.emit('last_tfext',{
+//       'topic':String(docs[0].sensorID),
+//       'message':String(docs[0].sensorVAL),
+//       'time' : docs[0].timestamp
+//     });
+//       for (var i = docs.length-1; i>-1; i--) {
+//         //console.log('volts:'+docs[i].sensorVAL);
+//         io.emit('tfext',{
+//           'topic':String(docs[i].sensorID),
+//           'message':String(docs[i].sensorVAL),
+//           'time' : docs[i].timestamp
+//         });
+//       }
+//   });
+//
+//   Data.T_F_int_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+//     if (err){
+//       console.log("Error getting Data from DB");
+//       return
+//     }
+//     console.log("Lastest TF_int: " + docs[0].sensorVAL );
+//     io.emit('last_tfint',{
+//       'topic':String(docs[0].sensorID),
+//       'message':String(docs[0].sensorVAL),
+//       'time' : docs[0].timestamp
+//     });
+//       for (var i = docs.length-1; i>-1; i--) {
+//         //console.log('volts:'+docs[i].sensorVAL);
+//         io.emit('tfint',{
+//           'topic':String(docs[i].sensorID),
+//           'message':String(docs[i].sensorVAL),
+//           'time' : docs[i].timestamp
+//         });
+//       }
+//   });
+//
+//   Data.T_W_ext_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+//     if (err){
+//       console.log("Error getting Data from DB");
+//       return
+//     }
+//     console.log("Lastest TW_ext: " + docs[0].sensorVAL );
+//     io.emit('last_twext',{
+//       'topic':String(docs[0].sensorID),
+//       'message':String(docs[0].sensorVAL),
+//       'time' : docs[0].timestamp
+//     });
+//       for (var i = docs.length-1; i>-1; i--) {
+//         //console.log('volts:'+docs[i].sensorVAL);
+//         io.emit('twext',{
+//           'topic':String(docs[i].sensorID),
+//           'message':String(docs[i].sensorVAL),
+//           'time' : docs[i].timestamp
+//         });
+//       }
+//   });
+//
+//   Data.T_W_int_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+//     if (err){
+//       console.log("Error getting Data from DB");
+//       return
+//     }
+//     console.log("Lastest TW_int: " + docs[0].sensorVAL );
+//     io.emit('last_twint',{
+//       'topic':String(docs[0].sensorID),
+//       'message':String(docs[0].sensorVAL),
+//       'time' : docs[0].timestamp
+//     });
+//       for (var i = docs.length-1; i>-1; i--) {
+//         //console.log('volts:'+docs[i].sensorVAL);
+//         io.emit('twint',{
+//           'topic':String(docs[i].sensorID),
+//           'message':String(docs[i].sensorVAL),
+//           'time' : docs[i].timestamp
+//         });
+//       }
+//   });
+//
+//   Data.Fan_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+//     if (err){
+//       console.log("Error getting Data from DB");
+//       return
+//     }
+//     console.log("Lastest Fan status: " + docs[0].sensorVAL );
+//     io.emit('last_fan_status',{
+//       'topic':String(docs[0].sensorID),
+//       'message':String(docs[0].sensorVAL),
+//       'time' : docs[0].timestamp
+//     });
+//       for (var i = docs.length-1; i>-1; i--) {
+//         //console.log('volts:'+docs[i].sensorVAL);
+//         io.emit('fan_status',{
+//           'topic':String(docs[i].sensorID),
+//           'message':String(docs[i].sensorVAL),
+//           'time' : docs[i].timestamp
+//         });
+//       }
+//   });
+//
+//   Data.Solar_H_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+//     if (err){
+//       console.log("Error getting Data from DB");
+//       return
+//     }
+//     console.log("Lastest Solar Heater status: " + docs[0].sensorVAL );
+//     io.emit('last_solarh_status',{
+//       'topic':String(docs[0].sensorID),
+//       'message':String(docs[0].sensorVAL),
+//       'time' : docs[0].timestamp
+//     });
+//       for (var i = docs.length-1; i>-1; i--) {
+//         //console.log('volts:'+docs[i].sensorVAL);
+//         io.emit('solarh_status',{
+//           'topic':String(docs[i].sensorID),
+//           'message':String(docs[i].sensorVAL),
+//           'time' : docs[i].timestamp
+//         });
+//       }
+//   });
+//
+//   Data.Lights_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+//     if (err){
+//       console.log("Error getting Data from DB");
+//       return
+//     }
+//     console.log("Lastest Lights status: " + docs[0].sensorVAL );
+//     io.emit('last_lights_status',{
+//       'topic':String(docs[0].sensorID),
+//       'message':String(docs[0].sensorVAL),
+//       'time' : docs[0].timestamp
+//     });
+//       for (var i = docs.length-1; i>-1; i--) {
+//         //console.log('volts:'+docs[i].sensorVAL);
+//         io.emit('lights_status',{
+//           'topic':String(docs[i].sensorID),
+//           'message':String(docs[i].sensorVAL),
+//           'time' : docs[i].timestamp
+//         });
+//       }
+//   });
+//
+//   Data.AC_P_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+//     if (err){
+//       console.log("Error getting Data from DB");
+//       return
+//     }
+//     console.log("Lastest AC Power: " + docs[0].sensorVAL );
+//     io.emit('last_acp',{
+//       'topic':String(docs[0].sensorID),
+//       'message':String(docs[0].sensorVAL),
+//       'time' : docs[0].timestamp
+//     });
+//       for (var i = docs.length-1; i>0; i--) {
+//         //console.log('volts:'+docs[i].sensorVAL);
+//         io.emit('acp',{
+//           'topic':String(docs[i].sensorID),
+//           'message':String(docs[i].sensorVAL),
+//           'time' : docs[i].timestamp
+//         });
+//       }
+//   });
+//
+//   Data.Set_Point_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+//     if (err){
+//       console.log("Error getting Data from DB");
+//       return
+//     }
+//     console.log("Lastest Set Point: " + docs[0].sensorVAL );
+//     io.emit('last_SP',{
+//       'message':String(docs[0].sensorVAL)
+//     });
+//   });
+//
+// });
 
 
 server.listen(port, function(err){
