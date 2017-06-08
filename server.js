@@ -15,7 +15,7 @@ var bodyParser = require("body-parser");
 // //app.use(app.router);
 //     //app.use(express.logger());
 var options = {
-    port: 15255,
+    port: 19304,
     host: 'mqtt://m12.cloudmqtt.com',
     clientId: 'mqttjs_' + Math.random().toString(16).substr(2, 8),
     username: 'mzygtpwd',
