@@ -16,7 +16,7 @@ var auth = (mqtt_url.auth || ':').split(':');
 // app.use(bodyParser.json());
 // //app.use(app.router);
 //     //app.use(express.logger());
-var client = mqtt.createClient(mqtt_url.port, mqtt_url.hostname, {
+var client = mqtt.connect(mqtt_url.port, mqtt_url.hostname, {
   username: auth[0],
   password: auth[1]
 });
