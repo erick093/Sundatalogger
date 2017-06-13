@@ -196,6 +196,32 @@ var AC_P_data = mongoose.model('AC_P_data', {
   }
 });
 
+var Q_air_data = mongoose.model('Q_air_data', {
+  sensorID: {
+    type: String
+  },
+  sensorVAL: {
+    type: String
+  },
+  timestamp: {
+    type: String,
+    default: Date.now
+  }
+});
+
+var Q_water_data = mongoose.model('Q_water_data', {
+  sensorID: {
+    type: String
+  },
+  sensorVAL: {
+    type: String
+  },
+  timestamp: {
+    type: String,
+    default: Date.now
+  }
+});
+
 var Set_Point_data = mongoose.model('Set_Point_data', {
   sensorVAL: {
     type: String
@@ -220,4 +246,6 @@ module.exports.Fan_data = Fan_data; //Fan control Data
 module.exports.Solar_H_data = Solar_H_data; //Solar Heater(Fan # 2) control Data
 module.exports.Lights_data = Lights_data; //Lights control Data
 module.exports.AC_P_data = AC_P_data; //Lights control Data
+module.exports.Q_air_data = Q_air_data; //Q air data
+module.exports.Q_water_data = Q_water_data; // Q water data
 module.exports.Set_Point_data = Set_Point_data; //Temp set point Data
