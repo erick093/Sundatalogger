@@ -91,6 +91,11 @@ var socket = io();
     div.textContent = data.message + " Watts";
     var text = div.textContent;
   });
+  socket.on('last_SP', function (data) {
+    var div = document.getElementById("Set_point_text");
+    div.textContent = data.message + " °C";
+    var text = div.textContent;
+  });
 
 
 //alert(url);

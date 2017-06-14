@@ -29,3 +29,13 @@ socket.on('last_tfint', function (data) {
   div.textContent ="In air T.: " + data.message + "°C";
   var text = div.textContent;
 });
+socket.on('last_q_air', function (data) {
+  var div = document.getElementById("Text_q_air");
+  div.textContent ="Q air.: " + data.message + "Watts";
+  var text = div.textContent;
+});
+socket.on('last_q_water', function (data) {
+  var div = document.getElementById("Text_q_water");
+  div.textContent ="Q water.: " + data.message + "Watts";
+  var text = div.textContent;
+});

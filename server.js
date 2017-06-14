@@ -353,6 +353,49 @@ io.on('connection', (socket) => {
       }
   });
 
+  Data.Q_air_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+    if (err){
+      console.log("Error getting Data from DB");
+      return
+    }
+    console.log("Lastest Q air data: " + docs[0].sensorVAL );
+    io.emit('last_q_air',{
+      'topic':String(docs[0].sensorID),
+      'message':String(docs[0].sensorVAL),
+      'time' : docs[0].timestamp
+    });
+      for (var i = docs.length-1; i>0; i--) {
+        //console.log('volts:'+docs[i].sensorVAL);
+        io.emit('q_air',{
+          'topic':String(docs[i].sensorID),
+          'message':String(docs[i].sensorVAL),
+          'time' : docs[i].timestamp
+        });
+      }
+  });
+
+  Data.Q_water_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+    if (err){
+      console.log("Error getting Data from DB");
+      return
+    }
+    console.log("Lastest Q water data: " + docs[0].sensorVAL );
+    io.emit('last_q_water',{
+      'topic':String(docs[0].sensorID),
+      'message':String(docs[0].sensorVAL),
+      'time' : docs[0].timestamp
+    });
+      for (var i = docs.length-1; i>0; i--) {
+        //console.log('volts:'+docs[i].sensorVAL);
+        io.emit('q_water',{
+          'topic':String(docs[i].sensorID),
+          'message':String(docs[i].sensorVAL),
+          'time' : docs[i].timestamp
+        });
+      }
+  });
+
+
   Data.Set_Point_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
     if (err){
       console.log("Error getting Data from DB");
