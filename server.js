@@ -26,9 +26,13 @@ app.use(express.static(__dirname + '/public'));
 app.get('/',(req,res) => {
   res.sendFile('index.html');
 });
-// app.post('/echo/json/', function(req, res) {
-//   console.log(req.body);
-//   res.json(req.body);
+// app.post('/insert/tfint/:data', function(req, res) {
+//    console.log("me llego algo");
+//    //res.json(req.body);
+//  });
+// app.route('/insert/tfint/:id')
+//   .post(function(req,res,next){
+//     console.log("me llego algo");
 // });
 
 //Query lastest Data on Connection
@@ -887,3 +891,4 @@ client.on('message', function (topic, message) {
   }
 
 });
+module.exports.io=io;

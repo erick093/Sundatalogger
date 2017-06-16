@@ -15,7 +15,8 @@ var mongoose = require('mongoose'),
   Solar_H_task = mongoose.model('Solar_H_data');
   AC_P_task = mongoose.model('AC_P_data');
   Set_Point_task = mongoose.model('Set_Point_data');
-
+  Q_air_task = mongoose.model('Q_air_data');
+  Q_water_task = mongoose.model('Q_water_data');
 // V - API
 exports.list_all_V_data = function(req, res) {
   V_task.find({}, function(err, task) {
@@ -280,7 +281,9 @@ exports.find_AC_P_by_date = function(req, res) {
 
 
 
-//
+
+
+//save Set Point
 exports.save_Set_Point_data = function(req, res) {
   var new_data = new Set_Point_task({
     sensorVAL: req.params.val
@@ -291,7 +294,83 @@ exports.save_Set_Point_data = function(req, res) {
     res.json(task);
   });
 };
-
+//save TWint
+exports.save_TWint_data = function(req, res) {
+  var new_data = new T_W_int_task({
+    sensorVAL: req.params.val
+  });
+  new_data.save(function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+//save TWext
+exports.save_TWext_data = function(req, res) {
+  var new_data = new T_W_ext_task({
+    sensorVAL: req.params.val
+  });
+  new_data.save(function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+//save TFint
+exports.save_TFint_data = function(req, res) {
+  var new_data = new T_F_int_task({
+    sensorVAL: req.params.val
+  });
+  new_data.save(function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+//save TFext
+exports.save_TFext_data = function(req, res) {
+  var new_data = new T_F_ext_task({
+    sensorVAL: req.params.val
+  });
+  new_data.save(function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+//save Qair
+exports.save_Q_air_data = function(req, res) {
+  var new_data = new Q_air_task({
+    sensorVAL: req.params.val
+  });
+  new_data.save(function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+//save Qwater
+exports.save_Q_water_data = function(req, res) {
+  var new_data = new Q_water_task({
+    sensorVAL: req.params.val
+  });
+  new_data.save(function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+//save shstatus
+exports.save_sh_status_data = function(req, res) {
+  var new_data = new Solar_H_task({
+    sensorVAL: req.params.val
+  });
+  new_data.save(function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
 //
 // exports.read_a_data = function(req, res) {
 //   Task.findById(req.params.taskId, function(err, task) {

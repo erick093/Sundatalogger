@@ -94,7 +94,8 @@ var T_int_data = mongoose.model('T_int_data', {
 
 var T_W_ext_data = mongoose.model('T_W_ext_data', {
   sensorID: {
-    type: String
+    type: String,
+    default: "temp/outwater"
   },
   sensorVAL: {
     type: String
@@ -107,7 +108,8 @@ var T_W_ext_data = mongoose.model('T_W_ext_data', {
 
 var T_W_int_data = mongoose.model('T_W_int_data', {
   sensorID: {
-    type: String
+    type: String,
+    default: "temp/inwater"
   },
   sensorVAL: {
     type: String
@@ -120,7 +122,8 @@ var T_W_int_data = mongoose.model('T_W_int_data', {
 
 var T_F_ext_data = mongoose.model('T_F_ext_data', {
   sensorID: {
-    type: String
+    type: String,
+    default: "temp/voutside"
   },
   sensorVAL: {
     type: String
@@ -133,7 +136,8 @@ var T_F_ext_data = mongoose.model('T_F_ext_data', {
 
 var T_F_int_data = mongoose.model('T_F_int_data', {
   sensorID: {
-    type: String
+    type: String,
+    default: "temp/vinside"
   },
   sensorVAL: {
     type: String
@@ -159,7 +163,8 @@ var Fan_data = mongoose.model('Fan_data', {
 
 var Solar_H_data = mongoose.model('Solar_H_data', {
   sensorID: {
-    type: String
+    type: String,
+    default: "control/solarheater"
   },
   sensorVAL: {
     type: String
@@ -198,7 +203,8 @@ var AC_P_data = mongoose.model('AC_P_data', {
 
 var Q_air_data = mongoose.model('Q_air_data', {
   sensorID: {
-    type: String
+    type: String,
+    default: "q/air"
   },
   sensorVAL: {
     type: String
@@ -211,7 +217,8 @@ var Q_air_data = mongoose.model('Q_air_data', {
 
 var Q_water_data = mongoose.model('Q_water_data', {
   sensorID: {
-    type: String
+    type: String,
+    default: "q/water"
   },
   sensorVAL: {
     type: String

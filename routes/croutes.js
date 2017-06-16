@@ -66,6 +66,8 @@ module.exports = function(app) {
     .get(chartdata.find_Fan_by_date);
   app.route('/find/Lights/from/:from/to/:to')
     .get(chartdata.find_Lights_by_date);
+  app.route('/find/Solarh/from/:from/to/:to')
+    .get(chartdata.find_Solarh_by_date);
   app.route('/find/ACP/from/:from/to/:to')
     .get(chartdata.find_AC_P_by_date);
 
@@ -78,4 +80,18 @@ module.exports = function(app) {
 
   app.route('/insert/setpoint/:val')
     .post(chartdata.save_Set_Point_data);
+  app.route('/insert/twint/:val')
+    .post(chartdata.save_TWint_data);
+  app.route('/insert/twext/:val')
+    .post(chartdata.save_TWext_data);
+  app.route('/insert/tfint/:val')
+    .post(chartdata.save_TFint_data);
+  app.route('/insert/tfext/:val')
+    .post(chartdata.save_TFext_data);
+  app.route('/insert/qair/:val')
+    .post(chartdata.save_Q_air_data);
+  app.route('/insert/qwater/:val')
+    .post(chartdata.save_Q_water_data);
+  app.route('/insert/shstatus/:val')
+    .post(chartdata.save_sh_status_data);
 };

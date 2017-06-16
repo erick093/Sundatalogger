@@ -461,6 +461,27 @@
             </div>
           </div>
           <!-- end container -->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card-box">
+                <h4 class="m-t-0">Solar Heater Status</h4>
+                <div id="s_sh" style="height:400px;"></div>
+                <div class="text-center">
+                  <div class="container">
+                    <p>Date: </p>
+                    <p id="dates_sh"></p>
+                    <div>
+                      <p>Day:
+                        <input type="text" id="from_sh">
+                      </p>
+                      <button type="button" id="bt_sh">Search</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end container -->
           <div class="footer">
             <div>
               <strong>Erick Escobar</strong> - Copyright &copy; 2017
@@ -482,6 +503,7 @@
     <!--Amcharts Chart-->
     <script src="assets/plugins/amcharts3/amcharts/amcharts.js"></script>
     <script src="assets/plugins/amcharts3/amcharts/serial.js"></script>
+    <script src="https://www.amcharts.com/lib/3/amstock.js"></script>
     <script src="assets/plugins/amcharts3/amcharts/plugins/export/export.min.js"></script>
     <script src="assets/plugins/amcharts3/amcharts/themes/light.js"></script>
     <!-- <script src="/soc/socket.io.js"></script> -->
@@ -507,6 +529,7 @@
     <script src="assets/pages/jquery.dashboard_acpower.js"></script>
     <script src="assets/pages/jquery.dashboard_lights.js"></script>
     <script src="assets/pages/jquery.dashboard_fan.js"></script>
+    <script src="assets/pages/jquery.dashboard_solarheater.js"></script>
 
     <!-- App Js -->
     <script src="assets/js/jquery.app.js"></script>

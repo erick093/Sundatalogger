@@ -99,7 +99,7 @@ $(function() {
 
 
 function DrawGraph_Tmix(data1,data2) {
-  var chartData1 = [];
+  var chartData = [];
   var chartData2 = [];
   //console.log("Recibo: "+ data.length);
   var chart =AmCharts.makeChart("s_tmix", {
@@ -109,34 +109,38 @@ function DrawGraph_Tmix(data1,data2) {
     "dataDateFormat": "YYYY-MM-DD HH:NN",
     "valueAxes": [{
       "axisAlpha": 0,
-      "unit": "°C",
       "position": "left",
       "titleFontSize" : "14",
        "titleBold" : true,
-      "title": "Outside Temperature"
+      "title": "Lights status"
     }],
-    "dataSets": [{
-      "dataProvider": chartData1
-    },
-      {
-      "dataProvider": chartData2
-    },
-    ],
     "mouseWheelZoomEnabled": false,
     "graphs": [{
-      "id": "g1",
-      "bullet": "round",
-      "bulletSize": 2,
-      "bulletBorderAlpha": 1,
-      "bulletColor": "#FFFFFF",
-      "useLineColorForBulletBorder": true,
-      "hideBulletsCount": 50,
-      "valueField": "value",
-      "balloonText": "<span style='font-size:12px;'>[[value]] °C</span>",
-      "balloon":{
-        "drop":true
-      }
+  "id": "g1",
+        "bullet": "round",
+        "bulletBorderAlpha": 1,
+        "bulletColor": "#FFFFFF",
+        "bulletSize": 5,
+        "hideBulletsCount": 50,
+        "lineThickness": 2,
+        "title": "red line",
+        "useLineColorForBulletBorder": true,
+        "valueField": "value"
+    },
+              {
+  "id": "g2",
+        "bullet": "round",
+        "bulletBorderAlpha": 1,
+        "bulletColor": "#00FF00",
+        "bulletSize": 5,
+        "hideBulletsCount": 50,
+        "lineThickness": 2,
+        "title": "green line",
+        "useLineColorForBulletBorder": true,
+        "valueField": "value2"
     }],
+
+
     "chartScrollbar": {
         "graph": "g1",
         "oppositeAxis":false,
@@ -175,17 +179,20 @@ function DrawGraph_Tmix(data1,data2) {
     "export": {
             "enabled": true
     }
+
+
   });
 
 //console.log("este es el valor en 0: "+ data[0].sensorVAL);
 
-chart.validateData();
+//chart.validateData();
 //chart.animateAgain();
 for (var i = 0; i < data1.length; i++) {
   //chartData[i]=data[i];
-  chartData1.push({
+  chartData.push({
     date: new Date(parseInt(data1[i].timestamp)),
     value: data1[i].sensorVAL
+    //value2: data2[i].sensorVAL
   });
 }
 for (var i = 0; i < data2.length; i++) {
@@ -196,16 +203,18 @@ for (var i = 0; i < data2.length; i++) {
   });
 }
 //console.log(chartData);
-chart.dataProvider = chartData1;
+chart.dataProvider = chartData;
 chart.dataProvider = chartData2;
 chart.validateData();
-
 chart.addListener("rendered", zoomChart);
 
 zoomChart();
 
 function zoomChart() {
-    chart.zoomToIndexes(chart.dataProvider.length - 40, chart.dataProvider.length - 1);
+    //chart.zoomToIndexes(chart.dataProvider.length - 40, chart.dataProvider.length - 1);
+    chart.zoomToIndexes(0, 20);
 }
+
+
 
 }
