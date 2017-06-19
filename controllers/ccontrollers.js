@@ -294,10 +294,10 @@ exports.save_Set_Point_data = function(req, res) {
     res.json(task);
   });
 };
-//save TWint
+//save TWint TEST TEST TEST TEST TEST!!!!!!!!!!!!!!!
 exports.save_TWint_data = function(req, res) {
   var new_data = new T_W_int_task({
-    sensorVAL: req.params.val
+    sensorVAL: req.body.sensorVAL
   });
   new_data.save(function(err, task) {
     if (err)
@@ -305,10 +305,11 @@ exports.save_TWint_data = function(req, res) {
     res.json(task);
   });
 };
+// END TEST TEST TEST TEST TEST!!!!!
 //save TWext
 exports.save_TWext_data = function(req, res) {
   var new_data = new T_W_ext_task({
-    sensorVAL: req.params.val
+    sensorVAL: req.body.sensorVAL
   });
   new_data.save(function(err, task) {
     if (err)
@@ -319,7 +320,7 @@ exports.save_TWext_data = function(req, res) {
 //save TFint
 exports.save_TFint_data = function(req, res) {
   var new_data = new T_F_int_task({
-    sensorVAL: req.params.val
+    sensorVAL: req.body.sensorVAL
   });
   new_data.save(function(err, task) {
     if (err)
@@ -330,7 +331,7 @@ exports.save_TFint_data = function(req, res) {
 //save TFext
 exports.save_TFext_data = function(req, res) {
   var new_data = new T_F_ext_task({
-    sensorVAL: req.params.val
+    sensorVAL: req.body.sensorVAL
   });
   new_data.save(function(err, task) {
     if (err)
@@ -341,7 +342,7 @@ exports.save_TFext_data = function(req, res) {
 //save Qair
 exports.save_Q_air_data = function(req, res) {
   var new_data = new Q_air_task({
-    sensorVAL: req.params.val
+    sensorVAL: req.body.sensorVAL
   });
   new_data.save(function(err, task) {
     if (err)
@@ -352,7 +353,7 @@ exports.save_Q_air_data = function(req, res) {
 //save Qwater
 exports.save_Q_water_data = function(req, res) {
   var new_data = new Q_water_task({
-    sensorVAL: req.params.val
+    sensorVAL: req.body.sensorVAL
   });
   new_data.save(function(err, task) {
     if (err)
@@ -363,7 +364,7 @@ exports.save_Q_water_data = function(req, res) {
 //save shstatus
 exports.save_sh_status_data = function(req, res) {
   var new_data = new Solar_H_task({
-    sensorVAL: req.params.val
+    sensorVAL: req.body.sensorVAL
   });
   new_data.save(function(err, task) {
     if (err)

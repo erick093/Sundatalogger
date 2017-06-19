@@ -80,18 +80,18 @@ module.exports = function(app) {
 
   app.route('/insert/setpoint/:val')
     .post(chartdata.save_Set_Point_data);
-  app.route('/insert/twint/:val')
+  app.route('/insert/twint')
     .post(chartdata.save_TWint_data);
-  app.route('/insert/twext/:val')
+  app.route('/insert/twext/')
     .post(chartdata.save_TWext_data);
-  app.route('/insert/tfint/:val')
+  app.route('/insert/tfint/')
     .post(chartdata.save_TFint_data);
-  app.route('/insert/tfext/:val')
+  app.route('/insert/tfext/')
     .post(chartdata.save_TFext_data);
-  app.route('/insert/qair/:val')
+  app.route('/insert/qair/')
     .post(chartdata.save_Q_air_data);
-  app.route('/insert/qwater/:val')
+  app.route('/insert/qwater/')
     .post(chartdata.save_Q_water_data);
-  app.route('/insert/shstatus/:val')
+  app.route('/insert/shstatus/')
     .post(chartdata.save_sh_status_data);
 };
