@@ -90,15 +90,7 @@
                                 <li><a href="index.html"><i class="ti-home"></i> Dashboard </a></li>
                                 <li><a href="charts.html"> <em class="ti-pie-chart"></em> Live Charts </a></li>
                                 <li><a href="control.html"><i class="mdi mdi-led-on"></i> Control </a></li>
-                                <li>
-                                    <a href="javascript: void(0);" aria-expanded="true"><i class="ti-files"></i> Search <span class="fa arrow"></span></a>
-                                    <ul class="nav-second-level nav" aria-expanded="true">
-                                        <li><a href="search-V.html">Voltage Data</a></li>
-                                        <li><a href="search-A.html">Amperage Data</a></li>
-                                        <li><a href="search-P.html">Electric Power Data</a></li>
-                                    </ul>
-                                </li>
-
+                                <li><a href="search.html"><i class="ti-files"></i> Search </a></li>
                                 <li><a href="maps.html"><i class="ti-location-pin"></i> Maps </a></li>
                                 <li>
                                   <a href="javascript: void(0);" aria-expanded="true"><i class="ti-share"></i> Scada View <span class="fa arrow"></span></a>
@@ -125,6 +117,33 @@
                         </div> <!-- end row -->
                     </div>
                     <!-- end container -->
+
+                    <!-- test content -->
+                    <form action="#">
+                      <fieldset>
+                        <label for="speed">Select Variable to search</label>
+                        <select name="speed" id="variable">
+                          <option selected="selected">Voltage</option>
+                          <option>Amperage</option>
+                          <option>Power</option>
+                          <option>Energy</option>
+                          <option>Solar Radiation</option>
+                          <option>AC Power Line Consumption</option>
+                          <option>Inside Temperature</option>
+                          <option>Outside Temperature</option>
+                          <option>Air entry Temperature</option>
+                          <option>Air exit Temperature</option>
+                          <option>Water entry Temperature</option>
+                          <option>Water exit Temperature</option>
+                          <option>Q air</option>
+                          <option>Q water</option>
+                          <option>Lights Status</option>
+                          <option>Fan Status</option>
+                          <option>Solar Heater Status</option>
+                        </select>
+                      </fieldset>
+                    </form>
+                    <!-- test content -->
                     <div class="container">
                       <div>
                         <p>From:
@@ -137,18 +156,23 @@
                       </div>
                     </div>
 
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-xs-12">
                             <div class="p-20 m-b-20">
-                                <h5 class="m-t-0">Voltage Output</h5>
-                                <p class="text-muted font-13 m-b-30">
-                                  Voltage output of solar panels
-                                </p>
-
+                                <h5 class="m-t-0"><div id="v_text"></div></h5>
                                 <div id="s_volt"  style="height:420px;">
                                 </div>
                             </div>
                         </div>
+                    </div> -->
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="card-box">
+                          <h4 class="m-t-0"><div id="v_text"></div></h4>
+                          <div id="s_volt" style="height:400px;"></div>
+
+                        </div>
+                      </div>
                     </div>
 
                     <div class="footer">

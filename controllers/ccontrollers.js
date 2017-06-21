@@ -191,6 +191,36 @@ exports.find_TFext_by_date = function(req, res) {
     res.json(task);
   });
 };
+// Q_water - API
+exports.list_all_Qw_data = function(req, res) {
+  Q_water_task.find({}, function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+exports.find_Qw_by_date = function(req, res) {
+  Q_water_task.find({timestamp: {"$gte": req.params.from, "$lt": req.params.to}}, function(err, task){
+    if(err)
+      res.send(err);
+    res.json(task);
+  });
+};
+// Q_air - API
+exports.list_all_Qa_data = function(req, res) {
+  Q_air_task.find({}, function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+exports.find_Qa_by_date = function(req, res) {
+  Q_air_task.find({timestamp: {"$gte": req.params.from, "$lt": req.params.to}}, function(err, task){
+    if(err)
+      res.send(err);
+    res.json(task);
+  });
+};
 
 // Fan - API
 exports.list_all_Fan_data = function(req, res) {

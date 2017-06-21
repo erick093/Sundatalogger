@@ -1,6 +1,7 @@
 var c_data =[];
 
 $(function() {
+    $("#variable").selectmenu();
     $("#from").datepicker({
       changeMonth: true,
       changeYear: true,
@@ -17,30 +18,94 @@ $(function() {
     $("#bt").click(function(){
       var from = $("#from").val();
       var to = $("#to").val();
+      var vardata = $("#variable").val();
       var fromv = new Date(from).getTime();
-      var urlAjax = "/find/V/from/" + new Date(from).getTime() + "/to/" + new Date(to).getTime() ;
+
+      switch (vardata) {
+        case "Voltage":
+          console.log("voltaje");
+          var urlAjax = "/find/V/from/" + new Date(from).getTime() + "/to/" + new Date(to).getTime() ;
+          break;
+        case "Amperage":
+          console.log("corriente");
+          var urlAjax = "/find/A/from/" + new Date(from).getTime() + "/to/" + new Date(to).getTime() ;
+          break;
+        case "Power":
+          console.log("potencia");
+          var urlAjax = "/find/P/from/" + new Date(from).getTime() + "/to/" + new Date(to).getTime() ;
+          break;
+        case "Energy":
+          console.log("energia");
+          var urlAjax = "/find/E/from/" + new Date(from).getTime() + "/to/" + new Date(to).getTime() ;
+          break;
+        case "Solar Radiation":
+          console.log("radiacion solar");
+          var urlAjax = "/find/R/from/" + new Date(from).getTime() + "/to/" + new Date(to).getTime() ;
+          break;
+        case "AC Power Line Consumption":
+          console.log("AC Power");
+          var urlAjax = "/find/ACP/from/" + new Date(from).getTime() + "/to/" + new Date(to).getTime() ;
+          break;
+        case "Inside Temperature":
+          console.log("temperatura interior");
+          var urlAjax = "/find/Tint/from/" + new Date(from).getTime() + "/to/" + new Date(to).getTime() ;
+          break;
+        case "Outside Temperature":
+          console.log("temperatura exterior");
+          var urlAjax = "/find/Text/from/" + new Date(from).getTime() + "/to/" + new Date(to).getTime() ;
+          break;
+        case "Air entry Temperature":
+          console.log("temperatura aire interior");
+          var urlAjax = "/find/TFint/from/" + new Date(from).getTime() + "/to/" + new Date(to).getTime() ;
+          break;
+        case "Air exit Temperature":
+          console.log("temperatura aire exterior");
+          var urlAjax = "/find/TFext/from/" + new Date(from).getTime() + "/to/" + new Date(to).getTime() ;
+          break;
+        case "Water entry Temperature":
+          console.log("temperatura agua interior");
+          var urlAjax = "/find/TWint/from/" + new Date(from).getTime() + "/to/" + new Date(to).getTime() ;
+          break;
+        case "Water exit Temperature":
+          console.log("temperatura agua exterior");
+          var urlAjax = "/find/TWext/from/" + new Date(from).getTime() + "/to/" + new Date(to).getTime() ;
+          break;
+        case "Q air":
+          console.log("Q aire");
+          var urlAjax = "/find/Qa/from/" + new Date(from).getTime() + "/to/" + new Date(to).getTime() ;
+          break;
+        case "Q water":
+          console.log("Q agua");
+          var urlAjax = "/find/Qw/from/" + new Date(from).getTime() + "/to/" + new Date(to).getTime() ;
+          break;
+        case "Lights Status":
+          console.log("Estado luces");
+          var urlAjax = "/find/Lights/from/" + new Date(from).getTime() + "/to/" + new Date(to).getTime() ;
+          break;
+        case "Fan Status":
+          console.log("Estado ventilador");
+          var urlAjax = "/find/Fan/from/" + new Date(from).getTime() + "/to/" + new Date(to).getTime() ;
+          break;
+        case "Solar Heater Status":
+          console.log("Estado calefactor solar");
+          var urlAjax = "/find/Solarh/from/" + new Date(from).getTime() + "/to/" + new Date(to).getTime() ;
+          break;
+      }
+      var div = document.getElementById("v_text");
+      div.textContent = vardata;
+      var text = div.textContent;
+      //var urlAjax = "/find/V/from/" + new Date(from).getTime() + "/to/" + new Date(to).getTime() ;
       $.ajax({
         type: "GET",
         url:urlAjax,
         dataType: 'json',
         success: function(data) {
           c_data = data ;
-          alert('Searching '+ data.length +' points...');
-          //delete data.sensorID;
-          // console.log(data);
-          // console.log(data.length);
-          // console.log('valor en 0: '+data[0].sensorVAL);
-          // console.log('tiempo en 0: '+data[0].timestamp);
+          alert('Searching '+ data.length + ' '+vardata +' points...');
           DrawGraph(data);
-
         }
       });
-      //alert(urlAjax);
-
     });
-    //console.log("hola " + c_data.length);
-
-
 });
 
 function DrawGraph(data) {
@@ -66,7 +131,7 @@ function DrawGraph(data) {
       "useLineColorForBulletBorder": true,
       "hideBulletsCount": 50,
       "valueField": "value",
-      "balloonText": "<span style='font-size:12px;'>[[value]] Volts</span>",
+      "balloonText": "<span style='font-size:12px;'>[[value]]</span>",
       "balloon":{
         "drop":true
       }
