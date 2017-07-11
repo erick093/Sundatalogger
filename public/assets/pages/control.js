@@ -26,6 +26,16 @@ socket.on('last_SP', function (data) {
   div.textContent = data.message + " °C";
   var text = div.textContent;
 });
+socket.on('last_solarh_status', function (data) {
+  var div = document.getElementById("Solar_heater_status");
+  if (data.message == "1") {
+    div.textContent = "Solar Heater: ON";
+    var text = div.textContent;
+  } else {
+    div.textContent = "Solar Heater: OFF";
+    var text = div.textContent;
+  }
+});
 
 function changeImage() {
   var image = document.getElementById('bulb');

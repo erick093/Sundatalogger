@@ -267,7 +267,7 @@
           <div class="row">
             <div class="col-lg-6">
               <div class="card-box">
-                <h4 class="m-t-0">Solar Panels Energy</h4>
+                <h4 class="m-t-0">Solar Panel Energy</h4>
                 <div class="text-center">
 
                   <!-- <li>
@@ -304,7 +304,7 @@
           <div class="row">
             <div class="col-sm-12">
               <div class="card-box">
-                <h4 class="m-t-0">Solar Panels Power Output</h4>
+                <h4 class="m-t-0">Solar Panel Power Output</h4>
                 <div id="s_pot" style="height:400px;"></div>
                 <div class="text-center">
                   <div class="container">
@@ -321,6 +321,28 @@
               </div>
             </div>
           </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card-box">
+                <h4 class="m-t-0">Solar Panel Efficiency</h4>
+                <div id="s_eff" style="height:400px;"></div>
+                <div class="text-center">
+                  <div class="container">
+                    <p>Date: </p>
+                    <p id="dates_eff"></p>
+                    <div>
+                      <p>Day:
+                        <input type="text" id="from_eff">
+                      </p>
+                      <button type="button" id="bt_eff">Search</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
 
           <div class="row">
             <div class="col-sm-12">
@@ -385,27 +407,7 @@
               </div>
             </div>
           </div>
-          <!-- end container -->
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="card-box">
-                <h4 class="m-t-0">Temp mix</h4>
-                <div id="s_tmix" style="height:400px;"></div>
-                <div class="text-center">
-                  <div class="container">
-                    <p>Date: </p>
-                    <p id="dates_tmix"></p>
-                    <div>
-                      <p>Day:
-                        <input type="text" id="from_tmix">
-                      </p>
-                      <button type="button" id="bt_tmix">Search</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+
           <!-- end container -->
           <div class="row">
             <div class="col-sm-12">
@@ -513,11 +515,11 @@
     <script src="assets/pages/jquery.dashboard_pyranometer.js"></script>
     <script src="assets/pages/jquery.dashboard_tempext.js"></script>
     <script src="assets/pages/jquery.dashboard_tempint.js"></script>
-    <script src="assets/pages/jquery.dashboard_tempmix.js"></script>
     <script src="assets/pages/jquery.dashboard_acpower.js"></script>
     <script src="assets/pages/jquery.dashboard_lights.js"></script>
     <script src="assets/pages/jquery.dashboard_fan.js"></script>
     <script src="assets/pages/jquery.dashboard_solarheater.js"></script>
+    <script src="assets/pages/jquery.dashboard_eff.js"></script>
 
     <!-- App Js -->
     <script src="assets/js/jquery.app.js"></script>

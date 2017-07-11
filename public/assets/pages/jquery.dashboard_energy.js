@@ -39,6 +39,7 @@ $(function() {
 });
 
 function DrawGraph_E(data) {
+  var ac = 0;
   var chartData = [];
   //console.log("Recibo: "+ data.length);
   var chart = AmCharts.makeChart("s_energy", {
@@ -86,7 +87,10 @@ for (var i = 0; i < data.length; i++) {
     date: new Date(parseInt(data[i].timestamp)),
     value: data[i].sensorVAL
   });
+  ac= ac + parseInt(data[i].sensorVAL);
+
 }
+console.log('Acumulado:' + ac);
 //console.log(chartData);
 chart.dataProvider = chartData;
 chart.validateData();
