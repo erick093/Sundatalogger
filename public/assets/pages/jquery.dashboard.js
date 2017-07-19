@@ -96,7 +96,16 @@ var socket = io();
     div.textContent = data.message + " °C";
     var text = div.textContent;
   });
-
+  socket.on('last_q_air', function (data) {
+    var div = document.getElementById("SQair");
+    div.textContent = data.message + " Watts";
+    var text = div.textContent;
+  });
+  socket.on('last_q_water', function (data) {
+    var div = document.getElementById("SQwater");
+    div.textContent = data.message + " Watts";
+    var text = div.textContent;
+  });
 
 //alert(url);
 
