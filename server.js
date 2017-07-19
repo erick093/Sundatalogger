@@ -26,7 +26,7 @@ app.use(express.static(__dirname + '/public'));
 app.get('/',(req,res) => {
   res.sendFile('index.html');
 });
-// app.post('/insert/tfint/:data', function(req, res) {
+// app.post('/pepito', function(req, res) {
 //    console.log("me llego algo");
 //    //res.json(req.body);
 //  });
