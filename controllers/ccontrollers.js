@@ -17,6 +17,7 @@ var mongoose = require('mongoose'),
   Set_Point_task = mongoose.model('Set_Point_data');
   Q_air_task = mongoose.model('Q_air_data');
   Q_water_task = mongoose.model('Q_water_data');
+var server = require('../server');
 // V - API
 exports.list_all_V_data = function(req, res) {
   V_task.find({}, function(err, task) {
@@ -326,8 +327,13 @@ exports.save_Set_Point_data = function(req, res) {
 };
 //save TWint TEST TEST TEST TEST TEST!!!!!!!!!!!!!!!
 exports.save_TWint_data = function(req, res) {
+  //console.log("me llego algo");
   var new_data = new T_W_int_task({
     sensorVAL: req.body.sensorVAL
+  });
+  server.io.emit('last_twint',{
+    'message':String(new_data.sensorVAL),
+    'time': new_data.timestamp
   });
   new_data.save(function(err, task) {
     if (err)
@@ -341,6 +347,10 @@ exports.save_TWext_data = function(req, res) {
   var new_data = new T_W_ext_task({
     sensorVAL: req.body.sensorVAL
   });
+  server.io.emit('last_twext',{
+    'message':String(new_data.sensorVAL),
+    'time': new_data.timestamp
+  });
   new_data.save(function(err, task) {
     if (err)
       res.send(err);
@@ -351,6 +361,10 @@ exports.save_TWext_data = function(req, res) {
 exports.save_TFint_data = function(req, res) {
   var new_data = new T_F_int_task({
     sensorVAL: req.body.sensorVAL
+  });
+  server.io.emit('last_tfint',{
+    'message':String(new_data.sensorVAL),
+    'time': new_data.timestamp
   });
   new_data.save(function(err, task) {
     if (err)
@@ -363,6 +377,10 @@ exports.save_TFext_data = function(req, res) {
   var new_data = new T_F_ext_task({
     sensorVAL: req.body.sensorVAL
   });
+  server.io.emit('last_tfext',{
+    'message':String(new_data.sensorVAL),
+    'time': new_data.timestamp
+  });
   new_data.save(function(err, task) {
     if (err)
       res.send(err);
@@ -373,6 +391,10 @@ exports.save_TFext_data = function(req, res) {
 exports.save_Q_air_data = function(req, res) {
   var new_data = new Q_air_task({
     sensorVAL: req.body.sensorVAL
+  });
+  server.io.emit('last_q_air',{
+    'message':String(new_data.sensorVAL),
+    'time': new_data.timestamp
   });
   new_data.save(function(err, task) {
     if (err)
@@ -385,6 +407,10 @@ exports.save_Q_water_data = function(req, res) {
   var new_data = new Q_water_task({
     sensorVAL: req.body.sensorVAL
   });
+  server.io.emit('last_q_water',{
+    'message':String(new_data.sensorVAL),
+    'time': new_data.timestamp
+  });
   new_data.save(function(err, task) {
     if (err)
       res.send(err);
@@ -395,6 +421,10 @@ exports.save_Q_water_data = function(req, res) {
 exports.save_sh_status_data = function(req, res) {
   var new_data = new Solar_H_task({
     sensorVAL: req.body.sensorVAL
+  });
+  server.io.emit('last_solarh_status',{
+    'message':String(new_data.sensorVAL),
+    'time': new_data.timestamp
   });
   new_data.save(function(err, task) {
     if (err)

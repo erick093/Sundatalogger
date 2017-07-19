@@ -26,11 +26,12 @@ app.use(express.static(__dirname + '/public'));
 app.get('/',(req,res) => {
   res.sendFile('index.html');
 });
-// app.post('/pepito', function(req, res) {
+// app.post('/inserttwint', function(req, res) {
 //    console.log("me llego algo");
-//    //res.json(req.body);
+//    console.log(req.body.sensorVAL);
+//    res.json(req.body);
 //  });
-// app.route('/insert/tfint/:id')
+// app.route('/insert/tfint/')
 //   .post(function(req,res,next){
 //     console.log("me llego algo");
 // });

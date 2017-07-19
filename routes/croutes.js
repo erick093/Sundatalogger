@@ -87,7 +87,7 @@ module.exports = function(app) {
 
   app.route('/insert/setpoint/:val')
     .post(chartdata.save_Set_Point_data);
-  app.route('/insert/twint')
+  app.route('/insert/twint/')
     .post(chartdata.save_TWint_data);
   app.route('/insert/twext/')
     .post(chartdata.save_TWext_data);
