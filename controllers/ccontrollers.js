@@ -4,6 +4,8 @@ var mongoose = require('mongoose'),
   P_task = mongoose.model('P_data');
   E_task = mongoose.model('E_data');
   R_task = mongoose.model('R_data');
+  Rdif_task = mongoose.model('Rdif_data');
+  Rdir_task = mongoose.model('Rdir_data');
   T_ext_task = mongoose.model('T_ext_data');
   T_int_task = mongoose.model('T_int_data');
   T_W_ext_task = mongoose.model('T_W_ext_data');
@@ -92,6 +94,38 @@ exports.list_all_R_data = function(req, res) {
 };
 exports.find_R_by_date = function(req, res) {
   R_task.find({timestamp: {"$gte": req.params.from, "$lt": req.params.to}}, function(err, task){
+    if(err)
+      res.send(err);
+    res.json(task);
+  });
+};
+
+// Rdif - API
+exports.list_all_Rdif_data = function(req, res) {
+  Rdif_task.find({}, function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+exports.find_Rdif_by_date = function(req, res) {
+  Rdif_task.find({timestamp: {"$gte": req.params.from, "$lt": req.params.to}}, function(err, task){
+    if(err)
+      res.send(err);
+    res.json(task);
+  });
+};
+
+// Rdir - API
+exports.list_all_Rdir_data = function(req, res) {
+  Rdir_task.find({}, function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+exports.find_Rdir_by_date = function(req, res) {
+  Rdir_task.find({timestamp: {"$gte": req.params.from, "$lt": req.params.to}}, function(err, task){
     if(err)
       res.send(err);
     res.json(task);

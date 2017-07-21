@@ -11,10 +11,17 @@ var server = http.createServer(app);
 var io = socketIO(server);
 var client = mqtt.connect('mqtt://localhost:1883');
 var bodyParser = require("body-parser");
+var auth = require('http-auth');
 // app.use(bodyParser.json());
 // //app.use(app.router);
 //     //app.use(express.logger());
-
+// var basic = auth.basic({
+//         realm: "Private Area"
+//     }, function (username, password, callback) { // Custom authentication method.
+//         console.log("Authenticating");
+//         callback(username === "hola" && password === "chau");
+//     }
+// );
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 var routes = require('./routes/croutes');
@@ -22,10 +29,11 @@ routes(app);
 
 app.use(express.static(__dirname + '/public'));
 
-
+//pp.use(auth.connect(basic));
 app.get('/',(req,res) => {
   res.sendFile('index.html');
 });
+//app.get('/control', auth.connect(basic));
 // app.post('/inserttwint', function(req, res) {
 //    console.log("me llego algo");
 //    console.log(req.body.sensorVAL);
@@ -429,6 +437,8 @@ client.on('connect', function () {
   client.subscribe('panels/power');
   client.subscribe('panels/energy');
   client.subscribe('panels/radiation');
+  client.subscribe('panels/rdif');
+  client.subscribe('panels/rdir');
   client.subscribe('ac/power');
   client.subscribe('temp/exterior');
   client.subscribe('temp/interior');
@@ -470,6 +480,9 @@ client.on('message', function (topic, message) {
   var topic15_re = /^control\/solarheater.*/;
   var topic16_re = /^q\/water.*/;
   var topic17_re = /^q\/air.*/;
+  var topic18_re = /^panels\/rdif.*/;
+  var topic19_re = /^panels\/rdir.*/;
+
   // console.log("topic voltage: "+  topic2_re);
   // console.log("topic energy: "+  topic4_re);
   //Panels Amp
@@ -879,6 +892,54 @@ client.on('message', function (topic, message) {
       'time': newData.timestamp
     });
     io.emit('last_q_air',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+
+    newData.save().then((doc) => {
+      //console.log(JSON.stringify(doc,undefined,2));
+    }, (e) => {
+      console.log('Unable to save Data',e);
+    });
+  }
+  //R_dif
+  else if(topic.match(topic18_re)){
+    console.log('topic: '+topic);
+    var newData = new Data.Rdif_data({
+      sensorID: topic,
+      sensorVAL: message
+    });
+    io.emit('panels_Rdif',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+    io.emit('last_Rdif',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+
+    newData.save().then((doc) => {
+      //console.log(JSON.stringify(doc,undefined,2));
+    }, (e) => {
+      console.log('Unable to save Data',e);
+    });
+  }
+  //R_dir
+  else if(topic.match(topic19_re)){
+    console.log('topic: '+topic);
+    var newData = new Data.Rdir_data({
+      sensorID: topic,
+      sensorVAL: message
+    });
+    io.emit('panels_Rdir',{
+      'topic':String(topic),
+      'message':String(message),
+      'time': newData.timestamp
+    });
+    io.emit('last_Rdir',{
       'topic':String(topic),
       'message':String(message),
       'time': newData.timestamp

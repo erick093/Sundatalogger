@@ -66,6 +66,31 @@ var R_data = mongoose.model('R_data', {
   }
 });
 
+var Rdif_data = mongoose.model('Rdif_data', {
+  sensorID: {
+    type: String
+  },
+  sensorVAL: {
+    type: String
+  },
+  timestamp: {
+    type: String,
+    default: Date.now
+  }
+});
+var Rdir_data = mongoose.model('Rdir_data', {
+  sensorID: {
+    type: String
+  },
+  sensorVAL: {
+    type: String
+  },
+  timestamp: {
+    type: String,
+    default: Date.now
+  }
+});
+
 var T_ext_data = mongoose.model('T_ext_data', {
   sensorID: {
     type: String
@@ -243,6 +268,8 @@ module.exports.A_data = A_data; //Amperage Data
 module.exports.P_data = P_data; //Power Data
 module.exports.E_data = E_data; //Energy Data
 module.exports.R_data = R_data; //Solar Radiation Data
+module.exports.Rdif_data = Rdif_data; //Solar Radiation  Difuse Data
+module.exports.Rdir_data = Rdir_data; //Solar Radiation  Direct Data
 module.exports.T_ext_data = T_ext_data; //Exterior Temperature Data
 module.exports.T_int_data = T_int_data; //Interior Temperature Data
 module.exports.T_W_ext_data = T_W_ext_data; //Exterior Water Temperature Data

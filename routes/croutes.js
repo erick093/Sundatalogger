@@ -18,6 +18,10 @@ module.exports = function(app) {
   app.route('/find/R')
     .get(chartdata.list_all_R_data);
   //.post(chartdata.create_a_data);
+  app.route('/find/Rdir')
+    .get(chartdata.list_all_Rdir_data);
+  app.route('/find/Rdif')
+    .get(chartdata.list_all_Rdif_data);
   app.route('/find/Text')
     .get(chartdata.list_all_Text_data);
   app.route('/find/Tint')
