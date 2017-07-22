@@ -40,6 +40,11 @@ var socket = io();
     div.textContent ="Outside T.: " + data.message + "°C";
     var text = div.textContent;
   });
+  socket.on('last_acp', function (data) {
+    var div = document.getElementById("acp_text");
+    div.textContent ="AC Power: " + data.message + "Watts";
+    var text = div.textContent;
+  });
   // socket.on('last_V', function (data) {
   //   var div = document.getElementById("V_text");
   //   div.textContent ="Voltage: " +  data.message + " Volts";

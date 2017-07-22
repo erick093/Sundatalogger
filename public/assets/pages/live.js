@@ -22,30 +22,20 @@ var socket = io();
     var text = div.textContent;
   });
 
-// function changeImage() {
-//       var image = document.getElementById('myImage');
-//       if (image.src.match("bulbon")) {
-//           image.src = "assets/images/pic_bulboff.gif";
-//           socket.emit('publish', {topic:"led",payload:"off"});
-//       }
-//       else {
-//           image.src = "assets/images/pic_bulbon.gif";
-//           socket.emit('publish', {topic:"led",payload:"on"});
-//       }
-// }
-// $(document).ready(function() {
-//   $( "#valvOn" ).submit(function( event ) {
-//    		$("#imgon").show();
-//    		$("#imgoff").hide();
-//    	  //socket.emit('valvOn');
-//
-//    	  return false;
-//    });
-//
-//    $( "#valvOff" ).submit(function( event ) {
-//    	  //socket.emit('valvOff');
-//    	  $("#imgon").hide();
-//    	  $("#imgoff").show();
-//    	  return false;
-//    });
-// });
+  socket.on('last_R', function (data) {
+    var div = document.getElementById("R_text");
+    div.textContent ="Global Radiation: " +  data.message + " W/m2";
+    var text = div.textContent;
+  });
+
+  socket.on('last_Rdir', function (data) {
+    var div = document.getElementById("Rdir_text");
+    div.textContent ="Direct Radiation: " +  data.message + " W/m2";
+    var text = div.textContent;
+  });
+
+  socket.on('last_Rdif', function (data) {
+    var div = document.getElementById("Rdif_text");
+    div.textContent ="Diffuse Radiation: " +  data.message + " W/m2";
+    var text = div.textContent;
+  });
