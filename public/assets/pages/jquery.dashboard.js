@@ -26,6 +26,16 @@ var socket = io();
     div.textContent = data.message + " W/m2";
     var text = div.textContent;
   });
+  socket.on('last_Rdir', function (data) {
+    var div = document.getElementById("DirRad");
+    div.textContent = data.message + " W/m2";
+    var text = div.textContent;
+  });
+  socket.on('last_Rdif', function (data) {
+    var div = document.getElementById("DifRad");
+    div.textContent = data.message + " W/m2";
+    var text = div.textContent;
+  });
   socket.on('last_temp_ext', function (data) {
     var div = document.getElementById("O_temp");
     div.textContent = data.message + " °C";
