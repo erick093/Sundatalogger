@@ -77,7 +77,7 @@ function DrawGraph_ACP(data) {
       "valueField": "value",
       "balloonText": "<span style='font-size:12px;'>[[value]] Watts</span>",
       "balloon":{
-        "drop":true
+        "drop":false
       }
     }],
     "chartScrollbar": {

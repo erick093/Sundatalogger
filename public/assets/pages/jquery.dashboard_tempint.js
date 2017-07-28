@@ -77,7 +77,7 @@ function DrawGraph_Tint(data) {
       "valueField": "value",
       "balloonText": "<span style='font-size:12px;'>[[value]] °C</span>",
       "balloon":{
-        "drop":true
+        "drop":false
       }
     }],
     "chartScrollbar": {

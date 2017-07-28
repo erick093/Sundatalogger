@@ -94,7 +94,7 @@ function DrawGraph_eff(data1,data2) {
       "valueField": "value",
       "balloonText": "<span style='font-size:12px;'>[[value]] %</span>",
       "balloon":{
-        "drop":true
+        "drop":false
       }
     }],
     "chartScrollbar": {
@@ -143,7 +143,8 @@ function DrawGraph_eff(data1,data2) {
 //chart.animateAgain();
 for (var i = 0; i < data1.length; i++) {
   //chartData[i]=data[i];
-  var temp = ((parseInt(data1[i].sensorVAL))/(parseInt(data2[i].sensorVAL)*0.28968)).toFixed(3);
+  //0.49159= area del panel solar
+  var temp = ((parseInt(data1[i].sensorVAL))/(parseInt(data2[i].sensorVAL)*0.49159)).toFixed(3);
   //console.log("P: "+ data1[i].sensorVAL + " / " + "E: " + data2[i].sensorVAL + " = "+ temp );
   chartData.push({
     date: new Date(parseInt(data2[i].timestamp)),
