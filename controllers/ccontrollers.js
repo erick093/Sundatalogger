@@ -280,6 +280,20 @@ exports.find_last_Set_Point = function(req, res) {
     res.json(task);
   });
 };
+exports.list_all_Set_Point = function(req, res) {
+  Set_Point_task.find({}, function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+exports.find_Set_Point_by_date = function(req, res) {
+  Set_Point_task.find({timestamp: {"$gte": req.params.from, "$lt": req.params.to}}, function(err, task){
+    if(err)
+      res.send(err);
+    res.json(task);
+  });
+};
 
 // Solar Heater - API
 exports.list_all_Solarh_data = function(req, res) {

@@ -43,6 +43,7 @@
           </a>
         </div>
       </div>
+
       <div class="topbar-right">
            <div class="">
                <a href="index.html" class="logo1">
@@ -50,7 +51,6 @@
                </a>
            </div>
        </div>
-
       <!-- Top navbar -->
       <div class="navbar navbar-default" role="navigation">
         <div class="container">
@@ -102,6 +102,7 @@
               <li><a href="control.html"><i class="mdi mdi-led-on"></i> Control </a></li>
               <li><a href="search.html"><i class="ti-files"></i> Search </a></li>
               <li><a href="maps.html"><i class="ti-location-pin"></i> Maps </a></li>
+
               <li>
                 <a href="javascript: void(0);" aria-expanded="true"><i class="ti-share"></i> Scada View <span class="fa arrow"></span></a>
                 <ul class="nav-second-level nav" aria-expanded="true">
@@ -121,87 +122,121 @@
       <div id="page-right-content">
 
         <div class="container">
+          <div class="row">
+            <!-- <div class="col-lg-6">
+              <div class="card-box">
+                <h4 class="m-t-0">Solar Panel Energy</h4>
+                <div class="text-center">
+                  <label for="Day">Day: </label>
+                  <button type="button" id="bte">Search</button>
+                  <input type="text" id="frome">
+                </div>
+                <div id="s_energy" style="height:300px; width:100%;"></div>
+              </div>
+            </div> -->
+            <!-- end col -->
 
-
+            <!-- <div class="col-lg-6">
+              <div class="card-box">
+                <h4 class="m-t-0">Solar Radiation: Pyranometer Values</h4>
+                <div class="text-center">
+                  <label for="Day">Day: </label>
+                  <button type="button" id="btr">Search</button>
+                  <input type="text" id="fromr">
+                </div>
+                <div id="s_pyra" style="height: 300px;"></div>
+              </div>
+            </div>
+          </div> -->
 
 
           <div class="row">
             <div class="col-sm-12">
-              <div class="card-box widget-inline">
-                <div class="row">
-                  <div class="col-lg-3 col-sm-6">
-                    <div class="widget-inline-box text-center">
-
-                      <h3 class="m-t-10"><i class="mdi mdi-lightbulb"></i> <b data-plugin="counterup"><div id="Lights_status"></div></b></h3>
-                      <p class="text-muted">Lights Status</p>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-3 col-sm-6">
-                    <div class="widget-inline-box text-center">
-                      <h3 class="m-t-10"><i class="mdi mdi-fan"></i> <b data-plugin="counterup"><div id="Fan_status"></div></b></h3>
-                      <p class="text-muted">Fan Status</p>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-3 col-sm-6">
-                    <div class="widget-inline-box text-center">
-                      <h3 class="m-t-10"><i class="mdi mdi-oil-temperature"></i> <b data-plugin="counterup"><div id="SP"></div></b></h3>
-                      <p class="text-muted">Temperature Set Point</p>
-                    </div>
-                  </div>
-
-                  <div class="col-lg-3 col-sm-6">
-                    <div class="widget-inline-box text-center">
-                      <h3 class="m-t-10"><i class="mdi mdi-flash"></i> <b data-plugin="counterup"><div id="Solar_heater_status"></div></b></h3>
-                      <p class="text-muted">Solar Heater Status</p>
+              <div class="card-box">
+                <h4 class="m-t-0">Solar Panel Energy</h4>
+                <div id="s_energy" style="height:400px;"></div>
+                <div class="text-center">
+                  <div class="container">
+                    <p>Date: </p>
+                    <p id="dates_e"></p>
+                    <div>
+                      <p>Day:
+                        <input type="text" id="frome">
+                      </p>
+                      <button type="button" id="bte">Search</button>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
 
 
           <div class="row">
-            <div class="col-lg-6">
+            <div class="col-sm-12">
               <div class="card-box">
-                <h4 class="m-t-0">Lights Control</h4>
+                <h4 class="m-t-0">Solar Radiation: Pyranometer Values</h4>
+                <div id="s_pyra" style="height:400px;"></div>
                 <div class="text-center">
-                  <img id="bulb" onclick="changeImage()" src="assets/images/pic_bulboff.gif" width="100" height="180">
-                  <p class="text-muted">Click me! </p>
-                </div>
-              </div>
-            </div>
-            <!-- end col -->
-
-            <div class="col-lg-6">
-              <div class="card-box">
-                <h4 class="m-t-0">Fan Control</h4>
-                <h5 class="m-t-0">Inside Temperature Set Point </h4>
-                <div class="text-center">
-                  <img src="assets/images/fan.png" width="120" height="120">
-                  <form>
-                    New Set Point:<br>
-                    <input type="text"  id="spval"><br>
-                    <input type="submit" value="Submit" id="btsp">
-                  </form>
+                  <div class="container">
+                    <p>Date: </p>
+                    <p id="dates_r"></p>
+                    <div>
+                      <p>Day:
+                        <input type="text" id="fromr">
+                      </p>
+                      <button type="button" id="btr">Search</button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+
           <!-- end row -->
           <div class="row">
             <div class="col-sm-12">
               <div class="card-box">
-                <h4 class="m-t-0">Reserved</h4>
-
+                <h4 class="m-t-0">Solar Panel Power Output</h4>
+                <div id="s_pot" style="height:400px;"></div>
+                <div class="text-center">
+                  <div class="container">
+                    <p>Date: </p>
+                    <p id="dates"></p>
+                    <div>
+                      <p>Day:
+                        <input type="text" id="from">
+                      </p>
+                      <button type="button" id="bt">Search</button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          <!-- end container -->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card-box">
+                <h4 class="m-t-0">Solar Panel Efficiency</h4>
+                <div id="s_eff" style="height:400px;"></div>
+                <div class="text-center">
+                  <div class="container">
+                    <p>Date: </p>
+                    <p id="dates_eff"></p>
+                    <div>
+                      <p>Day:
+                        <input type="text" id="from_eff">
+                      </p>
+                      <button type="button" id="bt_eff">Search</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
           <div class="footer">
             <div>
               <strong>Erick Escobar</strong> - Copyright &copy; 2017
@@ -223,6 +258,7 @@
     <!--Amcharts Chart-->
     <script src="assets/plugins/amcharts3/amcharts/amcharts.js"></script>
     <script src="assets/plugins/amcharts3/amcharts/serial.js"></script>
+    <script src="https://www.amcharts.com/lib/3/amstock.js"></script>
     <script src="assets/plugins/amcharts3/amcharts/plugins/export/export.min.js"></script>
     <script src="assets/plugins/amcharts3/amcharts/themes/light.js"></script>
     <!-- <script src="/soc/socket.io.js"></script> -->
@@ -239,8 +275,10 @@
 
     <!-- Dashboard init -->
     <script src="assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
-    <script src="assets/pages/control.js"></script>
-
+    <script src="assets/pages/jquery.dashboard_power.js"></script>
+    <script src="assets/pages/jquery.dashboard_energy.js"></script>
+    <script src="assets/pages/jquery.dashboard_pyranometer.js"></script>
+    <script src="assets/pages/jquery.dashboard_eff.js"></script>
 
     <!-- App Js -->
     <script src="assets/js/jquery.app.js"></script>

@@ -88,7 +88,16 @@
 
             <!-- Left Menu Start -->
             <ul class="metisMenu nav" id="side-menu">
-              <li><a href="index.html"><i class="ti-home"></i> Dashboard </a></li>
+              <li>
+                <a href="javascript: void(0);" aria-expanded="true"><i class="ti-home"></i> Home <span class="fa arrow"></span></a>
+                <ul class="nav-second-level nav" aria-expanded="true">
+                  <li><a href="index.html">Dashboard</a></li>
+                  <li><a href="sp_chart.html">Solar Panel Charts</a></li>
+                  <li><a href="ac_chart.html">AC Power Chart</a></li>
+                  <li><a href="control_chart.html">Domotics Control Charts</a></li>
+                  <li><a href="temp_chart.html">Temperature Charts</a></li>
+                </ul>
+              </li>
               <li><a href="charts.html"> <em class="ti-pie-chart"></em> Live Charts </a></li>
               <li><a href="control.html"><i class="mdi mdi-led-on"></i> Control </a></li>
               <li><a href="search.html"><i class="ti-files"></i> Search </a></li>
@@ -300,213 +309,9 @@
             </div>
           </div>
 
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="card-box">
-                <h4 class="m-t-0">Solar Panel Energy</h4>
-                <div class="text-center">
-
-                  <!-- <li>
-                      <h5 class="font-normal"><i class="fa fa-circle m-r-10 text-primary"></i>Series A</h5>
-                    </li>
-                    <li>
-                      <h5 class="font-normal"><i class="fa fa-circle m-r-10 text-muted"></i>Series B</h5>
-                    </li> -->
-                  <label for="Day">Day: </label>
-                  <!-- <input type="text" id="month" name="month" class="monthPicker" /> -->
-                  <button type="button" id="bte">Search</button>
-                  <input type="text" id="frome">
-
-                </div>
-                <div id="s_energy" style="height:300px; width:100%;"></div>
-              </div>
-            </div>
-            <!-- end col -->
-
-            <div class="col-lg-6">
-              <div class="card-box">
-                <h4 class="m-t-0">Solar Radiation: Pyranometer Values</h4>
-                <div class="text-center">
-                  <label for="Day">Day: </label>
-                  <!-- <input type="text" id="month" name="month" class="monthPicker" /> -->
-                  <button type="button" id="btr">Search</button>
-                  <input type="text" id="fromr">
-                </div>
-                <div id="s_pyra" style="height: 300px;"></div>
-              </div>
-            </div>
-          </div>
-          <!-- end row -->
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="card-box">
-                <h4 class="m-t-0">Solar Panel Power Output</h4>
-                <div id="s_pot" style="height:400px;"></div>
-                <div class="text-center">
-                  <div class="container">
-                    <p>Date: </p>
-                    <p id="dates"></p>
-                    <div>
-                      <p>Day:
-                        <input type="text" id="from">
-                      </p>
-                      <button type="button" id="bt">Search</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="card-box">
-                <h4 class="m-t-0">Solar Panel Efficiency</h4>
-                <div id="s_eff" style="height:400px;"></div>
-                <div class="text-center">
-                  <div class="container">
-                    <p>Date: </p>
-                    <p id="dates_eff"></p>
-                    <div>
-                      <p>Day:
-                        <input type="text" id="from_eff">
-                      </p>
-                      <button type="button" id="bt_eff">Search</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
 
 
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="card-box">
-                <h4 class="m-t-0">AC Line Power Output</h4>
-                <div id="s_acp" style="height:400px;"></div>
-                <div class="text-center">
-                  <div class="container">
-                    <p>Date: </p>
-                    <p id="dates_acp"></p>
-                    <div>
-                      <p>Day:
-                        <input type="text" id="from_acp">
-                      </p>
-                      <button type="button" id="bt_acp">Search</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <!-- end container -->
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="card-box">
-                <h4 class="m-t-0">Outside Temperature</h4>
-                <div id="s_text" style="height:400px;"></div>
-                <div class="text-center">
-                  <div class="container">
-                    <p>Date: </p>
-                    <p id="dates_text"></p>
-                    <div>
-                      <p>Day:
-                        <input type="text" id="from_text">
-                      </p>
-                      <button type="button" id="bt_text">Search</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- end container -->
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="card-box">
-                <h4 class="m-t-0">Inside Temperature</h4>
-                <div id="s_tint" style="height:400px;"></div>
-                <div class="text-center">
-                  <div class="container">
-                    <p>Date: </p>
-                    <p id="dates_tint"></p>
-                    <div>
-                      <p>Day:
-                        <input type="text" id="from_tint">
-                      </p>
-                      <button type="button" id="bt_tint">Search</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- end container -->
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="card-box">
-                <h4 class="m-t-0">Lights Status</h4>
-                <div id="s_lights" style="height:400px;"></div>
-                <div class="text-center">
-                  <div class="container">
-                    <p>Date: </p>
-                    <p id="dates_lights"></p>
-                    <div>
-                      <p>Day:
-                        <input type="text" id="from_lights">
-                      </p>
-                      <button type="button" id="bt_lights">Search</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- end container -->
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="card-box">
-                <h4 class="m-t-0">Fan Status</h4>
-                <div id="s_fan" style="height:400px;"></div>
-                <div class="text-center">
-                  <div class="container">
-                    <p>Date: </p>
-                    <p id="dates_fan"></p>
-                    <div>
-                      <p>Day:
-                        <input type="text" id="from_fan">
-                      </p>
-                      <button type="button" id="bt_fan">Search</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- end container -->
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="card-box">
-                <h4 class="m-t-0">Solar Heater Status</h4>
-                <div id="s_sh" style="height:400px;"></div>
-                <div class="text-center">
-                  <div class="container">
-                    <p>Date: </p>
-                    <p id="dates_sh"></p>
-                    <div>
-                      <p>Day:
-                        <input type="text" id="from_sh">
-                      </p>
-                      <button type="button" id="bt_sh">Search</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
           <!-- end container -->
           <div class="footer">
             <div>
@@ -547,15 +352,10 @@
     <!-- Dashboard init -->
     <script src="assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
     <script src="assets/pages/jquery.dashboard.js"></script>
-    <script src="assets/pages/jquery.dashboard_energy.js"></script>
-    <script src="assets/pages/jquery.dashboard_pyranometer.js"></script>
     <script src="assets/pages/jquery.dashboard_tempext.js"></script>
     <script src="assets/pages/jquery.dashboard_tempint.js"></script>
-    <script src="assets/pages/jquery.dashboard_acpower.js"></script>
-    <script src="assets/pages/jquery.dashboard_lights.js"></script>
-    <script src="assets/pages/jquery.dashboard_fan.js"></script>
-    <script src="assets/pages/jquery.dashboard_solarheater.js"></script>
-    <script src="assets/pages/jquery.dashboard_eff.js"></script>
+
+
 
     <!-- App Js -->
     <script src="assets/js/jquery.app.js"></script>
