@@ -123,28 +123,52 @@
       <div id="page-right-content">
 
         <div class="container">
+
+
+          <!-- end container -->
           <div class="row">
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="card-box">
-                  <h4 class="m-t-0">AC Line Power Output</h4>
-                  <div id="s_acp" style="height:400px;"></div>
-                  <div class="text-center">
-                    <div class="container">
-                      <p>Date: </p>
-                      <p id="dates_acp"></p>
-                      <div>
-                        <p>Day:
-                          <input type="text" id="from_acp">
-                        </p>
-                        <button type="button" id="bt_acp">Search</button>
-                      </div>
+            <div class="col-sm-12">
+              <div class="card-box">
+                <h4 class="m-t-0">Q air</h4>
+                <div id="s_qa" style="height:400px;"></div>
+                <div class="text-center">
+                  <div class="container">
+                    <p>Date: </p>
+                    <p id="dates_qa"></p>
+                    <div>
+                      <p>Day:
+                        <input type="text" id="from_qa">
+                      </p>
+                      <button type="button" id="bt_qa">Search</button>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          <!-- end container -->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card-box">
+                <h4 class="m-t-0">Q water</h4>
+                <div id="s_qw" style="height:400px;"></div>
+                <div class="text-center">
+                  <div class="container">
+                    <p>Date: </p>
+                    <p id="dates_qw"></p>
+                    <div>
+                      <p>Day:
+                        <input type="text" id="from_qw">
+                      </p>
+                      <button type="button" id="bt_qw">Search</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
 
           <div class="footer">
             <div>
@@ -184,7 +208,9 @@
 
     <!-- Dashboard init -->
     <script src="assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
-    <script src="assets/pages/jquery.dashboard_acpower.js"></script>
+    <script src="assets/pages/jquery.dashboard_qwater.js"></script>
+    <script src="assets/pages/jquery.dashboard_qair.js"></script>
+
 
     <!-- App Js -->
     <script src="assets/js/jquery.app.js"></script>

@@ -96,6 +96,7 @@
                   <li><a href="ac_chart.html">AC Power Chart</a></li>
                   <li><a href="control_chart.html">Domotics Control Charts</a></li>
                   <li><a href="temp_chart.html">Temperature Charts</a></li>
+                  <li><a href="solar_heater.html">Solar Heater Charts</a></li>
                 </ul>
               </li>
               <li><a href="charts.html"> <em class="ti-pie-chart"></em> Live Charts </a></li>
@@ -167,6 +168,28 @@
             </div>
           </div>
 
+          <!-- end container -->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card-box">
+                <h4 class="m-t-0">Set Point Temperature</h4>
+                <div id="s_sp" style="height:400px;"></div>
+                <div class="text-center">
+                  <div class="container">
+                    <p>Date: </p>
+                    <p id="dates_sp"></p>
+                    <div>
+                      <p>Day:
+                        <input type="text" id="from_sp">
+                      </p>
+                      <button type="button" id="bt_sp">Search</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="footer">
             <div>
               <strong>Erick Escobar</strong> - Copyright &copy; 2017
@@ -207,6 +230,7 @@
     <script src="assets/plugins/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
     <script src="assets/pages/jquery.dashboard_tempext.js"></script>
     <script src="assets/pages/jquery.dashboard_tempint.js"></script>
+    <script src="assets/pages/jquery.dashboard_sp.js"></script>
 
 
     <!-- App Js -->

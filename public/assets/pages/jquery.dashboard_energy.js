@@ -4,7 +4,7 @@ $(function() {
   var end = new Date();
   var nowto= end.setHours(23,59,59,999);
   var url = "/find/E/from/" + now + "/to/" + nowto ;
-  //document.getElementById("dates").innerHTML = start;
+  document.getElementById("dates_e").innerHTML = start;
   $.ajax({
     type: "GET",
     url:url,
@@ -32,7 +32,7 @@ $(function() {
           c_data = data ;
           alert('Searching '+ data.length +' points...');
           DrawGraph_E(data);
-          //document.getElementById("dates").innerHTML = new Date(from);
+          document.getElementById("dates_e").innerHTML = new Date(from);
         }
       });
     });

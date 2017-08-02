@@ -90,6 +90,10 @@ $(function() {
           console.log("Estado calefactor solar");
           var urlAjax = "/find/Solarh/from/" + new Date(from).getTime() + "/to/" + new Date(to).getTime() ;
           break;
+        case "Set Point Temperature":
+          console.log("Temperatura Set Point");
+          var urlAjax = "/find/SP/from/" + new Date(from).getTime() + "/to/" + new Date(to).getTime() ;
+          break;
       }
       var div = document.getElementById("v_text");
       div.textContent = vardata;
@@ -133,7 +137,7 @@ function DrawGraph(data) {
       "valueField": "value",
       "balloonText": "<span style='font-size:12px;'>[[value]]</span>",
       "balloon":{
-        "drop":true
+        "drop":false
       }
     }],
     "chartScrollbar": {

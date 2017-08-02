@@ -46,6 +46,8 @@ module.exports = function(app) {
     .get(chartdata.list_all_Qw_data);
   app.route('/find/Qa')
     .get(chartdata.list_all_Qa_data);
+  app.route('/find/SP')
+    .get(chartdata.list_all_Set_Point);
 
   app.route('/find/V/from/:from/to/:to')
     .get(chartdata.find_V_by_date);
@@ -81,6 +83,8 @@ module.exports = function(app) {
     .get(chartdata.find_Qw_by_date);
   app.route('/find/Qa/from/:from/to/:to')
     .get(chartdata.find_Qa_by_date);
+  app.route('/find/SP/from/:from/to/:to')
+    .get(chartdata.find_Set_Point_by_date);
 
 
   app.route('/find/last/Lights')

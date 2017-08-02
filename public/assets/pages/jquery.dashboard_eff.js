@@ -52,6 +52,8 @@ $(function() {
 
       var varc_E = getJson(urlAjax1);
       var varc_R = getJson(urlAjax2);
+      alert('Searching E '+ varc_E.length +' points...');
+      alert('Searching R '+ varc_R.length +' points...');
       //console.log("Energy S_P: : " + JSON.stringify(varc_E));
       //console.log("Energy SUN: : " + JSON.stringify(varc_R));
       // var eff = [];
@@ -60,6 +62,7 @@ $(function() {
       //   eff[i]=parseInt(varc_E[i].sensorVAL)/(parseInt(varc_R[i].sensorVAL)*0.28968);
       // }
       // console.log("Efficiency: " + JSON.stringify(eff));
+      document.getElementById("dates_eff").innerHTML =  new Date(from);
       DrawGraph_eff(varc_E,varc_R);
     });
 });
