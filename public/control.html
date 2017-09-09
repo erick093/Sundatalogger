@@ -179,7 +179,7 @@
 
             <div class="col-lg-6">
               <div class="card-box">
-                <h4 class="m-t-0">Fan Control</h4>
+                <h4 class="m-t-0">Set Point Control</h4>
                 <h5 class="m-t-0">Inside Temperature Set Point </h4>
                 <div class="text-center">
                   <img src="assets/images/fan.png" width="120" height="120">
@@ -196,8 +196,28 @@
           <div class="row">
             <div class="col-sm-12">
               <div class="card-box">
-                <h4 class="m-t-0">Reserved</h4>
-
+                <h4 class="m-t-0">FAN MODE</h4>
+                <form action="#">
+                  <fieldset>
+                    <label for="speed">Fan control mode: </label>
+                    <select name="speed" id="variable">
+                      <option selected="selected">Manual</option>
+                      <option>Automatic</option>
+                    </select>
+                  </fieldset>
+                </form>
+                  <button type="button" id="bto">Set</button>
+                  <div class="widget-inline-box text-center">
+                    <p class="text-muted">Actual mode:</p>
+                    <h3 class="m-t-10"><i class="mdi mdi-oil-temperature"></i> <b data-plugin="counterup"><div id="Mode_S"></div></b></h3>
+                  </div>
+              </div>
+              <div class="card-box" id="hide">
+                <h4 class="m-t-0">FAN Control ON/OFF</h4>
+                <div class="text-center">
+                  <img id="fan" onclick="changeImageFan()" src="assets/images/fan.png" width="100" height="180">
+                  <p class="text-muted">Click me! </p>
+                </div>
               </div>
             </div>
           </div>

@@ -117,6 +117,20 @@ var T_int_data = mongoose.model('T_int_data', {
   }
 });
 
+var T_amb_data = mongoose.model('T_amb_data', {
+  sensorID: {
+    type: String,
+    default: "temp/amb"
+  },
+  sensorVAL: {
+    type: String
+  },
+  timestamp: {
+    type: String,
+    default: Date.now
+  }
+});
+
 var T_W_ext_data = mongoose.model('T_W_ext_data', {
   sensorID: {
     type: String,
@@ -263,6 +277,16 @@ var Set_Point_data = mongoose.model('Set_Point_data', {
     default: Date.now
   }
 });
+
+var Mode_data = mongoose.model('Mode_data', {
+  sensorVAL: {
+    type: String
+  },
+  timestamp: {
+    type: String,
+    default: Date.now
+  }
+});
 module.exports.V_data = V_data; //Voltages Data
 module.exports.A_data = A_data; //Amperage Data
 module.exports.P_data = P_data; //Power Data
@@ -272,6 +296,7 @@ module.exports.Rdif_data = Rdif_data; //Solar Radiation  Difuse Data
 module.exports.Rdir_data = Rdir_data; //Solar Radiation  Direct Data
 module.exports.T_ext_data = T_ext_data; //Exterior Temperature Data
 module.exports.T_int_data = T_int_data; //Interior Temperature Data
+module.exports.T_amb_data = T_amb_data; //Ambient Temperature of Solar Heater Data
 module.exports.T_W_ext_data = T_W_ext_data; //Exterior Water Temperature Data
 module.exports.T_W_int_data = T_W_int_data; //Interior Water Temperature Data
 module.exports.T_F_ext_data = T_F_ext_data; //Exterior Fan #2 Temperature Data
@@ -283,3 +308,4 @@ module.exports.AC_P_data = AC_P_data; //Lights control Data
 module.exports.Q_air_data = Q_air_data; //Q air data
 module.exports.Q_water_data = Q_water_data; // Q water data
 module.exports.Set_Point_data = Set_Point_data; //Temp set point Data
+module.exports.Mode_data = Mode_data; //Fan mode Data

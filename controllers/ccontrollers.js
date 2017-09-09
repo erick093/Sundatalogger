@@ -8,6 +8,7 @@ var mongoose = require('mongoose'),
   Rdir_task = mongoose.model('Rdir_data');
   T_ext_task = mongoose.model('T_ext_data');
   T_int_task = mongoose.model('T_int_data');
+  T_amb_task = mongoose.model('T_amb_data');
   T_W_ext_task = mongoose.model('T_W_ext_data');
   T_W_int_task = mongoose.model('T_W_int_data');
   T_F_ext_task = mongoose.model('T_F_ext_data');
@@ -17,6 +18,7 @@ var mongoose = require('mongoose'),
   Solar_H_task = mongoose.model('Solar_H_data');
   AC_P_task = mongoose.model('AC_P_data');
   Set_Point_task = mongoose.model('Set_Point_data');
+  Mode_task = mongoose.model('Mode_data');
   Q_air_task = mongoose.model('Q_air_data');
   Q_water_task = mongoose.model('Q_water_data');
 var server = require('../server');
@@ -163,6 +165,22 @@ exports.find_Tint_by_date = function(req, res) {
   });
 };
 
+// T_amb - API
+exports.list_all_Tamb_data = function(req, res) {
+  T_amb_task.find({}, function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+exports.find_Tamb_by_date = function(req, res) {
+  T_amb_task.find({timestamp: {"$gte": req.params.from, "$lt": req.params.to}}, function(err, task){
+    if(err)
+      res.send(err);
+    res.json(task);
+  });
+};
+
 // T_W_int - API
 exports.list_all_TWint_data = function(req, res) {
   T_W_int_task.find({}, function(err, task) {
@@ -295,6 +313,29 @@ exports.find_Set_Point_by_date = function(req, res) {
   });
 };
 
+// FAN Mode - API
+exports.find_last_Mode = function(req, res) {
+  Mode_task.findOne().sort({timestamp:-1}).exec(function(err, task){
+    if(err)
+      res.send(err);
+    res.json(task);
+  });
+};
+exports.list_all_Mode = function(req, res) {
+  Mode_task.find({}, function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+exports.find_Mode_by_date = function(req, res) {
+  Mode_task.find({timestamp: {"$gte": req.params.from, "$lt": req.params.to}}, function(err, task){
+    if(err)
+      res.send(err);
+    res.json(task);
+  });
+};
+
 // Solar Heater - API
 exports.list_all_Solarh_data = function(req, res) {
   Solar_H_task.find({}, function(err, task) {
@@ -373,6 +414,24 @@ exports.save_Set_Point_data = function(req, res) {
     res.json(task);
   });
 };
+
+//save Mode
+exports.save_Mode_data = function(req, res) {
+  var new_data = new Mode_task({
+    sensorVAL: req.body.sensorVAL
+  });
+  server.io.emit('last_Mode',{
+    'message':String(new_data.sensorVAL),
+    'time': new_data.timestamp
+  });
+  new_data.save(function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+
+
 //save TWint TEST TEST TEST TEST TEST!!!!!!!!!!!!!!!
 exports.save_TWint_data = function(req, res) {
   //console.log("me llego algo");
@@ -380,6 +439,22 @@ exports.save_TWint_data = function(req, res) {
     sensorVAL: req.body.sensorVAL
   });
   server.io.emit('last_twint',{
+    'message':String(new_data.sensorVAL),
+    'time': new_data.timestamp
+  });
+  new_data.save(function(err, task) {
+    if (err)
+      res.send(err);
+    res.json(task);
+  });
+};
+//T amb save
+exports.save_Tamb_data = function(req, res) {
+  //console.log("me llego algo");
+  var new_data = new T_amb_task({
+    sensorVAL: req.body.sensorVAL
+  });
+  server.io.emit('last_tamb',{
     'message':String(new_data.sensorVAL),
     'time': new_data.timestamp
   });

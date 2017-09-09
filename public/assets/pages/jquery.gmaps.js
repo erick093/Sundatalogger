@@ -1,8 +1,3 @@
-/**
-* Theme: Simple Admin Template
-* Author: Coderthemes
-* Google Maps
-*/
 
 !function($) {
     "use strict";

@@ -420,6 +420,17 @@ io.on('connection', (socket) => {
     });
   });
 
+  Data.Mode_data.find({timestamp: {$lt: d }}).sort({timestamp: -1}).limit(10).exec((err, docs) => {
+    if (err){
+      console.log("Error getting Data from DB");
+      return
+    }
+    console.log("Lastest Mode data: " + docs[0].sensorVAL );
+    io.emit('last_Mode',{
+      'message':String(docs[0].sensorVAL)
+    });
+  });
+
 });
 
 

@@ -26,6 +26,8 @@ module.exports = function(app) {
     .get(chartdata.list_all_Text_data);
   app.route('/find/Tint')
     .get(chartdata.list_all_Tint_data);
+  app.route('/find/Tamb')
+    .get(chartdata.list_all_Tamb_data);
   app.route('/find/TWext')
     .get(chartdata.list_all_TWext_data);
   app.route('/find/TWint')
@@ -63,6 +65,8 @@ module.exports = function(app) {
     .get(chartdata.find_Text_by_date);
   app.route('/find/Tint/from/:from/to/:to')
     .get(chartdata.find_Tint_by_date);
+  app.route('/find/Tamb/from/:from/to/:to')
+    .get(chartdata.find_Tamb_by_date);
   app.route('/find/TFext/from/:from/to/:to')
     .get(chartdata.find_TFext_by_date);
   app.route('/find/TFint/from/:from/to/:to')
@@ -91,10 +95,14 @@ module.exports = function(app) {
     .get(chartdata.find_last_Lights);
   app.route('/find/last/SP')
     .get(chartdata.find_last_Set_Point);
+  app.route('/find/last/Mode')
+    .get(chartdata.find_last_Mode);
 
 
   app.route('/insert/setpoint/:val')
     .post(chartdata.save_Set_Point_data);
+  app.route('/insert/tamb/')
+    .post(chartdata.save_Tamb_data);
   app.route('/insert/twint/')
     .post(chartdata.save_TWint_data);
   app.route('/insert/twext/')
@@ -109,4 +117,6 @@ module.exports = function(app) {
     .post(chartdata.save_Q_water_data);
   app.route('/insert/shstatus/')
     .post(chartdata.save_sh_status_data);
+  app.route('/insert/mode/')
+    .post(chartdata.save_Mode_data);
 };
