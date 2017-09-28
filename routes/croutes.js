@@ -1,6 +1,9 @@
+
 module.exports = function(app) {
   var chartdata = require('../controllers/ccontrollers');
-
+  // var auth = require('../controllers/AuthController')
+  // app.route('/register')
+  //   .get(auth.register);
 
   // todoList Routes
   app.route('/find/V')

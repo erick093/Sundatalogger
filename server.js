@@ -4,6 +4,7 @@ const socketIO = require('socket.io');
 const port = process.env.PORT || 3500;
 var {mongoose} = require('./db/mongoose');
 var Data = require('./models/data');
+var User = require('./models/user');
 var url = require('url');
 var mqtt =require('mqtt');
 var app = express();
@@ -11,38 +12,127 @@ var server = http.createServer(app);
 var io = socketIO(server);
 var client = mqtt.connect('mqtt://localhost:1883');
 var bodyParser = require("body-parser");
-var auth = require('http-auth');
-// app.use(bodyParser.json());
-// //app.use(app.router);
-//     //app.use(express.logger());
-// var basic = auth.basic({
-//         realm: "Private Area"
-//     }, function (username, password, callback) { // Custom authentication method.
-//         console.log("Authenticating");
-//         callback(username === "hola" && password === "chau");
-//     }
-// );
+var path = require('path');
+//new things
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function () {
+  // we're connected!
+});
+app.use(session({
+  secret: 'work hard',
+  resave: true,
+  saveUninitialized: false,
+  store: new MongoStore({
+    mongooseConnection: db
+  })
+}));
+//new things
+
+//pasport
+// var User = require('./models/user');
+// var cookieParser = require('cookie-parser');
+// var passport = require('passport');
+// var LocalStrategy = require('passport-local').Strategy;
+// app.use(cookieParser());
+// app.use(require('express-session')({
+//     secret: 'keyboard cat',
+//     resave: false,
+//     saveUninitialized: false
+// }));
+//
+// passport.use(new LocalStrategy(User.authenticate()));
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
+// app.use(passport.initialize());
+// app.use(passport.session());
+//passport end
+
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+
 var routes = require('./routes/croutes');
+
 routes(app);
+
 
 app.use(express.static(__dirname + '/public'));
 
-//pp.use(auth.connect(basic));
+
 app.get('/',(req,res) => {
   res.sendFile('index.html');
 });
-//app.get('/control', auth.connect(basic));
-// app.post('/inserttwint', function(req, res) {
-//    console.log("me llego algo");
-//    console.log(req.body.sensorVAL);
-//    res.json(req.body);
-//  });
-// app.route('/insert/tfint/')
-//   .post(function(req,res,next){
-//     console.log("me llego algo");
-// });
+
+//new data
+app.get('/register', function (req, res, next) {
+  res.sendFile(path.join(__dirname + '/public/register.html'));
+});
+
+app.post('/register', function (req, res, next) {
+
+  if (req.body.email &&
+    req.body.username &&
+    req.body.password ) {
+
+    var userData = {
+      email: req.body.email,
+      username: req.body.username,
+      password: req.body.password,
+    }
+
+    User.create(userData, function (error, user) {
+      if (error) {
+        return next(error);
+      } else {
+        req.session.userId = user._id;
+        return res.redirect('/control');
+      }
+    });
+  }
+});
+
+app.post('/login', function (req, res, next) {
+  if (req.body.logemail && req.body.logpassword) {
+      User.authenticate(req.body.logemail, req.body.logpassword, function (error, user) {
+        if (error || !user) {
+          var err = new Error('Wrong email or password.');
+          err.status = 401;
+          return next(err);
+        } else {
+          req.session.userId = user._id;
+          return res.redirect('/control');
+        }
+      });
+    } else {
+      var err = new Error('All fields required.');
+      err.status = 400;
+      return next(err);
+    }
+  });
+
+app.get('/control', function (req, res, next) {
+User.findById(req.session.userId)
+  .exec(function (error, user) {
+    if (error) {
+      return next(error);
+    } else {
+      if (user === null) {
+        var err = new Error('Not authorized! Go back!');
+        err.status = 400;
+        return res.sendFile(path.join(__dirname + '/public/login.html'));
+        //return next(err);
+      } else {
+        //return res.send('<h1>Name: </h1>' + user.username + '<h2>Mail: </h2>' + user.email + '<br><a type="button" href="/logout">Logout</a>')
+        return res.sendFile(path.join(__dirname + '/private/control.html'));
+      }
+    }
+  });
+});
+//new data
 
 //Query lastest Data on Connection
 io.on('connection', (socket) => {
